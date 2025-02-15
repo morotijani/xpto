@@ -12,4 +12,4 @@ RewriteCond $1 !^(media|gpmin|store|helpers|fonts|dist|controller|connection|rob
 
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
-ErrorDocument 404 https://sites.local/xpto/404
+#ErrorDocument 404 https://sites.local/xpto/404
