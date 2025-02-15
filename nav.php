@@ -4,7 +4,7 @@
         <div class="container">
             <nav class="js-mega-menu navbar-nav-wrap">
                 <a class="navbar-brand" href="./index.html" aria-label="Space">
-                    <img class="navbar-brand-logo" src="<?= PROOT; ?>assets/media/logo.jpg" width="30" height="20" alt="Image Description">
+                    <img class="navbar-brand-logo" src="<?= PROOT; ?>assets/media/logo.jpg" style="width: auto; height: 80px;" alt="Image Description">
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
