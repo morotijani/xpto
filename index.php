@@ -1,3 +1,7 @@
+<?php
+    require ("system/DatabaseConnector.php");
+
+?>
 
 <!DOCTYPE html>
 <html lang="en" dir="">
