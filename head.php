@@ -9,7 +9,7 @@
     <title>XPTO</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/media/logo.jpg">
+    <link rel="shortcut icon" href="<?= PROOT; ?>assets/media/logo.jpg">
 
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,10 +17,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Turret+Road:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
 
     <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="assets/css/vendor.min.css">
+    <link rel="stylesheet" href="<?= PROOT; ?>assets/css/vendor.min.css">
 
     <!-- CSS Space Template -->
-    <link rel="stylesheet" href="assets/css/theme.min.css?v=1.0">
+    <link rel="stylesheet" href="<?= PROOT; ?>assets/css/theme.min.css?v=1.0">
     <style>
         * {
             font-family: "Turret Road", serif;

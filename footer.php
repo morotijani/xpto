@@ -1,4 +1,3 @@
-</main>
 
     <!-- ========== FOOTER ========== -->
     <footer class="bg-primary-dark border-top border-white-10">

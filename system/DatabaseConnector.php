@@ -1,6 +1,7 @@
 <?php 
 
-    require ("./bootstrap.php");
+    require dirname(__DIR__)  . '/bootstrap.php';
+
 	
     $driver = $_ENV['DB_DRIVER'];
     $hostname = $_ENV['DB_HOST'];
@@ -21,4 +22,4 @@
     session_start();
 
     require_once ("Functions.php");
-    require_once ("./config.php");
+    require_once dirname(__DIR__) . "/config.php";

@@ -16,46 +16,42 @@
             }
         }'>
         <i class="bi-chevron-up"></i>
-  </a>
-  <!-- ========== END SECONDARY CONTENTS ========== -->
+ 	</a>
 
-  <!-- JS Implementing Plugins -->
-  <script src="assets/js/vendor.min.js"></script>
+	<script src="<?= PROOT; ?>assets/js/vendor.min.js"></script>
+	<script src="<?= PROOT; ?>assets/js/theme.min.js"></script>
 
-  <!-- JS Space -->
-  <script src="assets/js/theme.min.js"></script>
-
-  <!-- JS Plugins Init. -->
-  <script>
-      (function() {
-        // INITIALIZATION OF MEGA MENU
-        // =======================================================
-        const megaMenu = new HSMegaMenu('.js-mega-menu', {
-          desktop: {
-            position: 'left'
-          }
-        })
+	<!-- JS Plugins Init. -->
+	<script>
+		(function() {
+			// INITIALIZATION OF MEGA MENU
+			// =======================================================
+			const megaMenu = new HSMegaMenu('.js-mega-menu', {
+				desktop: {
+					position: 'left'
+				}
+			})
 
 
-        // INITIALIZATION OF SHOW ANIMATIONS
-        // =======================================================
-        new HSShowAnimation('.js-animation-link')
+			// INITIALIZATION OF SHOW ANIMATIONS
+			// =======================================================
+			new HSShowAnimation('.js-animation-link')
 
 
-        // INITIALIZATION OF BOOTSTRAP VALIDATION
-        // =======================================================
-        HSBsValidation.init('.js-validate', {
-          onSubmit: data => {
-            data.event.preventDefault()
-            alert('Submited')
-          }
-        })
+			// INITIALIZATION OF BOOTSTRAP VALIDATION
+			// =======================================================
+			HSBsValidation.init('.js-validate', {
+			onSubmit: data => {
+				data.event.preventDefault()
+				alert('Submited')
+			}
+			})
 
 
-        // INITIALIZATION OF GO TO
-        // =======================================================
-        new HSGoTo('.js-go-to')
-      })()
+			// INITIALIZATION OF GO TO
+			// =======================================================
+			new HSGoTo('.js-go-to')
+		})()
     </script>
 </body>
 </html>
