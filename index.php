@@ -249,9 +249,8 @@
     <div id="scrollToContent" class="container content-space-t-1 content-space-t-md-3">
       <!-- Heading -->
       <div class="w-lg-65 mb-7">
-        <span class="text-cap">Built-in access</span>
-        <h3>Add new lines of business with Space’s features</h3>
-        <p class="fs-6">One theme for your all projects.</p>
+        <span class="text-cap">Xpto</span>
+        <h3>Trade crypto on Xpto</h3>
       </div>
       <!-- End Heading -->
 
@@ -261,9 +260,8 @@
           <div class="step-content-wrapper">
             <span class="step-icon step-icon-soft-primary">1</span>
             <div class="step-content">
-              <h6 class="step-title">Less routine - more creativity</h6>
-              <p class="step-text">This is where we really begin to visualize your napkin sketches and make them into beautiful pixels.</p>
-              <a class="link" href="#">Services <i class="bi-chevron-right small ms-1"></i></a>
+              <h6 class="step-title">Trade worldwide</h6>
+              <p class="step-text">Buy and sell local and digital currencies including Bitcoin, Ethereum, Tether, and USDC – across 140 markets with 500+ payment methods.</p>
             </div>
           </div>
         </li>
@@ -272,9 +270,8 @@
           <div class="step-content-wrapper">
             <span class="step-icon step-icon-soft-primary">2</span>
             <div class="step-content">
-              <h6 class="step-title">Scale budget efficiently</h6>
-              <p class="step-text">Now that we've aligned the details, it's time to get things mapped out and organized.</p>
-              <a class="link" href="#">Features <i class="bi-chevron-right small ms-1"></i></a>
+              <h6 class="step-title">Send money instantly</h6>
+              <p class="step-text">Send cash or cryptocurrency to anyone, anytime - with faster, cheaper, and simpler transactions powered by the blockchain.</p>
             </div>
           </div>
         </li>
@@ -283,9 +280,8 @@
           <div class="step-content-wrapper">
             <span class="step-icon step-icon-soft-primary">3</span>
             <div class="step-content">
-              <h6 class="step-title">Smart dashboards</h6>
-              <p class="step-text">We strive to embrace and drive change in our industry which allows us to keep our clients relevant.</p>
-              <a class="link" href="#">Dashboards <i class="bi-chevron-right small ms-1"></i></a>
+              <h6 class="step-title">Supply global markets</h6>
+              <p class="step-text">Become a peer-to-peer market maker and benefit from arbitrage trading opportunities across regions and payment methods.</p>
             </div>
           </div>
         </li>
