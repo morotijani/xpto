@@ -6,137 +6,182 @@
 <!DOCTYPE html>
 <html lang="en" dir="">
 <head>
-  <!-- Required Meta Tags Always Come First -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Title -->
-  <title>XPTO</title>
+    <!-- Title -->
+    <title>XPTO</title>
 
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="assets/media/logo.jpg">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/media/logo.jpg">
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Turret+Road:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
 
-  <!-- CSS Implementing Plugins -->
-  <link rel="stylesheet" href="assets/css/vendor.min.css">
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="assets/css/vendor.min.css">
 
-  <!-- CSS Space Template -->
-  <link rel="stylesheet" href="assets/css/theme.min.css?v=1.0">
+    <!-- CSS Space Template -->
+    <link rel="stylesheet" href="assets/css/theme.min.css?v=1.0">
+    <style>
+        * {
+            font-family: "Turret Road", serif;
+            /* font-weight: 200; */
+            font-style: normal;
+        }
+
+        .turret-road-extralight {
+            font-family: "Turret Road", serif;
+            font-weight: 200;
+            font-style: normal;
+        }
+
+        .turret-road-light {
+            font-family: "Turret Road", serif;
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        .turret-road-regular {
+            font-family: "Turret Road", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .turret-road-medium {
+            font-family: "Turret Road", serif;
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        .turret-road-bold {
+            font-family: "Turret Road", serif;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .turret-road-extrabold {
+            font-family: "Turret Road", serif;
+            font-weight: 800;
+            font-style: normal;
+        }
+    </style>
 </head>
 
 <body>
-  <!-- ========== HEADER ========== -->
-  <header id="header" class="navbar navbar-expand-lg navbar-light navbar-end bg-white">
-    <div class="container">
-      <nav class="js-mega-menu navbar-nav-wrap">
-        <!-- Default Logo -->
-        <a class="navbar-brand" href="./index.html" aria-label="Space">
-          <img class="navbar-brand-logo" src="assets/media/logo.jpg" width="30" height="20" alt="Image Description">
-        </a>
-        <!-- End Default Logo -->
+    <!-- ========== HEADER ========== -->
+    <header id="header" class="navbar navbar-expand-lg navbar-light navbar-end bg-white">
+        <div class="container">
+            <nav class="js-mega-menu navbar-nav-wrap">
+                <a class="navbar-brand" href="./index.html" aria-label="Space">
+                    <img class="navbar-brand-logo" src="assets/media/logo.jpg" width="30" height="20" alt="Image Description">
+                </a>
 
-        <!-- Toggler -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-default">
-            <i class="bi-list"></i>
-          </span>
-          <span class="navbar-toggler-toggled">
-            <i class="bi-x"></i>
-          </span>
-        </button>
-        <!-- End Toggler -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-default">
+                        <i class="bi-list"></i>
+                    </span>
+                    <span class="navbar-toggler-toggled">
+                        <i class="bi-x"></i>
+                    </span>
+                </button>
 
-        <!-- Collapse -->
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <!-- Landings -->
-            <li class="hs-has-mega-menu nav-item">
-              <a id="landingsMegaMenu" class="nav-link active" aria-current="page" href="#" role="button" aria-expanded="false">Landings</a>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="hs-has-mega-menu nav-item">
+                            <a id="landingsMegaMenu" class="nav-link active" aria-current="page" href="#" role="button" aria-expanded="false"><i class="bi-twitter me-1"></i></a>
+                        </li>
+                        <li class="hs-has-mega-menu nav-item">
+                            <a id="landingsMegaMenu" class="nav-link active" aria-current="page" href="#" role="button" aria-expanded="false"><i class="bi-facebook me-1"></i></a>
+                        </li>
+                    
+                        <li class="nav-divider"></li>
 
-              
-                <!-- End Main Content -->
-              <!-- End Mega Menu -->
-            </li>
-            <!-- End Landings -->
+                        <li class="nav-item">
+                            <a class="js-animation-link btn btn-ghost-secondary btn-no-focus me-2 me-lg-0" href="javascript:;">Log in</a>
+                            <a class="js-animation-link d-lg-none btn btn-primary" href="javascript:;">
+                                <i class="bi-person-circle me-1"></i> Sign up
+                            </a>
+                        </li>
 
-           
-
-            <li class="nav-divider"></li>
-
-            <!-- Log in -->
-            <li class="nav-item">
-              <a class="js-animation-link btn btn-ghost-secondary btn-no-focus me-2 me-lg-0" href="javascript:;" role="button" data-bs-toggle="modal" data-bs-target="#signupModal" data-hs-show-animation-options='{
-                           "targetSelector": "#signupModalFormLogin",
-                           "groupName": "idForm"
-                         }'>Log in</a>
-
-              <a class="js-animation-link d-lg-none btn btn-primary" href="javascript:;" role="button" data-bs-toggle="modal" data-bs-target="#signupModal" data-hs-show-animation-options='{
-                           "targetSelector": "#signupModalFormSignup",
-                           "groupName": "idForm"
-                         }'>
-                <i class="bi-person-circle me-1"></i> Sign up
-              </a>
-            </li>
-            <!-- End Log in -->
-
-            <!-- Sign up -->
-            <li class="nav-item">
-              <a class="js-animation-link d-none d-lg-inline-block btn btn-primary" href="javascript:;" role="button" data-bs-toggle="modal" data-bs-target="#signupModal" data-hs-show-animation-options='{
-                           "targetSelector": "#signupModalFormSignup",
-                           "groupName": "idForm"
-                         }'>
-                <i class="bi-person-circle me-1"></i> Sign up
-              </a>
-            </li>
-            <!-- End Sign up -->
-          </ul>
+                        <li class="nav-item">
+                            <a class="js-animation-link d-none d-lg-inline-block btn btn-primary" href="javascript:;">
+                                <i class="bi-person-circle me-1"></i> Sign up
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </div>
-        <!-- End Collapse -->
-      </nav>
-    </div>
-  </header>
+    </header>
+    <!-- ========== END HEADER ========== -->
 
-  <!-- ========== END HEADER ========== -->
+    <!-- ========== MAIN CONTENT ========== -->
+    <main id="content" role="main">
+        <!-- Hero -->
+        <div class="position-relative">
+            <div class="container">
+                <div class="d-none d-md-block col-md-6 position-absolute top-0 end-0 bg-img-center h-100" style="background-image: url(assets/media/bg-2.png);"></div>
+                <div class="d-md-none mb-5 mb-md-0">
+                    <img class="img-fluid" src="assets/media/bg-2.png" alt="Image Description">
+                </div>
 
-  <!-- ========== MAIN CONTENT ========== -->
-  <main id="content" role="main">
-    <!-- Hero -->
-    <div class="position-relative">
-      <div class="container">
-        <div class="d-none d-md-block col-md-6 position-absolute top-0 end-0 bg-img-center h-100" style="background-image: url(./assets/img/900x700/img2.jpg);"></div>
-        <div class="d-md-none mb-5 mb-md-0">
-          <img class="img-fluid" src="./assets/img/900x700/img2.jpg" alt="Image Description">
-        </div>
+                <div class="row align-items-lg-center content-space-md-3">
+                    <div class="col-md-8 col-lg-6">
+                        <!-- Heading -->
+                        <div class="pe-lg-3 mb-7">
+                            <h1 class="display-4 text-white mb-3 mb-md-5">The people-powered way to  <span class="text-warning">move money</span></h1>
+                            <p class="lead text-white-70">Trade on the go. Anywhere, anytime.</p>
+                        </div>
 
-        <div class="row align-items-lg-center content-space-md-3">
-          <div class="col-md-8 col-lg-6">
-            <!-- Heading -->
-            <div class="pe-lg-3 mb-7">
-              <h1 class="display-4 text-white mb-3 mb-md-5">A complete SaaS platform for your <span class="text-warning">growth</span></h1>
-              <p class="lead text-white-70">One theme for all your projects.</p>
+                        <a class="d-block" href="#scrollToContent">
+                            <span class="svg-icon svg-icon-lg text-white">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect opacity="0.3" x="11" y="4" width="2" height="10" rx="1" fill="#035A4B" />
+                                <path d="M6.70711 12.2929C6.31658 11.9024 5.68342 11.9024 5.29289 12.2929C4.90237 12.6834 4.90237 13.3166 5.29289 13.7071L11.2929 19.7071C11.6715 20.0857 12.2811 20.0989 12.6757 19.7372L18.6757 14.2372C19.0828 13.864 19.1103 13.2314 18.7372 12.8243C18.364 12.4172 17.7314 12.3897 17.3243 12.7628L12.0301 17.6159L6.70711 12.2929Z" fill="#035A4B" />
+                                </svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <!-- End Heading -->
-
-            <!-- Icon -->
-            <a class="d-block" href="#scrollToContent">
-              <span class="svg-icon svg-icon-lg text-white">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect opacity="0.3" x="11" y="4" width="2" height="10" rx="1" fill="#035A4B" />
-                  <path d="M6.70711 12.2929C6.31658 11.9024 5.68342 11.9024 5.29289 12.2929C4.90237 12.6834 4.90237 13.3166 5.29289 13.7071L11.2929 19.7071C11.6715 20.0857 12.2811 20.0989 12.6757 19.7372L18.6757 14.2372C19.0828 13.864 19.1103 13.2314 18.7372 12.8243C18.364 12.4172 17.7314 12.3897 17.3243 12.7628L12.0301 17.6159L6.70711 12.2929Z" fill="#035A4B" />
-                </svg>
-
-              </span>
-            </a>
-            <!-- End Icon -->
-          </div>
-          <!-- End Col -->
         </div>
-        <!-- End Row -->
+
+        
+    <!-- Clients -->
+    <div class="bg-soft-primary-light">
+        <div class="container content-space-1">
+            <div class="mb-4">
+                <h5>Thousands of world’s leading companies trust Xpto</h5>
+            </div>
+
+            <div class="row">
+                <div class="col py-3">
+                    <img class="avatar avatar-xl avatar-4x3" src="assets/media/svg/capsule-primary.svg" alt="Logo">
+                    
+                </div>
+
+                <div class="col py-3">
+                    <img class="avatar avatar-xl avatar-4x3" src="assets/media/svg/fitbit-primary.svg" alt="Logo">
+                </div>
+
+                <div class="col py-3">
+                    <img class="avatar avatar-xl avatar-4x3" src="assets/media/svg/vidados-primary.svg" alt="Logo">
+                </div>
+
+            <div class="col py-3">
+                <img class="avatar avatar-xl avatar-4x3" src="assets/media/svg/mailchimp-primary.svg" alt="Logo">
+            </div>
+
+          <div class="col py-3">
+            <img class="avatar avatar-xl avatar-4x3" src="assets/media/svg/layar-primary.svg" alt="Logo">
+          </div>
+        </div>
       </div>
     </div>
-    <!-- End Hero -->
 
     <!-- Stats -->
     <div class="container">
