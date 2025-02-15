@@ -18,6 +18,7 @@
         <i class="bi-chevron-up"></i>
  	</a>
 
+	 <script src="<?= PROOT; ?>assets/js/jquery-3.7.1.min.js"></script>
 	<script src="<?= PROOT; ?>assets/js/vendor.min.js"></script>
 	<script src="<?= PROOT; ?>assets/js/theme.min.js"></script>
 
