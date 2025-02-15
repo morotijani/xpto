@@ -172,48 +172,78 @@
                     <img class="avatar avatar-xl avatar-4x3" src="assets/media/svg/vidados-primary.svg" alt="Logo">
                 </div>
 
-            <div class="col py-3">
-                <img class="avatar avatar-xl avatar-4x3" src="assets/media/svg/mailchimp-primary.svg" alt="Logo">
-            </div>
+                <div class="col py-3">
+                    <img class="avatar avatar-xl avatar-4x3" src="assets/media/svg/mailchimp-primary.svg" alt="Logo">
+                </div>
 
-          <div class="col py-3">
-            <img class="avatar avatar-xl avatar-4x3" src="assets/media/svg/layar-primary.svg" alt="Logo">
-          </div>
+                <div class="col py-3">
+                    <img class="avatar avatar-xl avatar-4x3" src="assets/media/svg/layar-primary.svg" alt="Logo">
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
     <!-- Stats -->
     <div class="container">
-      <div class="content-space-1">
-        <div class="row">
-          <div class="col-md mb-5 mb-md-0">
-            <span class="h3 text-white">#1 most selling author of GetBootstrap</span>
-          </div>
-          <!-- End Col -->
-
-          <div class="col-sm mb-3 mb-sm-0">
-            <div class="px-sm-3">
-              <span class="h3 text-white">45k+</span>
-              <p class="fs-6 text-white-70">clients from freelancers to corporate companies</p>
-            </div>
-          </div>
-          <!-- End Col -->
-
-          <div class="col-sm">
-            <div class="px-sm-3">
-              <span class="h3 text-white">12k+</span>
-              <p class="fs-6 text-white-70">resolved all kinds of questions and inquiries over the last 8 years</p>
-            </div>
-          </div>
-          <!-- End Col -->
-        </div>
-        <!-- End Row -->
-      </div>
-
       <div class="banner-half-start"></div>
     </div>
     <!-- End Stats -->
+
+    <!-- Features -->
+    <div class="container overflow-hidden content-space-1 content-space-md-3">
+
+        <div class="row justify-content-end align-items-md-center">
+            <div class="col-md-6 mb-7 mb-md-0">
+                <figure class="device-mobile text-center mx-auto">
+                    <div class="device-mobile-frame">
+                        <img class="device-mobile-img" src="assets/media/bg-3.png" alt="Image Description">
+                        
+                    </div>
+
+                        <div class="position-absolute top-50 translate-middle-y zi-n1" style="right: -7rem;">
+                        <img class="img-fluid" src="assets/media/svg//shape-8.svg" alt="SVG" style="width: 10rem;">
+                    </div>
+                </figure>
+            </div>
+
+            <div class="col-md-6">
+                <div class="p-md-5 p-lg-7">
+                    <div class="mb-7">
+                        <h3>Send money instantly – no bank account required</h3>
+                        <p>Send, store, and receive BTC, ETH, USDT and more in your free and secure Paxful cryptocurrency wallet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <div class="container overflow-hidden content-space-b-1 content-space-b-md-3">
+        <div class="row justify-content-end align-items-md-center">
+            <div class="col-md-6 order-md-2 mb-7 mb-md-0">
+                <figure class="device-mobile text-center mx-auto">
+                    <div class="device-mobile-frame">
+                        <img class="device-mobile-img" src="assets/media/bg-1.png" alt="Image Description">
+                    </div>
+
+                    <div class="position-absolute top-50 translate-middle-y zi-n1" style="right: -7rem;">
+                        <img class="img-fluid" src="assets/media/svg/shape-1.svg" alt="SVG" style="width: 10rem;">
+                    </div>
+                </figure>
+            </div>
+
+            <div class="col-md-6">
+                <div class="p-md-5 p-lg-7">
+                    <div class="mb-7">
+                        <h3>Do more with your crypto Digital wallet</h3>
+                        <p>Get your personale wallet address instantly, and join the financial freedom.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
 
     <!-- Step -->
     <div id="scrollToContent" class="container content-space-t-1 content-space-t-md-3">
@@ -264,401 +294,8 @@
     </div>
     <!-- End Step -->
 
-    <!-- Features -->
-    <div class="overflow-hidden content-space-1 content-space-md-3">
-      <div class="position-relative">
-        <div class="container">
-          <div class="row align-items-md-center">
-            <div class="col-md-6 mb-7 mb-md-0">
-              <div class="position-md-absolute top-md-50 end-md-50 translate-middle-md-y">
-                <!-- Browser Device -->
-                <figure class="device-browser device-browser-lg">
-                  <div class="device-browser-header">
-                    <div class="device-browser-header-btn-list">
-                      <span class="device-browser-header-btn-list-btn"></span>
-                      <span class="device-browser-header-btn-list-btn"></span>
-                      <span class="device-browser-header-btn-list-btn"></span>
-                    </div>
-                    <div class="device-browser-header-browser-bar">www.htmlstream.com/space/</div>
-                  </div>
-
-                  <div class="device-browser-frame">
-                    <img class="device-browser-img" src="./assets/img/1920x1080/img6.jpg" alt="Image Description">
-                  </div>
-                </figure>
-                <!-- End Browser Device -->
-              </div>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-md-6">
-              <div class="ps-md-5 py-md-5 ps-lg-10 py-lg-10">
-                <!-- Heading -->
-                <div class="mb-7">
-                  <span class="text-cap">Customize everything</span>
-                  <h3>An enterprise plan to succeed at scale</h3>
-                  <p>One theme for your all projects. Built on standard web technology, teams use Space to build beautiful cross-platform hybrid apps in a fraction of the time.</p>
-                </div>
-                <!-- End Heading -->
-
-                <div class="d-grid gap-3 mb-5">
-                  <!-- Info Block -->
-                  <div class="d-flex align-items-center">
-                    <div class="flex-shrink-0">
-                      <span class="svg-icon svg-icon-sm text-primary">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path opacity="0.3" d="M19 22H5C4.4 22 4 21.6 4 21V3C4 2.4 4.4 2 5 2H14L20 8V21C20 21.6 19.6 22 19 22ZM15 17C15 16.4 14.6 16 14 16H8C7.4 16 7 16.4 7 17C7 17.6 7.4 18 8 18H14C14.6 18 15 17.6 15 17ZM17 12C17 11.4 16.6 11 16 11H8C7.4 11 7 11.4 7 12C7 12.6 7.4 13 8 13H16C16.6 13 17 12.6 17 12ZM17 7C17 6.4 16.6 6 16 6H8C7.4 6 7 6.4 7 7C7 7.6 7.4 8 8 8H16C16.6 8 17 7.6 17 7Z" fill="#035A4B" />
-                          <path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="#035A4B" />
-                        </svg>
-
-                      </span>
-                    </div>
-
-                    <div class="flex-grow-1 ms-3">
-                      <h6 class="mb-0">Industry-leading documentation</h6>
-                    </div>
-                  </div>
-                  <!-- End Info Block -->
-
-                  <!-- Info Block -->
-                  <div class="d-flex align-items-center">
-                    <div class="flex-shrink-0">
-                      <span class="svg-icon svg-icon-sm text-primary">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path opacity="0.3" d="M8 8C8 7.4 8.4 7 9 7H16V3C16 2.4 15.6 2 15 2H3C2.4 2 2 2.4 2 3V13C2 13.6 2.4 14 3 14H5V16.1C5 16.8 5.79999 17.1 6.29999 16.6L8 14.9V8Z" fill="#035A4B" />
-                          <path d="M22 8V18C22 18.6 21.6 19 21 19H19V21.1C19 21.8 18.2 22.1 17.7 21.6L15 18.9H9C8.4 18.9 8 18.5 8 17.9V7.90002C8 7.30002 8.4 6.90002 9 6.90002H21C21.6 7.00002 22 7.4 22 8ZM19 11C19 10.4 18.6 10 18 10H12C11.4 10 11 10.4 11 11C11 11.6 11.4 12 12 12H18C18.6 12 19 11.6 19 11ZM17 15C17 14.4 16.6 14 16 14H12C11.4 14 11 14.4 11 15C11 15.6 11.4 16 12 16H16C16.6 16 17 15.6 17 15Z" fill="#035A4B" />
-                        </svg>
-
-                      </span>
-                    </div>
-
-                    <div class="flex-grow-1 ms-3">
-                      <h6 class="mb-0">Support for the developer community</h6>
-                    </div>
-                  </div>
-                  <!-- End Info Block -->
-
-                  <!-- Info Block -->
-                  <div class="d-flex align-items-center">
-                    <div class="flex-shrink-0">
-                      <span class="svg-icon svg-icon-sm text-primary">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M17.2718 8.68537C16.8933 8.28319 16.9125 7.65032 17.3146 7.2718C17.7168 6.89329 18.3497 6.91246 18.7282 7.31464L22.7282 11.5646C23.0906 11.9497 23.0906 12.5503 22.7282 12.9354L18.7282 17.1854C18.3497 17.5875 17.7168 17.6067 17.3146 17.2282C16.9125 16.8497 16.8933 16.2168 17.2718 15.8146L20.6268 12.25L17.2718 8.68537Z" fill="#035A4B" />
-                          <path d="M6.7282 8.68537C7.10671 8.28319 7.08754 7.65032 6.68536 7.2718C6.28319 6.89329 5.65031 6.91246 5.2718 7.31464L1.2718 11.5646C0.909397 11.9497 0.909397 12.5503 1.2718 12.9354L5.2718 17.1854C5.65031 17.5875 6.28319 17.6067 6.68536 17.2282C7.08754 16.8497 7.10671 16.2168 6.7282 15.8146L3.37325 12.25L6.7282 8.68537Z" fill="#035A4B" />
-                          <rect opacity="0.3" x="12.7388" y="3.97168" width="2" height="16" rx="1" transform="rotate(12.3829 12.7388 3.97168)" fill="#035A4B" />
-                        </svg>
-
-                      </span>
-                    </div>
-
-                    <div class="flex-grow-1 ms-3">
-                      <h6 class="mb-0">Explore the Snippets tools</h6>
-                    </div>
-                  </div>
-                  <!-- End Info Block -->
-                </div>
-
-                <a class="link" href="./page-login.html">Get started now <i class="bi-chevron-right small ms-1"></i></a>
-              </div>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-      </div>
-    </div>
-    <!-- End Features -->
-
-    <!-- Features -->
-    <div class="overflow-hidden content-space-b-1 content-space-b-md-3">
-      <div class="position-relative">
-        <div class="container">
-          <div class="row align-items-md-center">
-            <div class="col-md-6 order-md-2 mb-7 mb-md-0">
-              <div class="position-md-absolute top-md-50 start-md-50 translate-middle-md-y">
-                <!-- Browser Device -->
-                <figure class="device-browser device-browser-lg">
-                  <div class="device-browser-header">
-                    <div class="device-browser-header-btn-list">
-                      <span class="device-browser-header-btn-list-btn"></span>
-                      <span class="device-browser-header-btn-list-btn"></span>
-                      <span class="device-browser-header-btn-list-btn"></span>
-                    </div>
-                    <div class="device-browser-header-browser-bar">www.htmlstream.com/space/</div>
-                  </div>
-
-                  <div class="device-browser-frame">
-                    <img class="device-browser-img" src="./assets/img/1920x1080/img7.jpg" alt="Image Description">
-                  </div>
-                </figure>
-                <!-- End Browser Device -->
-              </div>
-            </div>
-            <!-- End Col -->
-
-            <div class="col-md-6">
-              <div class="pe-md-5 py-md-5 pe-lg-10 py-lg-10">
-                <!-- Heading -->
-                <div class="mb-7">
-                  <span class="text-cap">Combine and customize</span>
-                  <h3>Create an on-site experience your customers will love</h3>
-                  <p>We have taken all the guess work out of building your customer experience. You can easily create an interface that is on brand and intuitive for your customers to use.</p>
-                </div>
-                <!-- End Heading -->
-
-                <div class="d-grid gap-3 mb-5">
-                  <!-- Info Block -->
-                  <div class="d-flex align-items-center">
-                    <div class="flex-shrink-0">
-                      <span class="svg-icon svg-icon-sm text-primary">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M15.6 5.59998L20.9 10.9C21.3 11.3 21.3 11.9 20.9 12.3L17.6 15.6L11.6 9.59998L15.6 5.59998ZM2.3 12.3L7.59999 17.6L11.6 13.6L5.59999 7.59998L2.3 10.9C1.9 11.3 1.9 11.9 2.3 12.3Z" fill="#035A4B" />
-                          <path opacity="0.3" d="M17.6 15.6L12.3 20.9C11.9 21.3 11.3 21.3 10.9 20.9L7.59998 17.6L13.6 11.6L17.6 15.6ZM10.9 2.3L5.59998 7.6L9.59998 11.6L15.6 5.6L12.3 2.3C11.9 1.9 11.3 1.9 10.9 2.3Z" fill="#035A4B" />
-                        </svg>
-
-                      </span>
-                    </div>
-
-                    <div class="flex-grow-1 ms-3">
-                      <h6 class="mb-0">All-in-one</h6>
-                    </div>
-                  </div>
-                  <!-- End Info Block -->
-
-                  <!-- Info Block -->
-                  <div class="d-flex align-items-center">
-                    <div class="flex-shrink-0">
-                      <span class="svg-icon svg-icon-sm text-primary">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M18.4 17H7C5.9 17 5 16.1 5 15C5 13.9 5.9 13 7 13H17C19.2 13 21 11.2 21 9C21 6.8 19.2 5 17 5H5.60001V7H17C18.1 7 19 7.9 19 9C19 10.1 18.1 11 17 11H7C4.8 11 3 12.8 3 15C3 17.2 4.8 19 7 19H18.4V17Z" fill="#035A4B" />
-                          <path opacity="0.3" d="M18.4 22V14L21.7 17.3C22.1 17.7 22.1 18.3 21.7 18.7L18.4 22ZM5.6 10V2L2.3 5.29999C1.9 5.69999 1.9 6.30001 2.3 6.70001L5.6 10Z" fill="#035A4B" />
-                        </svg>
-
-                      </span>
-                    </div>
-
-                    <div class="flex-grow-1 ms-3">
-                      <h6 class="mb-0">Less routine – more creativity</h6>
-                    </div>
-                  </div>
-                  <!-- End Info Block -->
-
-                  <!-- Info Block -->
-                  <div class="d-flex align-items-center">
-                    <div class="flex-shrink-0">
-                      <span class="svg-icon svg-icon-sm text-primary">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path opacity="0.3" d="M14.1 15.013C14.6 16.313 14.5 17.813 13.7 19.113C12.3 21.513 9.29999 22.313 6.89999 20.913C5.29999 20.013 4.39999 18.313 4.39999 16.613C5.09999 17.013 5.99999 17.313 6.89999 17.313C8.39999 17.313 9.69998 16.613 10.7 15.613C11.1 15.713 11.5 15.813 11.9 15.813C12.7 15.813 13.5 15.513 14.1 15.013ZM8.5 12.913C8.5 12.713 8.39999 12.513 8.39999 12.313C8.39999 11.213 8.89998 10.213 9.69998 9.613C9.19998 8.313 9.30001 6.813 10.1 5.513C10.6 4.713 11.2 4.11299 11.9 3.71299C10.4 2.81299 8.49999 2.71299 6.89999 3.71299C4.49999 5.11299 3.70001 8.113 5.10001 10.513C5.80001 11.813 7.1 12.613 8.5 12.913ZM16.9 7.313C15.4 7.313 14.1 8.013 13.1 9.013C14.3 9.413 15.1 10.513 15.3 11.713C16.7 12.013 17.9 12.813 18.7 14.113C19.2 14.913 19.3 15.713 19.3 16.613C20.8 15.713 21.8 14.113 21.8 12.313C21.9 9.513 19.7 7.313 16.9 7.313Z" fill="#035A4B" />
-                          <path d="M9.69998 9.61307C9.19998 8.31307 9.30001 6.81306 10.1 5.51306C11.5 3.11306 14.5 2.31306 16.9 3.71306C18.5 4.61306 19.4 6.31306 19.4 8.01306C18.7 7.61306 17.8 7.31306 16.9 7.31306C15.4 7.31306 14.1 8.01306 13.1 9.01306C12.7 8.91306 12.3 8.81306 11.9 8.81306C11.1 8.81306 10.3 9.11307 9.69998 9.61307ZM8.5 12.9131C7.1 12.6131 5.90001 11.8131 5.10001 10.5131C4.60001 9.71306 4.5 8.91306 4.5 8.01306C3 8.91306 2 10.5131 2 12.3131C2 15.1131 4.2 17.3131 7 17.3131C8.5 17.3131 9.79999 16.6131 10.8 15.6131C9.49999 15.1131 8.7 14.1131 8.5 12.9131ZM18.7 14.1131C17.9 12.8131 16.7 12.0131 15.3 11.7131C15.3 11.9131 15.4 12.1131 15.4 12.3131C15.4 13.4131 14.9 14.4131 14.1 15.0131C14.6 16.3131 14.5 17.8131 13.7 19.1131C13.2 19.9131 12.6 20.5131 11.9 20.9131C13.4 21.8131 15.3 21.9131 16.9 20.9131C19.3 19.6131 20.1 16.5131 18.7 14.1131Z" fill="#035A4B" />
-                        </svg>
-
-                      </span>
-                    </div>
-
-                    <div class="flex-grow-1 ms-3">
-                      <h6 class="mb-0">Style your workflow how you want to fit your brand</h6>
-                    </div>
-                  </div>
-                  <!-- End Info Block -->
-                </div>
-
-                <a class="link" href="./page-login.html">Get started now <i class="bi-chevron-right small ms-1"></i></a>
-              </div>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-      </div>
-    </div>
-    <!-- End Features -->
-
-    <!-- Features -->
-    <div class="overflow-hidden content-space-b-1 content-space-b-md-3">
-      <div class="position-relative">
-        <div class="container">
-          <div class="row align-items-md-center">
-            <div class="col-md-6 mb-7 mb-md-0">
-              <div class="position-md-absolute top-md-50 end-md-50 translate-middle-md-y">
-                <!-- Browser Device -->
-                <figure class="device-browser device-browser-lg">
-                  <div class="device-browser-header">
-                    <div class="device-browser-header-btn-list">
-                      <span class="device-browser-header-btn-list-btn"></span>
-                      <span class="device-browser-header-btn-list-btn"></span>
-                      <span class="device-browser-header-btn-list-btn"></span>
-                    </div>
-                    <div class="device-browser-header-browser-bar">www.htmlstream.com/space/</div>
-                  </div>
-
-                  <div class="device-browser-frame">
-                    <img class="device-browser-img" src="./assets/img/1920x1080/img8.jpg" alt="Image Description">
-                  </div>
-                </figure>
-                <!-- End Browser Device -->
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="ps-md-5 py-md-5 ps-lg-10 py-lg-10">
-                <!-- Heading -->
-                <div class="mb-7">
-                  <span class="text-cap">Smile admin</span>
-                  <h3>Easy and intuitive program management</h3>
-                  <p>Make changes to how you reward and what you reward for, manage your members, and much more - all without needing a developer.</p>
-                </div>
-                <!-- End Heading -->
-
-                <div class="d-grid gap-3 mb-5">
-                  <!-- Info Block -->
-                  <div class="d-flex align-items-center">
-                    <div class="flex-shrink-0">
-                      <span class="svg-icon svg-icon-sm text-primary">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path opacity="0.3" d="M20.859 12.596L17.736 13.596L10.388 20.944C10.2915 21.0406 10.1769 21.1172 10.0508 21.1695C9.9247 21.2218 9.78953 21.2486 9.65302 21.2486C9.5165 21.2486 9.3813 21.2218 9.25519 21.1695C9.12907 21.1172 9.01449 21.0406 8.918 20.944L2.29999 14.3229C2.10543 14.1278 1.99619 13.8635 1.99619 13.588C1.99619 13.3124 2.10543 13.0481 2.29999 12.853L11.853 3.29999C11.9495 3.20341 12.0641 3.12679 12.1902 3.07452C12.3163 3.02225 12.4515 2.9953 12.588 2.9953C12.7245 2.9953 12.8597 3.02225 12.9858 3.07452C13.1119 3.12679 13.2265 3.20341 13.323 3.29999L21.199 11.176C21.3036 11.2791 21.3797 11.4075 21.4201 11.5486C21.4605 11.6898 21.4637 11.8391 21.4295 11.9819C21.3953 12.1247 21.3249 12.2562 21.2249 12.3638C21.125 12.4714 20.9989 12.5514 20.859 12.596V12.596Z" fill="#035A4B" />
-                          <path d="M14.8 10.184C14.7447 10.1843 14.6895 10.1796 14.635 10.1699L5.816 8.69997C5.55436 8.65634 5.32077 8.51055 5.16661 8.29469C5.01246 8.07884 4.95035 7.8106 4.99397 7.54897C5.0376 7.28733 5.18339 7.05371 5.39925 6.89955C5.6151 6.7454 5.88334 6.68332 6.14498 6.72694L14.963 8.19692C15.2112 8.23733 15.435 8.36982 15.59 8.56789C15.7449 8.76596 15.8195 9.01502 15.7989 9.26564C15.7784 9.51626 15.6642 9.75001 15.479 9.92018C15.2939 10.0904 15.0514 10.1846 14.8 10.184V10.184ZM17 18.6229C17 19.0281 17.0985 19.4272 17.287 19.7859C17.4755 20.1446 17.7484 20.4521 18.0821 20.6819C18.4158 20.9117 18.8004 21.0571 19.2027 21.1052C19.605 21.1534 20.0131 21.103 20.3916 20.9585C20.7702 20.814 21.1079 20.5797 21.3758 20.2757C21.6437 19.9716 21.8336 19.607 21.9293 19.2133C22.025 18.8195 22.0235 18.4085 21.925 18.0154C21.8266 17.6223 21.634 17.259 21.364 16.9569L19.843 15.257C19.7999 15.2085 19.7471 15.1697 19.688 15.1432C19.6289 15.1167 19.5648 15.1029 19.5 15.1029C19.4352 15.1029 19.3711 15.1167 19.312 15.1432C19.2529 15.1697 19.2001 15.2085 19.157 15.257L17.636 16.9569C17.2254 17.4146 16.9988 18.0081 17 18.6229V18.6229ZM10.388 20.9409L17.736 13.5929H1.99999C1.99921 13.7291 2.02532 13.8643 2.0768 13.9904C2.12828 14.1165 2.2041 14.2311 2.29997 14.3279L8.91399 20.9409C9.01055 21.0381 9.12539 21.1152 9.25188 21.1679C9.37836 21.2205 9.51399 21.2476 9.65099 21.2476C9.78798 21.2476 9.92361 21.2205 10.0501 21.1679C10.1766 21.1152 10.2914 21.0381 10.388 20.9409V20.9409Z" fill="#035A4B" />
-                        </svg>
-
-                      </span>
-                    </div>
-
-                    <div class="flex-grow-1 ms-3">
-                      <h6 class="mb-0">UI/UX design</h6>
-                    </div>
-                  </div>
-                  <!-- End Info Block -->
-
-                  <!-- Info Block -->
-                  <div class="d-flex align-items-center">
-                    <div class="flex-shrink-0">
-                      <span class="svg-icon svg-icon-sm text-primary">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path opacity="0.3" d="M2.10001 10C3.00001 5.6 6.69998 2.3 11.2 2L8.79999 4.39999L11.1 7C9.60001 7.3 8.30001 8.19999 7.60001 9.59999L4.5 12.4L2.10001 10ZM19.3 11.5L16.4 14C15.7 15.5 14.4 16.6 12.7 16.9L15 19.5L12.6 21.9C17.1 21.6 20.8 18.2 21.7 13.9L19.3 11.5Z" fill="#035A4B" />
-                          <path d="M13.8 2.09998C18.2 2.99998 21.5 6.69998 21.8 11.2L19.4 8.79997L16.8 11C16.5 9.39998 15.5 8.09998 14 7.39998L11.4 4.39998L13.8 2.09998ZM12.3 19.4L9.69998 16.4C8.29998 15.7 7.3 14.4 7 12.8L4.39999 15.1L2 12.7C2.3 17.2 5.7 20.9 10 21.8L12.3 19.4Z" fill="#035A4B" />
-                        </svg>
-
-                      </span>
-                    </div>
-
-                    <div class="flex-grow-1 ms-3">
-                      <h6 class="mb-0">Competitive analysis</h6>
-                    </div>
-                  </div>
-                  <!-- End Info Block -->
-
-                  <!-- Info Block -->
-                  <div class="d-flex align-items-center">
-                    <div class="flex-shrink-0">
-                      <span class="svg-icon svg-icon-sm text-primary">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path opacity="0.3" d="M22.0318 8.59998C22.0318 10.4 21.4318 12.2 20.0318 13.5C18.4318 15.1 16.3318 15.7 14.2318 15.4C13.3318 15.3 12.3318 15.6 11.7318 16.3L6.93177 21.1C5.73177 22.3 3.83179 22.2 2.73179 21C1.63179 19.8 1.83177 18 2.93177 16.9L7.53178 12.3C8.23178 11.6 8.53177 10.7 8.43177 9.80005C8.13177 7.80005 8.73176 5.6 10.3318 4C11.7318 2.6 13.5318 2 15.2318 2C16.1318 2 16.6318 3.20005 15.9318 3.80005L13.0318 6.70007C12.5318 7.20007 12.4318 7.9 12.7318 8.5C13.3318 9.7 14.2318 10.6001 15.4318 11.2001C16.0318 11.5001 16.7318 11.3 17.2318 10.9L20.1318 8C20.8318 7.2 22.0318 7.59998 22.0318 8.59998Z" fill="#035A4B" />
-                          <path d="M4.23179 19.7C3.83179 19.3 3.83179 18.7 4.23179 18.3L9.73179 12.8C10.1318 12.4 10.7318 12.4 11.1318 12.8C11.5318 13.2 11.5318 13.8 11.1318 14.2L5.63179 19.7C5.23179 20.1 4.53179 20.1 4.23179 19.7Z" fill="#035A4B" />
-                        </svg>
-
-                      </span>
-                    </div>
-
-                    <div class="flex-grow-1 ms-3">
-                      <h6 class="mb-0">Prototyping & Interactions</h6>
-                    </div>
-                  </div>
-                  <!-- End Info Block -->
-                </div>
-
-                <a class="link" href="./page-login.html">Get started now <i class="bi-chevron-right small ms-1"></i></a>
-              </div>
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </div>
-      </div>
-    </div>
-    <!-- End Features -->
-
-    <!-- Testimonials -->
-    <div class="bg-soft-primary-light">
-      <div class="container py-3">
-        <div class="row">
-          <div class="col-sm-4">
-            <!-- Images -->
-            <div class="d-none d-sm-block bg-img-center h-100" style="background-image: url(./assets/img/900x700/img3.jpg);"></div>
-            <div class="d-sm-none">
-              <img class="img-fluid" src="./assets/img/900x700/img3.jpg" alt="Image Description">
-            </div>
-            <!-- End Images -->
-          </div>
-          <!-- End Col -->
-
-          <div class="col-sm-8">
-            <!-- Blockquote -->
-            <figure class="ps-md-5 py-5 content-space-md-3">
-              <img class="avatar avatar-xl avatar-4x3 mb-5" src="./assets/svg/brands/forbes-primary.svg" alt="Logo">
-
-              <blockquote class="blockquote">“ Truly great template and great costumer support. Very precise documentation with many features well explained. ”</blockquote>
-
-              <figcaption class="blockquote-footer">
-                Matt Powers
-                <span class="blockquote-footer-source">Director of Sales | Forbes</span>
-              </figcaption>
-            </figure>
-            <!-- End Blockquote -->
-          </div>
-          <!-- End Col -->
-        </div>
-        <!-- End Row -->
-      </div>
-    </div>
-    <!-- End Testimonials -->
-
-    <!-- Pricing -->
-    <div class="container content-space-t-1 content-space-t-md-3">
-      <!-- Heading -->
-      <div class="w-lg-65 text-center mx-lg-auto mb-7">
-        <h3>Find the right plan for your team</h3>
-        <p class="fs-6">Pay as you go service, cancel anytime.</p>
-      </div>
-      <!-- End Heading -->
-
-      <div class="row align-items-sm-center col-sm-divider mb-5 mb-sm-10">
-        <div class="col-sm-6 col-md-4 offset-md-2">
-          <div class="text-center">
-            <img class="avatar avatar-xxl avatar-4x3" src="./assets/svg/illustrations/oc-money-profits.svg" alt="Image Description">
-
-            <div class="text-primary fw-bold">
-              <span class="fs-4 align-top">$</span>
-              <span class="display-1">19</span>
-              <span class="fs-6">.00</span>
-            </div>
-
-            <p>Per account, per month</p>
-          </div>
-        </div>
-        <!-- End Col -->
-
-        <div class="col-sm-6">
-          <div class="ps-sm-3 ps-md-5">
-            <div class="mb-4">
-              <h5>Includes all that you needed:</h5>
-            </div>
-
-            <!-- List Checked -->
-            <ul class="list-checked list-checked-primary mb-0">
-              <li class="list-checked-item">Up to 10 people <i class="bi-info-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="The number of teammates that can access your Space workspace"></i></li>
-              <li class="list-checked-item">Unlimited apps</li>
-              <li class="list-checked-item">Sales opportunities <i class="bi-info-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Track potential sales, such as a bid, deal or proposal."></i></li>
-              <li class="list-checked-item">API access &amp; Space integration <i class="bi-info-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Programmatically manage Segment workspaces, sources, destinations, and more"></i></li>
-              <li class="list-checked-item">Advanced account security <i class="bi-info-circle text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="Protect your workspace with personalized security settings"></i></li>
-              <li class="list-checked-item">Enterprise response SLA</li>
-            </ul>
-            <!-- End List Checked -->
-          </div>
-        </div>
-        <!-- End Col -->
-      </div>
-      <!-- End Row -->
-
-      <div class="mx-auto" style="max-width: 31.25rem;">
+    
+       <div class="mx-auto" style="max-width: 31.25rem;">
         <!-- Alert -->
         <div class="alert alert-soft-primary" role="alert">
           <div class="d-sm-flex align-items-sm-center">
@@ -681,63 +318,9 @@
         </div>
         <!-- End Alert -->
       </div>
+   
     </div>
     <!-- End Pricing -->
-
-    <!-- Features -->
-    <div class="container content-space-1 content-space-md-3">
-      <!-- Heading -->
-      <div class="w-lg-65 text-center mx-lg-auto mb-7">
-        <h3>Space features</h3>
-        <p class="fs-6">Read how we've helped some great companies brand, design and get to market.</p>
-      </div>
-      <!-- End Heading -->
-
-      <div class="row">
-        <div class="col-sm-6 col-md-4 mb-5 mb-md-0">
-          <!-- Article -->
-          <div class="card card-flush h-100">
-            <img class="card-img-top" src="./assets/img/600x400/img2.jpg" alt="Image Description">
-            <div class="card-body">
-              <h5 class="card-title"><a class="text-dark" href="#">Attract</a></h5>
-              <p class="card-text">This is where we really begin to visualize your napkin sketches and make them into beautiful pixels.</p>
-              <a class="card-link" href="./blog-classic.html">Learn more Attract <i class="bi-chevron-right small ms-1"></i></a>
-            </div>
-          </div>
-          <!-- End Article -->
-        </div>
-        <!-- End Col -->
-
-        <div class="col-sm-6 col-md-4 mb-5 mb-md-0">
-          <!-- Article -->
-          <div class="card card-flush h-100">
-            <img class="card-img-top" src="./assets/img/600x400/img1.jpg" alt="Image Description">
-            <div class="card-body">
-              <h5 class="card-title"><a class="text-dark" href="#">Grow</a></h5>
-              <p class="card-text">Now that we've aligned the details, it's time to get things mapped out and organized.</p>
-              <a class="card-link" href="./blog-classic.html">Learn more Grow <i class="bi-chevron-right small ms-1"></i></a>
-            </div>
-          </div>
-          <!-- End Article -->
-        </div>
-
-        <div class="col-sm-6 col-md-4">
-          <!-- Article -->
-          <div class="card card-flush h-100">
-            <img class="card-img-top" src="./assets/img/600x400/img3.jpg" alt="Image Description">
-            <div class="card-body">
-              <h5 class="card-title"><a class="text-dark" href="#">Retain</a></h5>
-              <p class="card-text">We embrace and drive change in our industry which allows us to keep our clients relevant.</p>
-              <a class="card-link" href="./blog-classic.html">Learn more Retain <i class="bi-chevron-right small ms-1"></i></a>
-            </div>
-          </div>
-          <!-- End Article -->
-        </div>
-        <!-- End Col -->
-      </div>
-      <!-- End Row -->
-    </div>
-    <!-- End Features -->
   </main>
   <!-- ========== END MAIN CONTENT ========== -->
 
