@@ -11,12 +11,33 @@
 				<div class="mx-auto" style="max-width: 30rem;">
 					<div class="card card-lg zi-2">
 						<div class="card-header text-center">
-							<h4 class="card-title">Forgot password?</h4>
-							<p class="card-text">Enter the email address you used when you joined and we'll send you instructions to reset your password.</p>
+							<h4 class="card-title">Login into your account.</h4>
+							<p class="card-text">Enter your email address and click next to enter your password to login.</p>
 						</div>
 
 						<div class="card-body">
 							<form class="js-validate need-validate" novalidate>
+
+								<ul class="step step-sm step-icon-sm step-centered" id="step-TabFeatures" role="tablist">
+									<li class="step-item" role="presentation">
+										<a class="step-content-wrapper active" href="#stepFeaturesOne" id="stepFeaturesOne-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesOne" role="tab" aria-controls="stepFeaturesOne" aria-selected="true">
+											<span class="step-icon step-icon-soft-secondary">1</span>
+											<div class="step-content">
+												<h6 class="step-title">Email</h6>
+											</div>
+										</a>
+									</li>
+
+									<li class="step-item" role="presentation">
+										<a class="step-content-wrapper" href="#stepFeaturesTwo" id="stepFeaturesTwo-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesTwo" role="tab" aria-controls="stepFeaturesTwo" aria-selected="false">
+											<span class="step-icon step-icon-soft-secondary">2</span>
+											<div class="step-content">
+												<h6 class="step-title">Secrete keys</h6>
+											</div>
+										</a>
+									</li>
+								</ul>
+
 								<!-- Form -->
 								<div class="mb-4">
 									<label class="form-label" for="forgotPasswordFormEmail">Your email</label>
@@ -25,12 +46,12 @@
 								</div>
 
 								<div class="d-grid mb-4">
-									<button type="submit" class="btn btn-primary btn-lg">Submit</button>
+									<button type="submit" class="btn btn-primary btn-lg">Next</button>
 								</div>
 
 								<div class="text-center">
 									<a class="btn btn-link" href="./page-login.html">
-										<i class="bi-chevron-left small me-1"></i> Back to log in
+										<i class="bi-chevron-left small me-1"></i> Don't have an account ?
 									</a>
 								</div>
 							</form>
