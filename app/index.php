@@ -24,60 +24,57 @@
 
 						<div class="card-body">
 
+                            <div class="pe-md-5">
 
-
-
-                        <div class="pe-md-5">
-
-                                                <!-- Step -->
-                                                <ul class="step step-sm step-icon-sm step-centered step-border-last-0" id="step-TabFeatures" role="tablist">
-                                                    <li class="step-item" role="presentation">
-                                                        <a class="step-content-wrapper active" href="#stepFeaturesOne" id="stepFeaturesOne-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesOne" role="tab" aria-controls="stepFeaturesOne" aria-selected="true">
-                                                            <span class="step-icon step-icon-soft-secondary">1</span>
-                                                            <div class="step-content">
-                                                                <h6 class="step-title">Send Crypto</h6>
-                                                            </div>
-                                                        </a>
-                                                    </li>
-
-                                                    <li class="step-item" role="presentation">
-                                                        <a class="step-content-wrapper" href="#stepFeaturesTwo" id="stepFeaturesTwo-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesTwo" role="tab" aria-controls="stepFeaturesTwo" aria-selected="false">
-                                                            <span class="step-icon step-icon-soft-secondary">2</span>
-                                                            <div class="step-content">
-                                                                <h6 class="step-title">Recieve crypto</h6>
-                                                            </div>
-                                                        </a>
-                                                    </li>
-
-                                                    <li class="step-item" role="presentation">
-                                                        <a class="step-content-wrapper" href="#stepFeaturesThree" id="stepFeaturesThree-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesThree" role="tab" aria-controls="stepFeaturesThree" aria-selected="false">
-                                                            <span class="step-icon step-icon-soft-secondary">3</span>
-                                                            <div class="step-content">
-                                                                <h6 class="step-title">Transaction history</h6>
-                                                            </div>
-                                                        </a>
-                                                    </li>
-
-                                                    <li class="step-item" role="presentation">
-                                                        <a class="step-content-wrapper" href="#stepFeaturesThree" id="stepFeaturesThree-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesThree" role="tab" aria-controls="stepFeaturesThree" aria-selected="false">
-                                                            <span class="step-icon step-icon-soft-secondary">4</span>
-                                                            <div class="step-content">
-                                                                <h6 class="step-title">Hi Amin!</h6>
-                                                            </div>
-                                                        </a>
-                                                    </li>
-                                                </ul>
+                                <!-- Step -->
+                                <ul class="step step-sm step-icon-sm step-centered step-border-last-0" id="step-TabFeatures" role="tablist">
+                                    <li class="step-item" role="presentation">
+                                        <a class="step-content-wrapper active" href="#stepFeaturesOne" id="stepFeaturesOne-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesOne" role="tab" aria-controls="stepFeaturesOne" aria-selected="true">
+                                            <span class="step-icon step-icon-soft-secondary">
+                                                <img class="" src="<?= PROOT; ?>assets/media/send-crypto.png" width="100" height="100">
+                                            </span>
+                                            <div class="step-content">
+                                                <h6 class="step-title">Send Crypto</h6>
                                             </div>
+                                        </a>
+                                    </li>
 
+                                    <li class="step-item" role="presentation">
+                                        <a class="step-content-wrapper" href="#stepFeaturesTwo" id="stepFeaturesTwo-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesTwo" role="tab" aria-controls="stepFeaturesTwo" aria-selected="false">
+                                            <span class="step-icon step-icon-soft-secondary">
+                                                <img class="" src="<?= PROOT; ?>assets/media/receive-crypto.png" width="100" height="100">
+                                            </span>
+                                            <div class="step-content">
+                                                <h6 class="step-title">Recieve crypto</h6>
+                                            </div>
+                                        </a>
+                                    </li>
 
+                                    <li class="step-item" role="presentation">
+                                        <a class="step-content-wrapper" href="#stepFeaturesThree" id="stepFeaturesThree-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesThree" role="tab" aria-controls="stepFeaturesThree" aria-selected="false">
+                                            <span class="step-icon step-icon-soft-secondary">
+                                                <img class="" src="<?= PROOT; ?>assets/media/transaction-history.png" width="100" height="100">
+                                            </span>
+                                            <div class="step-content">
+                                                <h6 class="step-title">Transaction history</h6>
+                                            </div>
+                                        </a>
+                                    </li>
 
-
-
-
-
-
+                                    <li class="step-item" role="presentation">
+                                        <a class="step-content-wrapper" href="#stepFeaturesThree" id="stepFeaturesThree-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesThree" role="tab" aria-controls="stepFeaturesThree" aria-selected="false">
+                                            <span class="step-icon step-icon-soft-secondary">
+                                                <img class="" src="<?= PROOT; ?>assets/media/profile.png" width="100" height="100">
+                                            </span>
+                                            <div class="step-content">
+                                                <h6 class="step-title">Hi Amin!</h6>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                             
-                        <!-- Features Step -->
+                            <!-- Features Step -->
                             <div class="overflow-hidden">
                                 <div class="container content-space-b-1 content-space-b-md-3 mt-4">
                                     <div class="row justify-content-center">
