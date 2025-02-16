@@ -78,7 +78,7 @@
                                     <li class="step-item" role="presentation">
                                         <a class="step-content-wrapper active" href="#stepFeaturesOne" id="stepFeaturesOne-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesOne" role="tab" aria-controls="stepFeaturesOne" aria-selected="true">
                                             <span class="step-icon step-icon-soft-secondary">
-                                                <img class="" src="<?= PROOT; ?>assets/media/send-icon.png" width="100" height="100">
+                                                <img class="img-fluid" src="<?= PROOT; ?>assets/media/send-icon.png" width="100" height="100">
                                             </span>
                                             <div class="step-content">
                                                 <h6 class="step-title">Send Crypto</h6>
@@ -89,7 +89,7 @@
                                     <li class="step-item" role="presentation">
                                         <a class="step-content-wrapper" href="#stepFeaturesTwo" id="stepFeaturesTwo-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesTwo" role="tab" aria-controls="stepFeaturesTwo" aria-selected="false">
                                             <span class="step-icon step-icon-soft-secondary">
-                                                <img class="" src="<?= PROOT; ?>assets/media/receive-icon.png" width="100" height="100">
+                                                <img class="img-fluid" src="<?= PROOT; ?>assets/media/receive-icon.png" width="100" height="100">
                                             </span>
                                             <div class="step-content">
                                                 <h6 class="step-title">Recieve crypto</h6>
@@ -100,7 +100,7 @@
                                     <li class="step-item" role="presentation">
                                         <a class="step-content-wrapper" href="#stepFeaturesThree" id="stepFeaturesThree-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesThree" role="tab" aria-controls="stepFeaturesThree" aria-selected="false">
                                             <span class="step-icon step-icon-soft-secondary">
-                                                <img class="" src="<?= PROOT; ?>assets/media/transaction-icon.png" width="100" height="100">
+                                                <img class="img-fluid" src="<?= PROOT; ?>assets/media/transaction-icon.png" width="100" height="100">
                                             </span>
                                             <div class="step-content">
                                                 <h6 class="step-title">Transaction history</h6>
@@ -111,7 +111,7 @@
                                     <li class="step-item" role="presentation">
                                         <a class="step-content-wrapper" href="#stepFeaturesThree" id="stepFeaturesThree-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesThree" role="tab" aria-controls="stepFeaturesThree" aria-selected="false">
                                             <span class="step-icon step-icon-soft-secondary">
-                                                <img class="" src="<?= PROOT; ?>assets/media/profile-icon.png" width="100" height="100">
+                                                <img class="img-fluid" src="<?= PROOT; ?>assets/media/profile-icon.png" width="100" height="100">
                                             </span>
                                             <div class="step-content">
                                                 <h6 class="step-title">Hi Amin!</h6>
@@ -208,13 +208,23 @@
                                                 </div>
 
                                                 <div class="tab-pane fade" id="stepFeaturesTwo" role="tabpanel" aria-labelledby="stepFeaturesTwo-tab">
-                                                    receice
+                                                
+                                                    <!-- Receive -->
+                                                    <a class="card card-lg card-transition bg-soft-warning shadow-none h-100" href="./snippets/index.html">
+                                                        <div class="card-header">
+                                                            <h5 class="card-title text-inherit">Snippets</h5>
+                                                            <p class="card-text text-body">Start browsing our snippets pages to match Bootstrap's level of quality.</p>
+                                                        </div>
+                                                        <div class="card-body text-center">
+                                                            <img class="card-img" style="width: auto; height: 250px" src="https://qrcode.tec-it.com/API/QRCode?data=https%3a%2f%2fqrcode.tec-it.com&color=%2312642a&backcolor=%23ffffff&istransparent=True" alt="Image Description">
+
+                                                        </div>
+                                                    </a>
                                                 </div>
 
                                                 <div class="tab-pane fade" id="stepFeaturesThree" role="tabpanel" aria-labelledby="stepFeaturesThree-tab">
-                                                   
 
-
+                                                    <!-- Transactions -->
                                                     <div class="card">
                                                         <div class="card-body pb-0">
                                                             <div class="d-flex justify-content-between align-items-center">
@@ -286,12 +296,9 @@
                                                                     </div>
                                                                 </div>
                                                                 
-                                                            </div></div></div>
-
-
-
-
-
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                             </div>
@@ -348,4 +355,33 @@
 				$('#step-two').removeClass('d-none');
 			})
 		})
+
+
+
+        //get live prices
+        var btc = document.getElementById("btc");
+        var eth = document.getElementById("eth");
+        var usdt = document.getElementById("usdt");
+
+        f_btc = document.getElementById("f-btc");
+        f_eth = document.getElementById("f-eth");
+        f_usdt = document.getElementById("f-usdt");
+        liveprice = {
+            "async" : true,
+            "scroosDomain" : true,
+            "url" : "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Ctether&vs_currencies=usd",
+            "method" : "GET",
+            "headers" : {},
+        }
+        $.ajax(liveprice).done(function (response) {
+            btc.innerHTML = "$ " + response.bitcoin.usd.toLocaleString();
+            eth.innerHTML = "$ " + response.ethereum.usd.toLocaleString();
+            usdt.innerHTML = "$ " + response.tether.usd.toLocaleString();
+
+            f_btc.innerHTML = "$ " + response.bitcoin.usd.toLocaleString();
+            f_eth.innerHTML = "$ " + response.ethereum.usd.toLocaleString();
+            f_usdt.innerHTML = "$ " + response.tether.usd.toLocaleString();
+
+            console.log(response);
+        });
 	</script>
