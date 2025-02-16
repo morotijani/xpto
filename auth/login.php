@@ -1,5 +1,6 @@
 <?php
     require ("../system/DatabaseConnector.php");
+	$newFont = "default";
     include ("../head.php");
 
 ?>

@@ -216,6 +216,23 @@
                                                             <p class="card-text text-body">Start browsing our snippets pages to match Bootstrap's level of quality.</p>
                                                         </div>
                                                         <div class="card-body text-center">
+                                                            
+                                                        <div id="receive-step-2" class="d- text-center">
+			      		<div class="input-group">
+		                    <span id="copy-receive-address" type="text" class="form-control" placeholder="wallet address"></span>
+		                    <button class="btn btn-light-warning" data-clipboard-target="#copy-receive-address">
+		                        Copy
+		                    </button>
+		                </div>
+		                <div class="text-center my-4">
+		                	or
+		                </div>
+			      		 <img src="" class="qr-code img-thumbnail img-fluid" />
+			      		 <br>
+			      		 <small>Receive by scanning this QR code.</small>
+			      		 <p id="share-moreinfo"></p>
+			      	</div>
+
                                                             <img class="card-img" style="width: auto; height: 250px" src="https://qrcode.tec-it.com/API/QRCode?data=https%3a%2f%2fqrcode.tec-it.com&color=%2312642a&backcolor=%23ffffff&istransparent=True" alt="Image Description">
 
                                                         </div>

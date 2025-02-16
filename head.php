@@ -80,18 +80,18 @@
 <body>
     <div class="nav-scroller bg-bod shadow-sm">
         <nav class="nav nav-sm justify-content-between bg-soft-warning" aria-label="Secondary navigation">
-            <a class="nav-link active" aria-current="page" href="#">xpto</a>
-            <a class="nav-link" href="#">
-                Cryptos: <span class="badge text-bg-light rounded-pill align-text-bottom">21,713</span>
-            </a>
-            <a class="nav-link" href="#">
-                Bitcoin: <span class="badge text-bg-light rounded-pill align-text-bottom">$21,713</span>
-            </a>
-            <a class="nav-link" href="#">
-                Ethereum: <span class="badge text-bg-light rounded-pill align-text-bottom">$21,713</span>
-            </a>
-            <a class="nav-link" href="#">
-                IPC: <span class="badge text-bg-light rounded-pill align-text-bottom">$21,713</span>
-            </a>
+            <?php 
+                if (array($coin_data['data'])) {
+                    foreach (array_slice($coin_data['data'], 0, 10) as $crypto) {
+                        $icon = "https://s2.coinmarketcap.com/static/img/coins/64x64/{$crypto['id']}.png";
+                        echo '
+                            <a class="nav-link" href="#">
+                            <img src="' . $icon . '" alt="' . $crypto['name'] .'" class="img-fluid" width="30" height="30">
+                                ' . $crypto['name'] . ' (' . $crypto['symbol'] . ') : <span class="badge text-bg-light rounded-pill align-text-bottom">$' . number_format($crypto['quote']['USD']['price'], 2) . '</span>
+                            </a>
+                        ';
+                    }
+                }
+            ?>
         </nav>
     </div>
