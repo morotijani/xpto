@@ -66,8 +66,8 @@
     </style>
 </head>
 <body>
-    <div class="nav-scroller bg-body shadow-sm">
-        <nav class="nav justify-content-between bg-soft-warning" aria-label="Secondary navigation">
+    <div class="nav-scroller bg-bod shadow-sm">
+        <nav class="nav nav-sm justify-content-between bg-soft-warning" aria-label="Secondary navigation">
             <a class="nav-link active" aria-current="page" href="#">xpto</a>
             <a class="nav-link" href="#">
                 Cryptos: <span class="badge text-bg-light rounded-pill align-text-bottom">21,713</span>
