@@ -65,7 +65,7 @@
 				<div class="mx-auto">
 					<div class="card card-lg zi-2" >
 						<div class="card-header text-center">
-							<h4 class="card-title">Balance: $ 8943.00</h4>
+							<h4 class="card-title">Balance: <span class="fw-bold text-warning">$ 8943.00</span></h4>
 							<p class="card-text">Bitcoin: $5644.44</p>
 						</div>
 
@@ -78,7 +78,7 @@
                                     <li class="step-item" role="presentation">
                                         <a class="step-content-wrapper active" href="#stepFeaturesOne" id="stepFeaturesOne-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesOne" role="tab" aria-controls="stepFeaturesOne" aria-selected="true">
                                             <span class="step-icon step-icon-soft-secondary">
-                                                <img class="" src="<?= PROOT; ?>assets/media/send-crypto.png" width="100" height="100">
+                                                <img class="" src="<?= PROOT; ?>assets/media/send-icon.png" width="100" height="100">
                                             </span>
                                             <div class="step-content">
                                                 <h6 class="step-title">Send Crypto</h6>
@@ -89,7 +89,7 @@
                                     <li class="step-item" role="presentation">
                                         <a class="step-content-wrapper" href="#stepFeaturesTwo" id="stepFeaturesTwo-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesTwo" role="tab" aria-controls="stepFeaturesTwo" aria-selected="false">
                                             <span class="step-icon step-icon-soft-secondary">
-                                                <img class="" src="<?= PROOT; ?>assets/media/receive-crypto.png" width="100" height="100">
+                                                <img class="" src="<?= PROOT; ?>assets/media/receive-icon.png" width="100" height="100">
                                             </span>
                                             <div class="step-content">
                                                 <h6 class="step-title">Recieve crypto</h6>
@@ -100,7 +100,7 @@
                                     <li class="step-item" role="presentation">
                                         <a class="step-content-wrapper" href="#stepFeaturesThree" id="stepFeaturesThree-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesThree" role="tab" aria-controls="stepFeaturesThree" aria-selected="false">
                                             <span class="step-icon step-icon-soft-secondary">
-                                                <img class="" src="<?= PROOT; ?>assets/media/transaction-history.png" width="100" height="100">
+                                                <img class="" src="<?= PROOT; ?>assets/media/transaction-icon.png" width="100" height="100">
                                             </span>
                                             <div class="step-content">
                                                 <h6 class="step-title">Transaction history</h6>
@@ -111,7 +111,7 @@
                                     <li class="step-item" role="presentation">
                                         <a class="step-content-wrapper" href="#stepFeaturesThree" id="stepFeaturesThree-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesThree" role="tab" aria-controls="stepFeaturesThree" aria-selected="false">
                                             <span class="step-icon step-icon-soft-secondary">
-                                                <img class="" src="<?= PROOT; ?>assets/media/profile.png" width="100" height="100">
+                                                <img class="" src="<?= PROOT; ?>assets/media/profile-icon.png" width="100" height="100">
                                             </span>
                                             <div class="step-content">
                                                 <h6 class="step-title">Hi Amin!</h6>
@@ -212,7 +212,86 @@
                                                 </div>
 
                                                 <div class="tab-pane fade" id="stepFeaturesThree" role="tabpanel" aria-labelledby="stepFeaturesThree-tab">
-                                                    <table></table>
+                                                   
+
+
+                                                    <div class="card">
+                                                        <div class="card-body pb-0">
+                                                            <div class="d-flex justify-content-between align-items-center">
+                                                                <div>
+                                                                    <h5>Transaction History</h5>
+                                                                </div>
+                                                                <div class="hstack align-items-center">
+                                                                    <a href="#" class="text-muted">
+                                                                        <i class="bi bi-arrow-repeat"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="list-group list-group-flush">
+                                                                <div class="list-group-item d-flex align-items-center justify-content-between gap-6">
+                                                                    <div class="d-flex align-items-center gap-3">
+                                                                        <div class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
+                                                                            <i class="bi bi-send-fill"></i>
+                                                                        </div>
+                                                                        <div class="">
+                                                                            <span class="d-block text-heading text-sm fw-semibold">Bitcoin </span>
+                                                                            <span class="d-none d-sm-block text-muted text-xs">2 days ago</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
+                                                                    <div class="d-none d-md-block">
+                                                                        <span class="badge bg-light text-warning">Pending</span>
+                                                                    </div>
+                                                                    <div class="text-end">
+                                                                        <span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span>
+                                                                        <span class="d-block text-muted text-xs">+$10,930.90</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="list-group-item d-flex align-items-center justify-content-between gap-6">
+                                                                    <div class="d-flex align-items-center gap-3">
+                                                                        <div class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
+                                                                            <i class="bi bi-send-fill"></i>
+                                                                        </div>
+                                                                        <div class="">
+                                                                            <span class="d-block text-heading text-sm fw-semibold">Cardano </span>
+                                                                            <span class="d-none d-sm-block text-muted text-xs">2 days ago</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
+                                                                    <div class="d-none d-md-block">
+                                                                        <span class="badge bg-light text-danger">Canceled</span>
+                                                                    </div>
+                                                                    <div class="text-end">
+                                                                        <span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span>
+                                                                        <span class="d-block text-muted text-xs">+$10,930.90</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="list-group-item d-flex align-items-center justify-content-between gap-6">
+                                                                    <div class="d-flex align-items-center gap-3">
+                                                                        <div class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
+                                                                            <i class="bi bi-send-fill"></i>
+                                                                        </div>
+                                                                        <div class="">
+                                                                            <span class="d-block text-heading text-sm fw-semibold">Binance </span>
+                                                                            <span class="d-none d-sm-block text-muted text-xs">2 days ago</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
+                                                                    <div class="d-none d-md-block">
+                                                                        <span class="badge bg-light text-success">Successful</span>
+                                                                    </div>
+                                                                    <div class="text-end">
+                                                                        <span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span>
+                                                                        <span class="d-block text-muted text-xs">+$10,930.90</span>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div></div></div>
+
+
+
+
+
                                                 </div>
 
                                             </div>
