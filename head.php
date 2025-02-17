@@ -78,20 +78,27 @@
     </style>
 </head>
 <body>
+    <style>
+
+  
+    </style>
     <div class="nav-scroller bg-bod shadow-sm">
-        <nav class="nav nav-sm justify-content-between bg-soft-warning" aria-label="Secondary navigation">
+        <nav class="nav nav-sm justify-content-between bg-soft-warning scroller" aria-label="Secondary navigation" data-direction="right" data-speed="fast">
             <?php 
-                if (array($coin_data['data'])) {
-                    foreach (array_slice($coin_data['data'], 0, 10) as $crypto) {
-                        $icon = "https://s2.coinmarketcap.com/static/img/coins/64x64/{$crypto['id']}.png";
-                        echo '
-                            <a class="nav-link" href="#">
-                            <img src="' . $icon . '" alt="' . $crypto['name'] .'" class="img-fluid" width="30" height="30">
-                                ' . $crypto['name'] . ' (' . $crypto['symbol'] . ') : <span class="badge text-bg-light rounded-pill align-text-bottom">$' . number_format($crypto['quote']['USD']['price'], 2) . '</span>
-                            </a>
-                        ';
+                if (is_array($coin_data)) {
+                    if (isset($coin_data['data'])) {
+                        foreach (array_slice($coin_data['data'], 0, 10) as $crypto) {
+                            $icon = "https://s2.coinmarketcap.com/static/img/coins/64x64/{$crypto['id']}.png";
+                            echo '
+                                <a class="nav-link scroller__inner" href="javascript:;">
+                                    <img src="' . $icon . '" alt="' . $crypto['name'] .'" class="img-fluid" width="30" height="30">
+                                    ' . $crypto['name'] . ' (' . $crypto['symbol'] . ') : $' . number_format($crypto['quote']['USD']['price'], 2) . '
+                                </a>
+                            ';
+                        }
                     }
                 }
             ?>
         </nav>
     </div>
+
