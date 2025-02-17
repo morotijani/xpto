@@ -227,7 +227,7 @@
                                                                             </span>
                                                                     </div>
                                                                     <div class="d-flex justify-content-between gap-2 mt-4">
-                                                                        <input type="tel" class="form-control form-control-flush text-xl fw-bold flex-fill" placeholder="0.00"> 
+                                                                        <input type="tel" id="send_amount" class="form-control form-control-flush text-xl fw-bold flex-fill" placeholder="0.00"> 
                                                                         <div class="dropdown" >
                                                                             <button class="btn btn-sm rounded-pill shadow-none flex-none d-flex align-items-center gap-2 p-2" data-bs-toggle="dropdown" aria-expanded="false">
                                                                                 <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/<?= $coin_data['data'][0]['id']; ?>.png"; class="w-rem-6 h-rem-6 rounded-circle img-fluid" alt="..." id="preview-logo"> 
@@ -246,7 +246,7 @@
                                                                                     <a class="dropdown-item d-flex align-items-center gap-2" href="javascript:;">
                                                                                         <img src="<?= $icon; ?>" class="w-rem-6 h-rem-6 rounded-circle img-fluid" alt="..."> 
                                                                                         <span><?= $crypto['symbol']; ?></span>
-                                                                                        <input type="hidden" name="to_cypto_id" id="to_crypto_details" value="<?= $crypto['id'] . '/' .$crypto['symbol'] . '/' . number_format($crypto['quote']['USD']['price'], 2); ?>">
+                                                                                        <input type="hidden" name="to_cypto_id" id="to_crypto_details" value="<?= $crypto['id'] . '/' .$crypto['symbol'] . '/' . $crypto['name'] . '/' . number_format($crypto['quote']['USD']['price'], 2); ?>">
 
                                                                                     </a>
                                                                                 </li>
@@ -265,7 +265,7 @@
                                                                 <label class="form-label">To wallet address</label>
                                                                 <div class="d-flex flex-wrap gap-1 gap-sm-2">
                                                                     <div class="w-sm-56 input-group input-group-sm input-group-inline">
-                                                                        <input type="search" class="form-control" name="to_wallet_address" id="to_wallet_address" placeholder="0x1233e3e33"> 
+                                                                        <input type="search" class="form-control" name="to_wallet_address" id="to_wallet_address" placeholder="1KFzzGtDdnq5h....nKzRbvf8WVxck"> 
                                                                         <span class="input-group-text" style="cursor: pointer;" onclick="pasteFromClipboard()"><i class="bi bi-clipboard2-check"></i>&nbsp; Paste</span>
                                                                     </div>
                                                                     <small class="form-text">As money transmitted to the wrong address may result in permanent loss, make sure the address is accurate.</small>
@@ -444,6 +444,7 @@
    	</main>
 
 	<?php include ("../footer.files.php"); ?>
+    <script src="<?= PROOT; ?>assets/js/wallet-address-validator.min.js"></script>
 
 	<script>
         // Paste from clipboard
@@ -460,16 +461,22 @@
 		$(document).ready(function() {
 
             // get selected crypto
+            var crypto_id
+            var crypto_symbol
+            var crypto_name
+            var crypto_amount
+            var crypto_logo
             $("#list-crypto").on("click", "li", (function() {
                 var coin = $(this).find("#to_crypto_details").val();
                 // alert(coin);
                 var crypto = $("#to_cypto").val(coin);
                 coin = coin.split("/");
 
-                var crypto_id = coin[0];
-                var crypto_symbol = coin[1];
-                var crypto_amount = coin[2];
-                var crypto_logo = 'https://s2.coinmarketcap.com/static/img/coins/64x64/' + coin[0] + '.png';
+                crypto_id = coin[0];
+                crypto_symbol = coin[1];
+                crypto_name = coin[2]
+                crypto_amount = coin[3];
+                crypto_logo = 'https://s2.coinmarketcap.com/static/img/coins/64x64/' + coin[0] + '.png';
 
                 $('#preview-symbol').text(crypto_symbol);
                 $('#preview-amount').text(crypto_amount);
@@ -483,7 +490,58 @@
             $('#next-1').click(function(e) {
                 e.preventDefault();
 
-                var crypto
+                var send_amount = $('#send_amount').val();
+                var to_wallet_address = $('#to_wallet_address').val();
+
+                if (send_amount <= 0) {
+                    alert('* Invalid amount.');
+                    $("#send_amount").focus()
+                    return false;
+                }
+
+                if (to_wallet_address == '') {
+                    alert('* To address needed.');
+                    $("#to_wallet_address").focus()
+                    return false;
+                } else {
+                    // WAValidator is exposed as a global (window.WAValidator)
+                    var valid = WAValidator.validate(to_wallet_address, crypto_name.toLowerCase());
+                    if (valid)
+                        alert('This is a valid address');
+                    else
+                        alert('Address INVALID');
+                    return false;
+                }
+
+                $('#sendsummary').html(
+				`
+					<li class="list-group-item out">
+				  		<small class="text-muted">You’re sending,</small>
+				  		<p id="send-crypto">` + $("#returnInCrypto").val() + ` BTC</p>
+				  	</li>
+				  	<li class="list-group-item out">
+				  		<small class="text-muted">Amount</small>
+				  		<p id="send-amount">` + Number($("#send_amount").val()).toFixed(2) + ` ` + currency + `</p>
+				  	</li>
+				  	<li class="list-group-item out">
+				  		<small class="text-muted">Fees In BTC</small>
+				  		<p id="send-fees">0.00003005 + 5% BTC</p>
+				  	</li>
+				  	<li class="list-group-item out">
+				  		<small class="text-muted">To</small>
+				  		<p id="send-receiving-address">` + $("#to_address").val() + `</p>
+				  	</li>
+				  	<li class="list-group-item out">
+				  		<small class="text-muted">Note</small>
+				  		<p id="send-note">` + $("#note").val() + `</p>
+				  	</li>
+				`);
+
+                
+
+                
+
+                // This should show a pop up with text 'This is a valid address'.
             });
 
 
