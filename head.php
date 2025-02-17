@@ -61,7 +61,7 @@
                                         <div class="swiper-slide">
                                             <div class="swiper-slide">
                                                 <a class="nav-link" href="javascript:;">
-                                                    <img src="' . $icon . '" alt="' . $crypto['name'] .'" class="img-fluid" width="30" height="30">
+                                                    <img src="' . $icon . '" alt="' . $crypto['name'] .'" class="img-fluid w-rem-6 h-rem-6">
                                                     ' . $crypto['name'] . ' (' . $crypto['symbol'] . ') : $' . number_format($crypto['quote']['USD']['price'], 2) . '
                                                 </a>
                                             </div>
