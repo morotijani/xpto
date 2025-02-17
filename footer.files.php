@@ -19,24 +19,19 @@
  	</a>
 
 	 <script src="<?= PROOT; ?>assets/js/jquery-3.7.1.min.js"></script>
+	 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
 	<script src="<?= PROOT; ?>assets/js/vendor.min.js"></script>
 	<script src="<?= PROOT; ?>assets/js/theme.min.js"></script>
 
 	<!-- JS Plugins Init. -->
 	<script>
 		(function() {
-			// INITIALIZATION OF MEGA MENU
-			// =======================================================
-			const megaMenu = new HSMegaMenu('.js-mega-menu', {
-				desktop: {
-					position: 'left'
-				}
-			})
-
 
 			// INITIALIZATION OF SHOW ANIMATIONS
 			// =======================================================
-			new HSShowAnimation('.js-animation-link')
+			// new HSShowAnimation('.js-animation-link')
 
 
 			// INITIALIZATION OF BOOTSTRAP VALIDATION
@@ -52,6 +47,37 @@
 			// INITIALIZATION OF GO TO
 			// =======================================================
 			new HSGoTo('.js-go-to')
+
+			// INITIALIZATION OF SWIPER
+    // =======================================================
+    var equalHeight = new Swiper('.js-swiper-equal-height', { 
+		autoplay: {
+        delay: 2000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.js-swiper-equal-height-pagination',
+        clickable: true,
+      },
+      breakpoints: {
+        580: {
+          slidesPerView: 2,
+          spaceBetween: 15,
+        },
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 15,
+        },
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 15,
+        },
+      }
+    });
+
+
+
+
 		})()
     </script>
 </body>

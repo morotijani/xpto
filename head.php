@@ -21,12 +21,17 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Turret+Road:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
     <?php endif; ?>
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
 
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="<?= PROOT; ?>assets/css/vendor.min.css">
 
     <!-- CSS Space Template -->
     <link rel="stylesheet" href="<?= PROOT; ?>assets/css/theme.min.css?v=1.0">
+
     <style>
         * {
             <?php if ($newFont == 'yes'): ?>
@@ -82,23 +87,34 @@
 
   
     </style>
+   
+
     <div class="nav-scroller bg-bod shadow-sm">
-        <nav class="nav nav-sm justify-content-between bg-soft-warning scroller" aria-label="Secondary navigation" data-direction="right" data-speed="fast">
-            <?php 
-                if (is_array($coin_data)) {
-                    if (isset($coin_data['data'])) {
-                        foreach (array_slice($coin_data['data'], 0, 10) as $crypto) {
-                            $icon = "https://s2.coinmarketcap.com/static/img/coins/64x64/{$crypto['id']}.png";
-                            echo '
-                                <a class="nav-link scroller__inner" href="javascript:;">
-                                    <img src="' . $icon . '" alt="' . $crypto['name'] .'" class="img-fluid" width="30" height="30">
-                                    ' . $crypto['name'] . ' (' . $crypto['symbol'] . ') : $' . number_format($crypto['quote']['USD']['price'], 2) . '
-                                </a>
-                            ';
+        <nav class="nav nav-sm justify-content-between bg-soft-warning">
+            <div class="js-swiper-equal-height swiper swiper-equal-height">
+                <div class="swiper-wrapper">
+                    <?php 
+                        if (is_array($coin_data)) {
+                            if (isset($coin_data['data'])) {
+                                foreach (array_slice($coin_data['data'], 0, 10) as $crypto) {
+                                    $icon = "https://s2.coinmarketcap.com/static/img/coins/64x64/{$crypto['id']}.png";
+                                    echo '
+
+                                        <div class="swiper-slide">
+                                            <div class="swiper-slide">
+                                                <a class="nav-link" href="javascript:;">
+                                                    <img src="' . $icon . '" alt="' . $crypto['name'] .'" class="img-fluid" width="30" height="30">
+                                                    ' . $crypto['name'] . ' (' . $crypto['symbol'] . ') : $' . number_format($crypto['quote']['USD']['price'], 2) . '
+                                                </a>
+                                            </div>
+                                        </div>
+                                        
+                                    ';
+                                }
+                            }
                         }
-                    }
-                }
-            ?>
+                    ?>
+                </div>
+            </div>
         </nav>
     </div>
-
