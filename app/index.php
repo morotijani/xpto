@@ -217,17 +217,24 @@
                                                                 <div class="bg-light rounded-3 p-4">
                                                                     <div class="d-flex justify-content-between text-xs text-muted">
                                                                         <span class="fw-semibold">From</span> 
-                                                                        <span>1<?= $coin_data['data'][0]['symbol']; ?>: <?= number_format($coin_data['data'][0]['quote']['USD']['price'], 2); ?> USD</span>
+                                                                        <span>
+                                                                            1
+                                                                            <span id="preview-symbol">
+                                                                                <?= $coin_data['data'][0]['symbol']; ?>
+                                                                            </span>: 
+                                                                            <span id="preview-amount">
+                                                                                <?= number_format($coin_data['data'][0]['quote']['USD']['price'], 2); ?> USD
+                                                                            </span>
                                                                     </div>
                                                                     <div class="d-flex justify-content-between gap-2 mt-4">
                                                                         <input type="tel" class="form-control form-control-flush text-xl fw-bold flex-fill" placeholder="0.00"> 
                                                                         <div class="dropdown" >
                                                                             <button class="btn btn-sm rounded-pill shadow-none flex-none d-flex align-items-center gap-2 p-2" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                                <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/<?= $coin_data['data'][0]['id']; ?>.png"; class="w-rem-6 h-rem-6 rounded-circle img-fluid" alt="..."> 
-                                                                                <span><?= $coin_data['data'][0]['symbol']; ?></span> 
+                                                                                <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/<?= $coin_data['data'][0]['id']; ?>.png"; class="w-rem-6 h-rem-6 rounded-circle img-fluid" alt="..." id="preview-logo"> 
+                                                                                <span id="preview-symbol"><?= $coin_data['data'][0]['symbol']; ?></span> 
                                                                                 <i class="bi bi-chevron-down text-xs me-1"></i>
                                                                             </button>
-                                                                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-sm">
+                                                                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-sm" id="list-crypto">
                                                                                 <?php 
                                                                                     if (is_array($coin_data)) {
                                                                                         if (isset($coin_data['data'])) {
@@ -236,9 +243,11 @@
 
                                                                                 ?>
                                                                                 <li>
-                                                                                    <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                                                                                    <a class="dropdown-item d-flex align-items-center gap-2" href="javascript:;">
                                                                                         <img src="<?= $icon; ?>" class="w-rem-6 h-rem-6 rounded-circle img-fluid" alt="..."> 
                                                                                         <span><?= $crypto['symbol']; ?></span>
+                                                                                        <input type="hidden" name="to_cypto_id" id="to_crypto_details" value="<?= $crypto['id'] . '/' .$crypto['symbol'] . '/' . number_format($crypto['quote']['USD']['price'], 2); ?>">
+
                                                                                     </a>
                                                                                 </li>
                                                                                 <?php 
@@ -246,6 +255,7 @@
                                                                                         }
                                                                                     }
                                                                                 ?>
+                                                                                <input type="hidden" name="to_cypto" id="to_cypto" value="">
                                                                             </ul>
                                                                         </div>
                                                                     </div>
@@ -309,21 +319,21 @@
                                                         </div>
                                                         <div class="card-body text-center">
                                                             
-                                                        <div id="receive-step-2" class="d- text-center">
-			      		<div class="input-group">
-		                    <span id="copy-receive-address" type="text" class="form-control" placeholder="wallet address"></span>
-		                    <button class="btn btn-light-warning" data-clipboard-target="#copy-receive-address">
-		                        Copy
-		                    </button>
-		                </div>
-		                <div class="text-center my-4">
-		                	or
-		                </div>
-			      		 <img src="" class="qr-code img-thumbnail img-fluid" />
-			      		 <br>
-			      		 <small>Receive by scanning this QR code.</small>
-			      		 <p id="share-moreinfo"></p>
-			      	</div>
+                                                            <div id="receive-step-2" class="d- text-center">
+                                                                <div class="input-group">
+                                                                    <span id="copy-receive-address" type="text" class="form-control" placeholder="wallet address"></span>
+                                                                    <button class="btn btn-light-warning" data-clipboard-target="#copy-receive-address">
+                                                                        Copy
+                                                                    </button>
+                                                                </div>
+                                                                <div class="text-center my-4">
+                                                                    or
+                                                                </div>
+                                                                <img src="" class="qr-code img-thumbnail img-fluid" />
+                                                                <br>
+                                                                <small>Receive by scanning this QR code.</small>
+                                                                <p id="share-moreinfo"></p>
+                                                            </div>
 
                                                             <img class="card-img" style="width: auto; height: 250px" src="https://qrcode.tec-it.com/API/QRCode?data=https%3a%2f%2fqrcode.tec-it.com&color=%2312642a&backcolor=%23ffffff&istransparent=True" alt="Image Description">
 
@@ -448,6 +458,35 @@
         }
 
 		$(document).ready(function() {
+
+            // get selected crypto
+            $("#list-crypto").on("click", "li", (function() {
+                var coin = $(this).find("#to_crypto_details").val();
+                // alert(coin);
+                var crypto = $("#to_cypto").val(coin);
+                coin = coin.split("/");
+
+                var crypto_id = coin[0];
+                var crypto_symbol = coin[1];
+                var crypto_amount = coin[2];
+                var crypto_logo = 'https://s2.coinmarketcap.com/static/img/coins/64x64/' + coin[0] + '.png';
+
+                $('#preview-symbol').text(crypto_symbol);
+                $('#preview-amount').text(crypto_amount);
+                $('#preview-logo').attr('src', crypto_logo);
+            }));
+
+
+            /**
+             * SEND FUNDS
+             */
+            $('#next-1').click(function(e) {
+                e.preventDefault();
+
+                var crypto
+            });
+
+
 			$('#next-button').on('click', function(e) {
 
 				$('#stepEmail-tab').removeClass('active');
