@@ -18,8 +18,8 @@
         <i class="bi-chevron-up"></i>
  	</a>
 
-	 <script src="<?= PROOT; ?>assets/js/jquery-3.7.1.min.js"></script>
-	 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+	<script src="<?= PROOT; ?>assets/js/jquery-3.7.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 
 	<script src="<?= PROOT; ?>assets/js/vendor.min.js"></script>
@@ -49,31 +49,35 @@
 			new HSGoTo('.js-go-to')
 
 			// INITIALIZATION OF SWIPER
-    // =======================================================
-    var equalHeight = new Swiper('.js-swiper-equal-height', { 
-		autoplay: {
-        delay: 2000,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: '.js-swiper-equal-height-pagination',
-        clickable: true,
-      },
-      breakpoints: {
-        580: {
-          slidesPerView: 2,
-          spaceBetween: 15,
-        },
-        768: {
-          slidesPerView: 3,
-          spaceBetween: 15,
-        },
-        1024: {
-          slidesPerView: 4,
-          spaceBetween: 15,
-        },
-      }
-    });
+    		// =======================================================
+			var equalHeight = new Swiper('.js-swiper-equal-height', { 
+				autoplay: {
+					delay: 2000,
+					disableOnInteraction: false,
+				},
+				pagination: {
+					el: '.js-swiper-equal-height-pagination',
+					clickable: true,
+				},
+				breakpoints: {
+					320: {
+						slidesPerView: 1,
+						spaceBetween: 15,
+					},
+					580: {
+						slidesPerView: 2,
+						spaceBetween: 15,
+					},
+					768: {
+						slidesPerView: 3,
+						spaceBetween: 15,
+					},
+					1024: {
+						slidesPerView: 4,
+						spaceBetween: 15,
+					},
+				}
+			});
 
 
 

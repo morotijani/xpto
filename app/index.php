@@ -53,24 +53,27 @@
     
 	<!-- ========== MAIN CONTENT ========== -->
 	<main id="content" role="main">
-
-
 		<div class="bg-soft-primary-light">
+            <div class="container content-space-1 ">
+
+
+            <div class="row g-3 g-xl-6 mb-4">
+                <div class="col-12">
+                    <div class="vstack gap-3 gap-xl-6">
+                    <div class="d-flex"><div class=""><div class="hstack gap-3 mb-1"><h4 class="fw-semibold">Total Balance</h4><a href="#"><i class="bi bi-eye"></i> </a><a href="#"><i class="bi bi-info-circle"></i></a></div><div class="text-2xl text-heading fw-bolder ls-tight">$23.000,48</div></div><div class="ms-auto align-self-end"><button type="button" class="btn btn-sm btn-neutral" data-bs-toggle="modal" data-bs-target="#topUpModal">Top up</button></div></div>
+
+                    <div class="row g-3 g-xl-6"><div class="col-sm-6"><div class="card"><div class="card-body"><div class="d-flex align-items-start gap-4"><div class="flex-none progress-circle progress-circle-xl progress-circle-primary text-light" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" role="progressbar" style="--value:65"><span class="text-primary fw-bold">65%</span></div><div><div class="mb-2"><span class="d-block text-xs text-muted text-opacity-75">Today's Spendings</span> <span class="d-block fw-bold text-heading text-sm">370,00 EUR</span></div><div><span class="d-block text-xs text-muted text-opacity-75">Daily Spending Limit</span> <span class="d-block fw-bold text-heading text-sm">7.500,00 EUR</span></div></div></div></div></div></div><div class="col-sm-6"><div class="card"><div class="card-body"><div class="d-flex align-items-start gap-4"><div class="flex-none progress-circle progress-circle-xl progress-circle-primary text-light" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" role="progressbar" style="--value:40"><span class="text-primary fw-bold">40%</span></div><div><div class="mb-2"><span class="d-block text-xs text-muted text-opacity-75">Today's Withdrawl</span> <span class="d-block fw-bold text-heading text-sm">1800,00 EUR</span></div><div><span class="d-block text-xs text-muted text-opacity-75">Daily Withdrawl Limit</span> <span class="d-block fw-bold text-heading text-sm">3.000,00 EUR</span></div></div></div></div></div></div></div>
+                    </div> 
+                </div>
+            </div>
 
 
 
 
 
-        <div class="container content-space-1 content-space-t-md-3">
 				<div class="mx-auto">
-					<div class="card card-lg zi-2" >
-						<div class="card-header text-center">
-							<h4 class="card-title">Balance: <span class="fw-bold text-warning">$ 8943.00</span></h4>
-							<p class="card-text">Bitcoin: $5644.44</p>
-						</div>
-
+					<div class="card card-lg zi-2">
 						<div class="card-body">
-
                             <div class="pe-md-5">
 
                                 <!-- Step -->
@@ -129,6 +132,62 @@
                                             <!-- Tab Content -->
                                             <div class="tab-content" id="step-TabFeaturesContent">
                                                 <div class="tab-pane fade show active" id="stepFeaturesOne" role="tabpanel" aria-labelledby="stepFeaturesOne-tab">
+
+
+
+                                                <style>
+                                                    .form-control-flush {
+    box-shadow: none;
+    background-color: transparent;
+    border-width: 0;
+    padding: 0;
+}
+
+.form-control-flush:focus {
+    box-shadow: none;
+    background-color: transparent;
+    border-width: 0;
+}
+                                                    </style>
+
+                                                
+                                                    <form class="vstack gap-6">
+                                                        <div class="vstack gap-1">
+                                                            <div class="bg-light rounded-3 p-4">
+                                                                <div class="d-flex justify-content-between text-xs text-muted">
+                                                                    <span class="fw-semibold">From</span> 
+                                                                    <span>Balance: 10,000 ADA</span>
+                                                                </div>
+                                                                <div class="d-flex justify-content-between gap-2 mt-4">
+                                                                    <input type="tel" class="form-control form-control-flush text-xl fw-bold flex-fill" placeholder="0.00"> 
+                                                                    <div class="dropdown">
+                                                                        <button class="btn btn-sm btn-neutral rounded-pill shadow-none flex-none d-flex align-items-center gap-2 p-2" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                            <img src="../../img/flags/eu.svg" class="w-rem-6 h-rem-6 rounded-circle" alt="..."> 
+                                                                            <span>EUR</span> 
+                                                                            <i class="bi bi-chevron-down text-xs me-1"></i>
+                                                                        </button>
+                                                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-sm" style="">
+                                                                            <li>
+                                                                                <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                                                                                    <img src="../../img/flags/us.svg" class="w-rem-6 h-rem-6 rounded-circle" alt="..."> 
+                                                                                    <span>USD</span>
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <label class="form-label">To wallet address</label>
+                                                            <div class="d-flex flex-wrap gap-1 gap-sm-2">
+                                                                <div class="w-sm-56 input-group input-group-sm input-group-inline">
+                                                                    <input type="search" class="form-control" placeholder="1"> <span class="input-group-text">%</span></div><div class="flex-fill"><input type="radio" class="btn-check" name="options" id="option1" checked="checked"> <label class="btn btn-sm btn-neutral w-100" for="option1">0.5%</label></div><div class="flex-fill"><input type="radio" class="btn-check" name="options" id="option2" checked="checked"> <label class="btn btn-sm btn-neutral w-100" for="option2">1%</label></div><div class="flex-fill"><input type="radio" class="btn-check" name="options" id="option3" checked="checked"> <label class="btn btn-sm btn-neutral w-100" for="option3">3%</label></div></div></div><button type="button" class="btn btn-primary w-100">Provide liquidity</button></form>
+
+
+
+
+
                                         
 							                        <form class="js-validate need-validate border p-2" novalidate>
 

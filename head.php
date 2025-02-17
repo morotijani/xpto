@@ -83,12 +83,7 @@
     </style>
 </head>
 <body>
-    <style>
-
-  
-    </style>
-   
-
+    
     <div class="nav-scroller bg-bod shadow-sm">
         <nav class="nav nav-sm justify-content-between bg-soft-warning">
             <div class="js-swiper-equal-height swiper swiper-equal-height">
