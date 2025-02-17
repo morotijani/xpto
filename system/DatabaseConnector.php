@@ -48,7 +48,12 @@
     curl_close($curl);
 
     $coin_data = json_decode($response, true);
-    // dnd($coin_data);
+    $a = $coin_data['data'][0]['id'];
+    // dnd($a);
+    // foreach ($a as $b) {
+    //     echo $b['name'];
+    // }
+    // die;
 
     // Generate scrolling content with icons
     if (is_array($coin_data)) {

@@ -60,9 +60,64 @@
             <div class="row g-3 g-xl-6 mb-4">
                 <div class="col-12">
                     <div class="vstack gap-3 gap-xl-6">
-                    <div class="d-flex"><div class=""><div class="hstack gap-3 mb-1"><h4 class="fw-semibold">Total Balance</h4><a href="#"><i class="bi bi-eye"></i> </a><a href="#"><i class="bi bi-info-circle"></i></a></div><div class="text-2xl text-heading fw-bolder ls-tight">$23.000,48</div></div><div class="ms-auto align-self-end"><button type="button" class="btn btn-sm btn-neutral" data-bs-toggle="modal" data-bs-target="#topUpModal">Top up</button></div></div>
+                        <div class="d-flex">
+                            <div class="">
+                                <div class="hstack gap-3 mb-1">
+                                    <h4 class="fw-semibold">Total Balance</h4>
+                                    <a href="#">
+                                        <i class="bi bi-eye"></i> 
+                                    </a>
+                                    <a href="#">
+                                        <i class="bi bi-info-circle"></i>
+                                    </a>
+                                </div>
+                                <div class="text-2xl text-heading fw-bolder ls-tight">$23.000,48</div>
+                            </div>
+                            <div class="ms-auto align-self-end">
+                                <button type="button" class="btn btn-sm btn-neutral" data-bs-toggle="modal" data-bs-target="#topUpModal">Top up</button>
+                            </div>
+                        </div>
 
-                    <div class="row g-3 g-xl-6"><div class="col-sm-6"><div class="card"><div class="card-body"><div class="d-flex align-items-start gap-4"><div class="flex-none progress-circle progress-circle-xl progress-circle-primary text-light" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" role="progressbar" style="--value:65"><span class="text-primary fw-bold">65%</span></div><div><div class="mb-2"><span class="d-block text-xs text-muted text-opacity-75">Today's Spendings</span> <span class="d-block fw-bold text-heading text-sm">370,00 EUR</span></div><div><span class="d-block text-xs text-muted text-opacity-75">Daily Spending Limit</span> <span class="d-block fw-bold text-heading text-sm">7.500,00 EUR</span></div></div></div></div></div></div><div class="col-sm-6"><div class="card"><div class="card-body"><div class="d-flex align-items-start gap-4"><div class="flex-none progress-circle progress-circle-xl progress-circle-primary text-light" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" role="progressbar" style="--value:40"><span class="text-primary fw-bold">40%</span></div><div><div class="mb-2"><span class="d-block text-xs text-muted text-opacity-75">Today's Withdrawl</span> <span class="d-block fw-bold text-heading text-sm">1800,00 EUR</span></div><div><span class="d-block text-xs text-muted text-opacity-75">Daily Withdrawl Limit</span> <span class="d-block fw-bold text-heading text-sm">3.000,00 EUR</span></div></div></div></div></div></div></div>
+                        <div class="row g-3 g-xl-6">
+                            <div class="col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-start gap-4">
+                                            <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/<?= $coin_data['data'][0]['id']; ?>.png"; class="w-rem-6 h-rem-6 rounded-circle img-fluid" width="50" height="50" alt="...">
+                                            <div>
+                                                <div class="mb-2">
+                                                    <span class="d-block text-xs text-muted text-opacity-75"><?= $coin_data['data'][0]['name']; ?> (<?= $coin_data['data'][0]['symbol']; ?>)</span> 
+                                                    <span class="d-block fw-bold text-heading text-sm"><?= number_format($coin_data['data'][0]['quote']['USD']['price'], 2); ?> USD</span>
+                                                </div>
+                                                <div>
+                                                    <span class="d-block text-xs text-muted text-opacity-75">Market cap</span> 
+                                                    <span class="d-block fw-bold text-heading text-sm"><?= number_format($coin_data['data'][0]['quote']['USD']['market_cap'], 2); ?> USD</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-start gap-4">
+                                            <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/<?= $coin_data['data'][1]['id']; ?>.png"; class="w-rem-6 h-rem-6 rounded-circle img-fluid" width="50" height="50" alt="...">
+                                            <div>
+                                                <div class="mb-2">
+                                                    <span class="d-block text-xs text-muted text-opacity-75"><?= $coin_data['data'][1]['name']; ?> (<?= $coin_data['data'][1]['symbol']; ?>)</span> 
+                                                    <span class="d-block fw-bold text-heading text-sm"><?= number_format($coin_data['data'][1]['quote']['USD']['price'], 2); ?> USD</span>
+                                                </div>
+                                                <div>
+                                                    <span class="d-block text-xs text-muted text-opacity-75">Market cap</span> 
+                                                    <span class="d-block fw-bold text-heading text-sm"><?= number_format($coin_data['data'][1]['quote']['USD']['market_cap'], 2); ?> USD</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div> 
                 </div>
             </div>
@@ -132,65 +187,8 @@
                                             <!-- Tab Content -->
                                             <div class="tab-content" id="step-TabFeaturesContent">
                                                 <div class="tab-pane fade show active" id="stepFeaturesOne" role="tabpanel" aria-labelledby="stepFeaturesOne-tab">
-
-
-
-                                                <style>
-                                                    .form-control-flush {
-    box-shadow: none;
-    background-color: transparent;
-    border-width: 0;
-    padding: 0;
-}
-
-.form-control-flush:focus {
-    box-shadow: none;
-    background-color: transparent;
-    border-width: 0;
-}
-                                                    </style>
-
-                                                
-                                                    <form class="vstack gap-6">
-                                                        <div class="vstack gap-1">
-                                                            <div class="bg-light rounded-3 p-4">
-                                                                <div class="d-flex justify-content-between text-xs text-muted">
-                                                                    <span class="fw-semibold">From</span> 
-                                                                    <span>Balance: 10,000 ADA</span>
-                                                                </div>
-                                                                <div class="d-flex justify-content-between gap-2 mt-4">
-                                                                    <input type="tel" class="form-control form-control-flush text-xl fw-bold flex-fill" placeholder="0.00"> 
-                                                                    <div class="dropdown">
-                                                                        <button class="btn btn-sm btn-neutral rounded-pill shadow-none flex-none d-flex align-items-center gap-2 p-2" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                            <img src="../../img/flags/eu.svg" class="w-rem-6 h-rem-6 rounded-circle" alt="..."> 
-                                                                            <span>EUR</span> 
-                                                                            <i class="bi bi-chevron-down text-xs me-1"></i>
-                                                                        </button>
-                                                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-sm" style="">
-                                                                            <li>
-                                                                                <a class="dropdown-item d-flex align-items-center gap-2" href="#">
-                                                                                    <img src="../../img/flags/us.svg" class="w-rem-6 h-rem-6 rounded-circle" alt="..."> 
-                                                                                    <span>USD</span>
-                                                                                </a>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <label class="form-label">To wallet address</label>
-                                                            <div class="d-flex flex-wrap gap-1 gap-sm-2">
-                                                                <div class="w-sm-56 input-group input-group-sm input-group-inline">
-                                                                    <input type="search" class="form-control" placeholder="1"> <span class="input-group-text">%</span></div><div class="flex-fill"><input type="radio" class="btn-check" name="options" id="option1" checked="checked"> <label class="btn btn-sm btn-neutral w-100" for="option1">0.5%</label></div><div class="flex-fill"><input type="radio" class="btn-check" name="options" id="option2" checked="checked"> <label class="btn btn-sm btn-neutral w-100" for="option2">1%</label></div><div class="flex-fill"><input type="radio" class="btn-check" name="options" id="option3" checked="checked"> <label class="btn btn-sm btn-neutral w-100" for="option3">3%</label></div></div></div><button type="button" class="btn btn-primary w-100">Provide liquidity</button></form>
-
-
-
-
-
-                                        
-							                        <form class="js-validate need-validate border p-2" novalidate>
-
+                                            
+                                                    <form class="vstack gap-6 border p-2">
                                                         <ul class="step step-sm step-icon-sm step-centered" id="step-TabFeatures" role="tablist">
                                                             <li class="step-item" role="presentation">
                                                                 <a class="step-content-wrapper active" href="#stepEmail" id="stepEmail-tab" data-bs-toggle="tab" data-bs-target="#stepEmail" role="tab" aria-controls="stepEmail" aria-selected="true">
@@ -218,51 +216,66 @@
                                                             </li>
                                                         </ul>
 
-                                                        <!-- Form -->
-                                                        <div id="step-one">
-                                                            <div class="mb-4">
-                                                                <label class="form-label" for="forgotPasswordFormEmail">Crypto</label>
-                                                                <input type="email" autocomplete="off" class="form-control form-control-lg" name="forgotPasswordEmailName" id="forgotPasswordFormEmail" placeholder="Enter your email address" aria-label="Enter your email address" required>
-                                                                <span class="invalid-feedback">Please enter a valid email address.</span>
-                                                            </div>
+                                                        <div class="vstack gap-1">
+                                                            <div class="bg-light rounded-3 p-4">
+                                                                <div class="d-flex justify-content-between text-xs text-muted">
+                                                                    <span class="fw-semibold">From</span> 
+                                                                    <span>1<?= $coin_data['data'][0]['symbol']; ?>: <?= number_format($coin_data['data'][0]['quote']['USD']['price'], 2); ?> USD</span>
+                                                                </div>
+                                                                <div class="d-flex justify-content-between gap-2 mt-4">
+                                                                    <input type="tel" class="form-control form-control-flush text-xl fw-bold flex-fill" placeholder="0.00"> 
+                                                                    <div class="dropdown">
+                                                                        <button class="btn btn-sm btn-neutral rounded-pill shadow-none flex-none d-flex align-items-center gap-2 p-2" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                            <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/<?= $coin_data['data'][0]['id']; ?>.png"; class="w-rem-6 h-rem-6 rounded-circle img-fluid" width="20" height="20" alt="..."> 
+                                                                            <span><?= $coin_data['data'][0]['symbol']; ?></span> 
+                                                                            <i class="bi bi-chevron-down text-xs me-1"></i>
+                                                                        </button>
+                                                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-sm" style="">
+                                                                            <?php 
+                                                                                if (is_array($coin_data)) {
+                                                                                    if (isset($coin_data['data'])) {
+                                                                                        foreach (array_slice($coin_data['data'], 0, 5) as $crypto) {
+                                                                                            $icon = "https://s2.coinmarketcap.com/static/img/coins/64x64/{$crypto['id']}.png";
 
-                                                            <div class="mb-4">
-                                                                <label class="form-label" for="forgotPasswordFormEmail">Address</label>
-                                                                <input type="email" autocomplete="off" class="form-control form-control-lg" name="forgotPasswordEmailName" id="forgotPasswordFormEmail" placeholder="Enter your email address" aria-label="Enter your email address" required>
-                                                                <span class="invalid-feedback">Please enter a valid email address.</span>
-                                                            </div>
-
-                                                            <div class="mb-4">
-                                                                <label class="form-label" for="forgotPasswordFormEmail">Amount</label>
-                                                                <input type="email" autocomplete="off" class="form-control form-control-lg" name="forgotPasswordEmailName" id="forgotPasswordFormEmail" placeholder="Enter your email address" aria-label="Enter your email address" required>
-                                                                <span class="invalid-feedback">Please enter a valid email address.</span>
-                                                            </div>
-
-                                                            <div class="d-grid mb-4">
-                                                                <button type="button" id="next-button" class="btn btn-primary btn-lg">Next ></button>
+                                                                            ?>
+                                                                            <li>
+                                                                                <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                                                                                    <img src="<?= $icon; ?>" class="w-rem-6 h-rem-6 rounded-circle img-fluid" width="20" height="20" alt="..."> 
+                                                                                    <span><?= $crypto['symbol']; ?></span>
+                                                                                </a>
+                                                                            </li>
+                                                                            <?php 
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            ?>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
-
-                                                        <div id="step-two" class="d-none">
-                                                            <div class="mb-4">
-                                                                <label class="form-label" for="password">Your Password</label>
-                                                                <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="***" aria-label="Enter your password" required>
-                                                                <span class="invalid-feedback">Please enter a valid password address.</span>
-                                                            </div>
-
-                                                            <div class="d-grid mb-4">
-                                                                <button type="button" id="submit-button" class="btn btn-primary btn-lg">Submit</button>
+                                                        <div>
+                                                            <label class="form-label">To wallet address</label>
+                                                            <div class="d-flex flex-wrap gap-1 gap-sm-2">
+                                                                <div class="w-sm-56 input-group input-group-sm input-group-inline">
+                                                                    <input type="search" class="form-control" name="to_wallet_address" id="to_wallet_address" placeholder="0x1233e3e33"> 
+                                                                    <span class="input-group-text" style="cursor: pointer;" onclick="pasteFromClipboard()"><i class="bi bi-clipboard2-check"></i>&nbsp; Paste</span>
+                                                                </div>
+                                                                <!-- <div class="flex-fill">
+                                                                    <input type="radio" class="btn-check" name="options" id="option1" checked="checked"> 
+                                                                    <label class="btn btn-sm btn-neutral w-100" for="option1">0.5%</label>
+                                                                </div>
+                                                                <div class="flex-fill">
+                                                                    <input type="radio" class="btn-check" name="options" id="option2" checked="checked"> 
+                                                                    <label class="btn btn-sm btn-neutral w-100" for="option2">1%</label>
+                                                                </div>
+                                                                <div class="flex-fill">
+                                                                    <input type="radio" class="btn-check" name="options" id="option3" checked="checked"> 
+                                                                    <label class="btn btn-sm btn-neutral w-100" for="option3">3%</label>
+                                                                </div> -->
                                                             </div>
                                                         </div>
-
-
-                                                        <div class="text-center">
-                                                            <a class="btn btn-link" href="./page-login.html">
-                                                                <i class="bi-chevron-left small me-1"></i> Don't have an account ?
-                                                            </a>
-                                                            <br>
-                                                            <small><a href="<?= PROOT; ?>index" class="text-dark">Go home.</a></small>
-                                                        </div>
+                                                        <button type="button" class="btn btn-primary w-100">Provide liquidity</button>
                                                     </form>
                                                 </div>
 
@@ -403,6 +416,17 @@
 	<?php include ("../footer.files.php"); ?>
 
 	<script>
+        // Paste from clipboard
+        async function pasteFromClipboard() {
+            try {
+                let text = await navigator.clipboard.readText();
+                alert("Pasted: " + text);
+                $('#to_wallet_address').val(text);
+            } catch (err) {
+                console.error("Failed to paste:", err);
+            }
+        }
+
 		$(document).ready(function() {
 			$('#next-button').on('click', function(e) {
 
