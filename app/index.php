@@ -184,7 +184,7 @@
                                             <div class="tab-content" id="step-TabFeaturesContent">
                                                 <div class="tab-pane fade show active" id="stepFeaturesOne" role="tabpanel" aria-labelledby="stepFeaturesOne-tab">
                                             
-                                                    <form class="vstack gap-6 border p-2" id="sendCryptoForm">
+                                                    <form class="vstack gap-6 border p-4" id="sendCryptoForm">
                                                         <ul class="step step-sm step-icon-sm step-centered" id="step-TabFeatures" role="tablist">
                                                             <li class="step-item" role="presentation">
                                                                 <a class="step-content-wrapper active" href="#stepEmail" id="stepEmail-tab" data-bs-toggle="tab" data-bs-target="#stepEmail" role="tab" aria-controls="stepEmail" aria-selected="true">
@@ -227,11 +227,11 @@
                                                                             </span>
                                                                     </div>
                                                                     <div class="d-flex justify-content-between gap-2 mt-4">
-                                                                        <input type="tel" id="send_amount" class="form-control form-control-flush text-xl fw-bold flex-fill" placeholder="0.00"> 
+                                                                        <input type="number" min="1" id="send_amount" name="send_amount" class="form-control form-control-flush text-xl fw-bold flex-fill" placeholder="0.00" oninput="validatePositiveNumber(this)" autocomplete="off" inputmode="numeric"> 
                                                                         <div class="dropdown" >
                                                                             <button class="btn btn-sm rounded-pill shadow-none flex-none d-flex align-items-center gap-2 p-2" data-bs-toggle="dropdown" aria-expanded="false">
                                                                                 <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/<?= $coin_data['data'][0]['id']; ?>.png"; class="w-rem-6 h-rem-6 rounded-circle img-fluid" alt="..." id="preview-logo"> 
-                                                                                <span id="preview-symbol"><?= $coin_data['data'][0]['symbol']; ?></span> 
+                                                                                <span id="preview-symbol-selected"><?= $coin_data['data'][0]['symbol']; ?></span> 
                                                                                 <i class="bi bi-chevron-down text-xs me-1"></i>
                                                                             </button>
                                                                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-sm" id="list-crypto">
@@ -265,7 +265,7 @@
                                                                 <label class="form-label">To wallet address</label>
                                                                 <div class="d-flex flex-wrap gap-1 gap-sm-2">
                                                                     <div class="w-sm-56 input-group input-group-sm input-group-inline">
-                                                                        <input type="search" class="form-control" name="to_wallet_address" id="to_wallet_address" placeholder="1KFzzGtDdnq5h....nKzRbvf8WVxck"> 
+                                                                        <input type="search" class="form-control fw-bolder" name="to_wallet_address" id="to_wallet_address" placeholder="1KFzzGtDdnq5h....nKzRbvf8WVxck"> 
                                                                         <span class="input-group-text" style="cursor: pointer;" onclick="pasteFromClipboard()"><i class="bi bi-clipboard2-check"></i>&nbsp; Paste</span>
                                                                     </div>
                                                                     <small class="form-text">As money transmitted to the wrong address may result in permanent loss, make sure the address is accurate.</small>
@@ -285,7 +285,7 @@
                                                             </div>
                                                             <div class="form-group mb-3">
                                                                 <label for="note">Comments</label>
-                                                                <textarea class="form-control form-control-xl fw-bolder" placeholder="Leave a comment here" id="note" name="note"></textarea>
+                                                                <textarea class="form-control form-control-xl fw-bolder" placeholder="Leave a comment here" style="overflow: hidden; resize: none;" id="note" name="note"></textarea>
                                                             </div>
                                                             <button type="button" id="next-1" class="btn btn-dark w-100">Next >></button>
                                                         </div>
@@ -458,6 +458,13 @@
             }
         }
 
+        //
+        function validatePositiveNumber(input) {
+            if (input.value < 0) {
+                input.value = 1;
+            }
+        }
+
 		$(document).ready(function() {
 
             // get selected crypto
@@ -479,6 +486,7 @@
                 crypto_logo = 'https://s2.coinmarketcap.com/static/img/coins/64x64/' + coin[0] + '.png';
 
                 $('#preview-symbol').text(crypto_symbol);
+                $('#preview-symbol-selected').text(crypto_symbol)
                 $('#preview-amount').text(crypto_amount);
                 $('#preview-logo').attr('src', crypto_logo);
             }));
@@ -513,7 +521,7 @@
                     return false;
                 }
 
-                $('#sendsummary').html(
+                $('#sendsummary').html( // working on sumary check send button the crypto symbol is not changing
 				`
 					<li class="list-group-item out">
 				  		<small class="text-muted">You’re sending,</small>
