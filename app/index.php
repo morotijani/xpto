@@ -473,6 +473,22 @@
             }
         }
 
+        async function convertToCrypto(amountUSD, cryptoSymbol = "BTC") {
+            let apiKey = "<?= COINCAP_APIKEY; ?>";
+            let response = await fetch(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${cryptoSymbol}&convert=USD`, {
+                headers: { "X-CMC_PRO_API_KEY": "c06fd6c7-8b47-438d-802a-c7745d29a291" }
+            });
+            let data = await response.json();
+            let exchangeRate = data.data[cryptoSymbol].quote.USD.price;
+            let cryptoAmount = amountUSD / exchangeRate;
+
+            console.log(`$${amountUSD} is approximately ${cryptoAmount.toFixed(8)} ${cryptoSymbol}`);
+        } // conertting money to crypto
+
+        // Example: Convert $1 to Bitcoin using CoinMarketCap
+        convertToCrypto(1, "BTC");
+
+
 		$(document).ready(function() {
 
             // get selected crypto
