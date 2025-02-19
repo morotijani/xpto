@@ -310,7 +310,7 @@
                                                                 <div class="bg-light rounded-3 p-4">
                                                                     <div class="d-flex justify-content-between text-xs text-muted">
                                                                         <span class="fw-semibold">Amount in Crypto</span> 
-                                                                        <span><span id="amount-in-crypto-crypto">BITCOIN</span>: <span id="amount-in-crypto-amount">0.00000000 BTC</span></span>
+                                                                        <span><span id="amount-in-crypto-crypto"></span>: <span id="amount-in-crypto-amount"></span></span>
                                                                     </div>
                                                                 </div>
 
@@ -529,7 +529,7 @@
             }
         }
 
-        // 
+        // conver from fiat to crypto
         async function convertToCrypto(amountUSD, cryptoSymbol, fiatSymbol = "USD") {
             let apiKey = "<?= COINCAP_APIKEY; ?>";
             try {
@@ -541,44 +541,17 @@
                     }
                 });
                 let data = await response.json();
-                let exchangeRate = data.data[cryptoSymbol].quote.USD.price;
+                let exchangeRate = data.data[cryptoSymbol].quote[fiatSymbol].price;
                 let cryptoAmount = amountUSD / exchangeRate;
 
                 console.log(`$${amountUSD} is approximately ${cryptoAmount.toFixed(8)} ${cryptoSymbol}`);
                 cryptoAmount = cryptoAmount.toFixed(8);
                 return cryptoAmount
             } catch (error) {
-                $('#amount-in-crypto-amount').text("Failed to fetch.");
+                $('#amount-in-crypto-amount').text("Failed to convert, please refresh page and try again.");
                 console.error("Failed to fetch:", error);
             }
         }
-
-        ////////////////////////////////////////////
-        // function convertToCrypto(amountUSD, cryptoSymbol, fiatSymbol = "USD") {
-        //     let apiKey = "<?= COINCAP_APIKEY; ?>";
-        //     var settings = {
-        //         "url": `https://cors-anywhere.herokuapp.com/https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${cryptoSymbol}&convert=${fiatSymbol}`,
-        //         "method": "GET",
-        //         "timeout": 0,
-        //         "headers": {
-        //             "X-CMC_PRO_API_KEY": apiKey
-        //         },
-        //     };
-
-        //     $.ajax(settings).done(function (response) {
-        //         let data = response
-        //         let exchangeRate = data.data[cryptoSymbol].quote.USD.price;
-        //         let cryptoAmount = 23 / exchangeRate;
-
-        //         console.log(cryptoAmount);
-        //         $('#amount-in-crypto-amount').text(cryptoAmount.toFixed(8));
-        //         // return cryptoAmount.toFixed(8);
-        //     });
-        // }
-
-        // Example: Convert $1 to Bitcoin using CoinMarketCap
-        //$1 is approximately 0.00001044 BTC
-        // convertToCrypto(12, "BTC", "USD")
 
 		$(document).ready(function() {
 
@@ -609,10 +582,7 @@
                 convertToCrypto(send_amount, crypto_symbol, "USD").then(conversionValue => {
                     $('#amount-in-crypto-amount').text(conversionValue + ' ' + crypto_symbol);
                 });
-
-                // coversionValueMain();
                 $('#amount-in-crypto-crypto').text(crypto_name);
-                
             }));
 
 
