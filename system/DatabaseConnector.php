@@ -48,7 +48,7 @@
     curl_close($curl);
 
     $coin_data = json_decode($response, true);
-    $a = $coin_data['data'][0]['id'];
+    // $a = $coin_data['data'][0]['id'];
     // dnd($a);
     // foreach ($a as $b) {
     //     echo $b['name'];

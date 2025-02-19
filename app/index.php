@@ -227,7 +227,7 @@
                                                                             </span>
                                                                     </div>
                                                                     <div class="d-flex justify-content-between gap-2 mt-4">
-                                                                        <input type="number" min="1" id="send_amount" name="send_amount" class="form-control form-control-flush text-xl fw-bold flex-fill" placeholder="0.00" oninput="validatePositiveNumber(this)" autocomplete="off" inputmode="numeric"> 
+                                                                        <input type="number" min="1" id="send_amount" name="send_amount" class="form-control form-control-flush text-xl fw-bold flex-fill" placeholder="$0.00" oninput="validatePositiveNumber(this)" autocomplete="off" inputmode="numeric"> 
                                                                         <div class="dropdown" >
                                                                             <button class="btn btn-sm rounded-pill shadow-none flex-none d-flex align-items-center gap-2 p-2" data-bs-toggle="dropdown" aria-expanded="false">
                                                                                 <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/<?= $coin_data['data'][0]['id']; ?>.png"; class="w-rem-6 h-rem-6 rounded-circle img-fluid" alt="..." id="preview-logo"> 
@@ -260,6 +260,62 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+
+                                                                <style>
+                                                                    .my-n4 {
+                                                                        margin-top: -1rem !important;
+                                                                        margin-bottom: -1rem !important;
+                                                                    }
+                                                                    .shadow-soft-3, .shadow-soft-3-hover:hover {
+    box-shadow: 0 9px 9px -1px rgba(10, 22, 70, .04) !important;
+}
+
+.text-sm {
+    font-size: .875rem !important;
+}
+.rounded-circle {
+    border-radius: 50% !important;
+}
+[class*=shadow] {
+    transition: all .15sease-in-out;
+}
+.icon-shape {
+    text-align: center;
+    vertical-align: middle;
+    width: var(--x-size);
+    height: var(--x-size);
+    border-radius: .375rem;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+}
+
+.icon {
+    --x-size: 3rem;
+    font-size: calc(var(--x-size) / 1.75);
+    line-height: 1;
+}
+.icon-sm {
+    --x-size: 2rem;
+}
+                                                                </style>
+
+                                                                <div class="position-relative text-center my-n4 overlap-10">
+                                                                    <div class="icon icon-sm icon-shape bg-body shadow-soft-3 rounded-circle text-sm text-body-tertiary">
+                                                                        <i class="bi bi-arrow-down-up"></i>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="bg-light rounded-3 p-4">
+                                                                    <div class="d-flex justify-content-between text-xs text-muted">
+                                                                        <span class="fw-semibold">Amount in Crypto</span> 
+                                                                        <span><span id="amount-in-crypto-crypto">BITCOIN</span>: <span id="amount-in-crypto-amount">0.00000000 BTC</span></span>
+                                                                    </div>
+                                                                </div>
+
+
+
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label class="form-label">To wallet address</label>
@@ -473,31 +529,68 @@
             }
         }
 
-        async function convertToCrypto(amountUSD, cryptoSymbol = "BTC") {
+        // 
+        async function convertToCrypto(amountUSD, cryptoSymbol, fiatSymbol = "USD") {
             let apiKey = "<?= COINCAP_APIKEY; ?>";
-            let response = await fetch(`https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${cryptoSymbol}&convert=USD`, {
-                headers: { "X-CMC_PRO_API_KEY": "c06fd6c7-8b47-438d-802a-c7745d29a291" }
-            });
-            let data = await response.json();
-            let exchangeRate = data.data[cryptoSymbol].quote.USD.price;
-            let cryptoAmount = amountUSD / exchangeRate;
+            try {
+                $('#amount-in-crypto-amount').text('Converting ...');
+                let response = await fetch(`https://cors-anywhere.herokuapp.com/https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${cryptoSymbol}&convert=${fiatSymbol}`, {
+                    headers: { 
+                        "X-CMC_PRO_API_KEY": apiKey, 
+                        'Access-Control-Allow-Origin': '*'
+                    }
+                });
+                let data = await response.json();
+                let exchangeRate = data.data[cryptoSymbol].quote.USD.price;
+                let cryptoAmount = amountUSD / exchangeRate;
 
-            console.log(`$${amountUSD} is approximately ${cryptoAmount.toFixed(8)} ${cryptoSymbol}`);
-        } // conertting money to crypto
+                console.log(`$${amountUSD} is approximately ${cryptoAmount.toFixed(8)} ${cryptoSymbol}`);
+                cryptoAmount = cryptoAmount.toFixed(8);
+                return cryptoAmount
+            } catch (error) {
+                $('#amount-in-crypto-amount').text("Failed to fetch.");
+                console.error("Failed to fetch:", error);
+            }
+        }
+
+        ////////////////////////////////////////////
+        // function convertToCrypto(amountUSD, cryptoSymbol, fiatSymbol = "USD") {
+        //     let apiKey = "<?= COINCAP_APIKEY; ?>";
+        //     var settings = {
+        //         "url": `https://cors-anywhere.herokuapp.com/https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${cryptoSymbol}&convert=${fiatSymbol}`,
+        //         "method": "GET",
+        //         "timeout": 0,
+        //         "headers": {
+        //             "X-CMC_PRO_API_KEY": apiKey
+        //         },
+        //     };
+
+        //     $.ajax(settings).done(function (response) {
+        //         let data = response
+        //         let exchangeRate = data.data[cryptoSymbol].quote.USD.price;
+        //         let cryptoAmount = 23 / exchangeRate;
+
+        //         console.log(cryptoAmount);
+        //         $('#amount-in-crypto-amount').text(cryptoAmount.toFixed(8));
+        //         // return cryptoAmount.toFixed(8);
+        //     });
+        // }
 
         // Example: Convert $1 to Bitcoin using CoinMarketCap
-        convertToCrypto(1, "BTC");
-
+        //$1 is approximately 0.00001044 BTC
+        // convertToCrypto(12, "BTC", "USD")
 
 		$(document).ready(function() {
 
-            // get selected crypto
             var crypto_id
             var crypto_symbol
             var crypto_name
             var crypto_amount
             var crypto_logo
+
+            // get selected crypto
             $("#list-crypto").on("click", "li", (function() {
+                var send_amount = $('#send_amount').val()
                 var coin = $(this).find("#to_crypto_details").val();
                 var crypto = $("#to_cypto").val(coin);
                 coin = coin.split("/");
@@ -512,6 +605,14 @@
                 $('#preview-symbol-selected').text(crypto_symbol)
                 $('#preview-amount').text(crypto_amount);
                 $('#preview-logo').attr('src', crypto_logo);
+
+                convertToCrypto(send_amount, crypto_symbol, "USD").then(conversionValue => {
+                    $('#amount-in-crypto-amount').text(conversionValue + ' ' + crypto_symbol);
+                });
+
+                // coversionValueMain();
+                $('#amount-in-crypto-crypto').text(crypto_name);
+                
             }));
 
 
@@ -520,12 +621,12 @@
              */
             $('#next-1').click(function(e) {
                 e.preventDefault();
-                // alert(crypto_symbol);
+                var send_amount = $('#send_amount').val()
                 if (crypto_symbol == 'USDT') {
                     crypto_name = 'Tether';
                 }
 
-                var send_amount = $('#send_amount').val();
+                
                 var to_wallet_address = $('#to_wallet_address').val();
 
                 if (send_amount <= 0) {
