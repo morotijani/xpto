@@ -298,13 +298,20 @@
                                                         </div>
 
                                                         <div id="step-3" class="d-none">
-                                                            <div class="form-floating inputpin mb-3">
-                                                                <input type="number" class="form-control form-control-xl fw-bolder" min="1" placeholder="Enter PIN" name="pin" id="pin" autocomplete="nope">
-                                                                <div class="form-text pinMsg"></div>
-                                                                <label for="pin">PIN *</label>
+                                                            <div class="inputpin mb-3">
+                                                                <div>
+                                                                        <label class="form-label">Enter pin</label>
+                                                                        <div class="d-flex justify-content-between p-4 bg-light rounded">
+                                                                            <input type="password" class="form-control form-control-flush text-xl fw-bold w-rem-40 bg-transparent" placeholder="0000" name="pin" id="pin" autocomplete="off" inputmode="numeric" data-maxlength="4" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" required>
+                                                                            <button type="button" class="btn btn-sm btn-light rounded-pill shadow-none flex-none d-flex align-items-center gap-2 p-2 border">
+                                                                                <img src="<?= PROOT; ?>assets/media/pin.jpg" class="w-rem-6 h-rem-6 rounded-circle" alt="..."> <span>PIN</span>
+                                                                            </button>
+                                                                        </div>
+                                                                </div>
                                                             </div>
-                                                            <a href="javascript:;" class="text-dark" id="prev-2"><<< Go Back</a>
-                                                            <br>
+                                                            <div class="mb-2">
+                                                                <a href="javascript:;" class="text-dark" id="prev-2"><<< Go Back</a>
+                                                            </div>
                                                             <button type="submit" class="btn btn-success w-100" id="submitSend" name="submitSend">Send</button>
                                                         </div>
                                                     </form>
@@ -452,7 +459,7 @@
         async function pasteFromClipboard() {
             try {
                 let text = await navigator.clipboard.readText();
-                alert("Pasted: " + text);
+                alert("Pasting: " + text);
                 $('#to_wallet_address').val(text);
             } catch (err) {
                 console.error("Failed to paste:", err);
@@ -525,7 +532,7 @@
                     }
                 }
 
-                $('#sendsummary').html( // working on sumary check send button the crypto symbol is not changing
+                $('#sendsummary').html(
 				`
 					<li class="list-group-item out">
 				  		<small class="text-muted">You’re sending,</small>
