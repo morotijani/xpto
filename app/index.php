@@ -284,7 +284,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group mb-3">
-                                                                <label for="note">Comments</label>
+                                                                <label for="note">Comment</label>
                                                                 <textarea class="form-control form-control-xl fw-bolder" placeholder="Leave a comment here" style="overflow: hidden; resize: none;" id="note" name="note"></textarea>
                                                             </div>
                                                             <button type="button" id="next-1" class="btn btn-dark w-100">Next >></button>
@@ -293,7 +293,7 @@
                                                         <div id="step-2" class="d-none text-center">
                                                             <ul class="list-group" id="sendsummary"></ul>
                                                             <button type="button" class="btn btn-warning w-100 mt-4" id="next-2">Proceed >>></button>
-                                                            <br>
+                                                            <br><br>
                                                             <a href="javascript:;" class="text-dark" id="prev-1"><< Go Back</a>
                                                         </div>
 
@@ -304,6 +304,7 @@
                                                                 <label for="pin">PIN *</label>
                                                             </div>
                                                             <a href="javascript:;" class="text-dark" id="prev-2"><<< Go Back</a>
+                                                            <br>
                                                             <button type="submit" class="btn btn-success w-100" id="submitSend" name="submitSend">Send</button>
                                                         </div>
                                                     </form>
@@ -319,7 +320,7 @@
                                                         </div>
                                                         <div class="card-body text-center">
                                                             
-                                                            <div id="receive-step-2" class="d- text-center">
+                                                            <div id="receive-step-2" class="d-none text-center">
                                                                 <div class="input-group">
                                                                     <span id="copy-receive-address" type="text" class="form-control" placeholder="wallet address"></span>
                                                                     <button class="btn btn-light-warning" data-clipboard-target="#copy-receive-address">
@@ -475,7 +476,6 @@
             var crypto_logo
             $("#list-crypto").on("click", "li", (function() {
                 var coin = $(this).find("#to_crypto_details").val();
-                // alert(coin);
                 var crypto = $("#to_cypto").val(coin);
                 coin = coin.split("/");
 
@@ -497,6 +497,10 @@
              */
             $('#next-1').click(function(e) {
                 e.preventDefault();
+                // alert(crypto_symbol);
+                if (crypto_symbol == 'USDT') {
+                    crypto_name = 'Tether';
+                }
 
                 var send_amount = $('#send_amount').val();
                 var to_wallet_address = $('#to_wallet_address').val();
@@ -514,30 +518,30 @@
                 } else {
                     // WAValidator is exposed as a global (window.WAValidator)
                     var valid = WAValidator.validate(to_wallet_address, crypto_name.toLowerCase());
-                    if (valid)
-                        alert('This is a valid address');
-                    else
+                    if (!valid) {
                         alert('Address INVALID');
-                    return false;
+                        $("#to_wallet_address").focus()
+                        return false;
+                    }
                 }
 
                 $('#sendsummary').html( // working on sumary check send button the crypto symbol is not changing
 				`
 					<li class="list-group-item out">
 				  		<small class="text-muted">You’re sending,</small>
-				  		<p id="send-crypto">` + $("#returnInCrypto").val() + ` BTC</p>
+				  		<p id="send-crypto">` + crypto_name + ` (` + crypto_symbol + `)</p>
 				  	</li>
 				  	<li class="list-group-item out">
 				  		<small class="text-muted">Amount</small>
-				  		<p id="send-amount">` + Number($("#send_amount").val()).toFixed(2) + ` ` + currency + `</p>
+				  		<p id="send-amount">` + Number($("#send_amount").val()).toFixed(2) + ` USD</p>
 				  	</li>
 				  	<li class="list-group-item out">
-				  		<small class="text-muted">Fees In BTC</small>
-				  		<p id="send-fees">0.00003005 + 5% BTC</p>
+				  		<small class="text-muted">Fees In ` + crypto_symbol + `</small>
+				  		<p id="send-fees">0.00003005 + 2% ` + crypto_symbol + `</p>
 				  	</li>
 				  	<li class="list-group-item out">
 				  		<small class="text-muted">To</small>
-				  		<p id="send-receiving-address">` + $("#to_address").val() + `</p>
+				  		<p id="send-receiving-address">` + to_wallet_address + `</p>
 				  	</li>
 				  	<li class="list-group-item out">
 				  		<small class="text-muted">Note</small>
@@ -545,12 +549,32 @@
 				  	</li>
 				`);
 
-                
+                $('#step-1').addClass('d-none');
+                $('#step-2').removeClass('d-none');
+            })
 
-                
+            $('#next-2').click(function(e) {
+                e.preventDefault();
 
-                // This should show a pop up with text 'This is a valid address'.
-            });
+                $('#step-2').addClass('d-none');
+                $('#step-3').removeClass('d-none');
+            })
+
+            $('#prev-1').click(function(e) {
+                e.preventDefault();
+
+                $('#step-1').removeClass('d-none');
+                $('#step-2').addClass('d-none');
+            })
+
+            $('#prev-2').click(function(e) {
+                e.preventDefault();
+
+                $('#step-2').removeClass('d-none');
+                $('#step-3').addClass('d-none');
+            })
+
+            // 2nd step
 
 
 			$('#next-button').on('click', function(e) {
