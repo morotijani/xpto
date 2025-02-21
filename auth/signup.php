@@ -12,8 +12,8 @@
 				<div class="mx-auto" style="max-width: 30rem;">
 					<div class="card card-lg zi-2">
 						<div class="card-header text-center">
-							<h4 class="card-title">Create you account here.</h4>
-							<p class="card-text">Enter your email address and click next to enter your password to login.</p>
+							<h4 class="card-title">You're invited to Xpto!</h4>
+							<p class="card-text">Join Xpto and help build the future of finance</p>
 						</div>
 
 						<div class="card-body">
@@ -41,17 +41,15 @@
 
 								<!-- Form -->
 								<div id="step-one">
-									<div class="mb-4">
-										<label class="form-label" for="forgotPasswordFormEmail">Your Full name</label>
-										<input type="text" autocomplete="off" class="form-control form-control-lg" name="fullname" id="fullname" placeholder="Enter your full name" aria-label="Enter your email address" required>
-										<span class="invalid-feedback">Please enter your full name.</span>
-									</div>
                                     <div class="mb-4">
 										<label class="form-label" for="forgotPasswordFormEmail">Your email</label>
 										<input type="email" autocomplete="off" class="form-control form-control-lg" name="email" id="email" placeholder="Enter your email address" aria-label="Enter your email address" required>
 										<span class="invalid-feedback">Please enter a valid email address.</span>
 									</div>
-
+									<div class="mb-4">
+										<label class="form-label" for="forgotPasswordFormEmail">Invite code (optional)</label>
+										<input type="text" autocomplete="off" class="form-control form-control-lg" name="invitationcode" id="invitationcode" placeholder="Enter code" aria-label="Enter your email address">
+									</div>
 									<div class="d-grid mb-4">
 										<button type="button" id="next-button" onclick="setup_step_two()" class="btn btn-primary btn-lg">Next ></button>
 									</div>
@@ -59,27 +57,49 @@
 
 								<div id="step-two" class="d-none">
 									<div class="mb-4">
-										<label class="form-label" for="password">Your Password</label>
-										<input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="***" aria-label="Enter your password" required>
-										<span class="invalid-feedback">Please enter a valid password address.</span>
+										<label class="form-label" for="password">Password</label>
+										<div class="input-group input-group-merge" data-hs-validation-validate-class>
+											<input type="password" class="js-toggle-password form-control form-control-lg" name="password" id="password" placeholder="8+ characters required" aria-label="8+ characters required" required data-hs-toggle-password-options='{
+													"target": [".js-toggle-password-target-1", ".js-toggle-password-target-2"],
+													"defaultClass": "bi-eye-slash",
+													"showClass": "bi-eye",
+													"classChangeTarget": ".js-toggle-passowrd-show-icon-1"
+													}'>
+											<a class="js-toggle-password-target-1 input-group-append input-group-text" href="javascript:;">
+												<i class="js-toggle-passowrd-show-icon-1 bi-eye"></i>
+											</a>
+										</div>
+										<span class="invalid-feedback">Your password is invalid. Please try again.</span>
 									</div>
-                                    <div class="mb-4">
-										<label class="form-label" for="password">Confirm Password</label>
-										<input type="password" class="form-control form-control-lg" name="confirm" id="confirm" placeholder="***" aria-label="Enter your password" required>
-										<span class="invalid-feedback">Please enter a valid password address.</span>
+									<div class="mb-4">
+										<label class="form-label" for="confirm">Confirm password</label>
+										<div class="input-group input-group-merge" data-hs-validation-validate-class>
+											<input type="password" class="js-toggle-password form-control form-control-lg" name="confirm" id="confirm" placeholder="8+ characters required" aria-label="8+ characters required" data-hs-validation-equal-field="#confirm" required data-hs-toggle-password-options='{
+													"target": [".js-toggle-password-target-1", ".js-toggle-password-target-2"],
+													"defaultClass": "bi-eye-slash",
+													"showClass": "bi-eye",
+													"classChangeTarget": ".js-toggle-passowrd-show-icon-2"
+													}'>
+											<a class="js-toggle-password-target-2 input-group-append input-group-text" href="javascript:;">
+											<i class="js-toggle-passowrd-show-icon-2 bi-eye"></i>
+											</a>
+										</div>
+										<span class="invalid-feedback">Password does not match the confirm password.</span>
 									</div>
-
                                     <div class="mb-4">
 										<label class="form-label" for="password">Your 4 digit PIN</label>
 										<input type="password" class="form-control form-control-lg" name="pin" id="pin" placeholder="" aria-label="Enter your four (4) digit pin" required>
 										<span class="invalid-feedback">Please enter a valid password address.</span>
 									</div>
-
+									<div class="form-check mb-4">
+										<input type="checkbox" class="form-check-input" id="agree" name="agree" required>
+										<label class="form-check-label" for="agree"> I agree to the <a href=./page-terms.html>Terms and Conditions</a></label>
+										<span class="invalid-feedback">Please accept our Terms and Conditions.</span>
+									</div>
 									<div class="d-grid mb-4">
 										<button type="button" id="submit-button" class="btn btn-primary btn-lg">Submit</button>
 									</div>
 								</div>
-
 
 								<div class="text-center">
 									<a class="btn btn-link" href="<?= PROOT; ?>auth/login">
@@ -111,24 +131,27 @@
 	<script>
 		// $(document).ready(function() {
             function setup_step_two() {
-                if (($('#fullname').val() == '')) {
-                    $('#fullname').focus();
-                    alert('Invalid Full name provided!');
-                    return false;
-                }
+				if (($('#email').val() == '')) {
+					$('#email').focus();
+					alert('Your email is requred!');
+					return false;
+				} else {
 
-                if (($('#email').val() == '')) {
-                    $('#email').focus();
-                    alert('Your email is requred!');
-                    return false;
-                }
+					$('#next-button').attr('disabled', true);
+					$('#next-button').text('Loading ...');
+					setTimeout(() => {
+						$('#stepEmail-tab').removeClass('active');
+						$('#stepPassword-tab').addClass('active');
+						
+						$('#step-one').addClass('d-none');
+						$('#step-two').removeClass('d-none');
+						$('#password').focus();
 
-				$('#stepEmail-tab').removeClass('active');
-				$('#stepPassword-tab').addClass('active');
-				
-				$('#step-one').addClass('d-none');
-				$('#step-two').removeClass('d-none');
-                $('#password').focus();
+						$('#next-button').attr('disabled', false);
+						$('#next-button').text('Next >');
+					}, 100);
+					
+				}
 			}
 
             function setup_step_one() {
@@ -177,6 +200,15 @@
                     alert('PIN must 4 be digits!');
                     return false;
                 }
+
+				if ($('#agree').is(':checked')) {
+				} else {
+					$('#agree').focus();
+					alert('You must agree to the terms and conditions!');
+					return false;
+				}
+
             })
 		// })
 	</script>
+

@@ -31,7 +31,7 @@
 
 			// INITIALIZATION OF SHOW ANIMATIONS
 			// =======================================================
-			// new HSShowAnimation('.js-animation-link')
+			new HSShowAnimation('.js-animation-link')
 
 
 			// INITIALIZATION OF BOOTSTRAP VALIDATION
@@ -42,6 +42,10 @@
 				alert('Submited')
 			}
 			})
+
+			// INITIALIZATION OF TOGGLE PASSWORD
+			// =======================================================
+			new HSTogglePassword('.js-toggle-password')
 
 
 			// INITIALIZATION OF GO TO
@@ -79,6 +83,9 @@
 				}
 			});
 
+			 // INITIALIZATION OF SHOW ANIMATIONS
+        // =======================================================
+        new HSShowAnimation('.js-animation-link')
 
 
 
