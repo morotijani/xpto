@@ -577,7 +577,6 @@
                 coin = coin.split("/");
                 crypto_symbol = coin[1];
                 crypto_name = coin[2];
-                alert(coin); // there is a problem here
                 convertToCrypto(send_amount, crypto_symbol, "USD").then(conversionValue => {
                     $('#amount-in-crypto-amount').text(conversionValue + ' ' + crypto_symbol);
                 });
@@ -589,6 +588,7 @@
             $("#list-crypto").on("click", "li", (function() {
                 var send_amount = $('#send_amount').val()
                 var coin = $(this).find("#to_crypto_details").val();
+                $('#to_crypto_details_default').val(coin)
                 var crypto = $("#to_cypto").val(coin);
                 coin = coin.split("/");
 
@@ -607,7 +607,6 @@
                     $('#amount-in-crypto-amount').text(conversionValue + ' ' + crypto_symbol);
                 });
                 $('#amount-in-crypto-crypto').text(crypto_name);
-                $('#to_crypto_details_default').val(coin)
             }));
 
 
