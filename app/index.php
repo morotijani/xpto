@@ -233,6 +233,9 @@
                                                                                 <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/<?= $coin_data['data'][0]['id']; ?>.png"; class="w-rem-6 h-rem-6 rounded-circle img-fluid" alt="..." id="preview-logo"> 
                                                                                 <span id="preview-symbol-selected"><?= $coin_data['data'][0]['symbol']; ?></span> 
                                                                                 <i class="bi bi-chevron-down text-xs me-1"></i>
+
+                                                                                <input type="hidden" name="to_crypto_details_default" id="to_crypto_details_default" value="<?= $coin_data['data'][0]['id'] . '/' . $coin_data['data'][0]['symbol'] . '/' . $coin_data['data'][0]['name'] . '/' . number_format($coin_data['data'][0]['quote']['USD']['price'], 2); ?>">
+
                                                                             </button>
                                                                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-sm" id="list-crypto">
                                                                                 <?php 
@@ -510,7 +513,7 @@
 	<?php include ("../footer.files.php"); ?>
     <script src="<?= PROOT; ?>assets/js/wallet-address-validator.min.js"></script>
 
-	<script>
+	<script>        
         // Paste from clipboard
         async function pasteFromClipboard() {
             try {
@@ -532,12 +535,15 @@
         // conver from fiat to crypto
         async function convertToCrypto(amountUSD, cryptoSymbol, fiatSymbol = "USD") {
             let apiKey = "<?= COINCAP_APIKEY; ?>";
+            // let cors = 'https://corsproxy.io/?key=5fda4615&url=';
+            let cors = 'https://cors-anywhere.herokuapp.com/'
             try {
                 $('#amount-in-crypto-amount').text('Converting ...');
-                let response = await fetch(`https://cors-anywhere.herokuapp.com/https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${cryptoSymbol}&convert=${fiatSymbol}`, {
+                let response = await fetch(`${cors}https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${cryptoSymbol}&convert=${fiatSymbol}`, {
                     headers: { 
                         "X-CMC_PRO_API_KEY": apiKey, 
-                        'Access-Control-Allow-Origin': '*'
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': 'sites.local',
                     }
                 });
                 let data = await response.json();
@@ -561,6 +567,24 @@
             var crypto_amount
             var crypto_logo
 
+            $('#send_amount').on('change', function(e) {
+                e.preventDefault();
+
+                var send_amount = $('#send_amount').val()
+                var coin = $("#to_crypto_details_default").val();
+                var crypto = $("#to_cypto").val(coin);
+
+                coin = coin.split("/");
+                crypto_symbol = coin[1];
+                crypto_name = coin[2];
+                alert(coin); // there is a problem here
+                convertToCrypto(send_amount, crypto_symbol, "USD").then(conversionValue => {
+                    $('#amount-in-crypto-amount').text(conversionValue + ' ' + crypto_symbol);
+                });
+                $('#amount-in-crypto-crypto').text(crypto_name);
+            })
+
+
             // get selected crypto
             $("#list-crypto").on("click", "li", (function() {
                 var send_amount = $('#send_amount').val()
@@ -583,6 +607,7 @@
                     $('#amount-in-crypto-amount').text(conversionValue + ' ' + crypto_symbol);
                 });
                 $('#amount-in-crypto-crypto').text(crypto_name);
+                $('#to_crypto_details_default').val(coin)
             }));
 
 
