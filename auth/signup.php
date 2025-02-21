@@ -3,6 +3,14 @@
 	$newFont = "default";
     include ("../head.php");
 
+	if (isset($_SESSION['user'])) {
+		header("Location: ../index");
+	}
+
+	$database = new DatabaseConnector();
+	$db = $database->openConnection();
+	
+
 ?>
 
 	<!-- ========== MAIN CONTENT ========== -->

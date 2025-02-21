@@ -1,7 +1,6 @@
 <?php 
 
     require dirname(__DIR__)  . '/bootstrap.php';
-
 	
     $driver = $_ENV['DB_DRIVER'];
     $hostname = $_ENV['DB_HOST'];
@@ -23,8 +22,6 @@
 
     require_once ("Functions.php");
     require_once dirname(__DIR__) . "/config.php";
-
-
 
     $curl = curl_init();
 
@@ -48,13 +45,6 @@
     curl_close($curl);
 
     $coin_data = json_decode($response, true);
-    // $a = $coin_data['data'][0]['id'];
-    // dnd($a);
-    // foreach ($a as $b) {
-    //     echo $b['name'];
-    // }
-    // die;
-
     // Generate scrolling content with icons
     if (is_array($coin_data)) {
         if (isset($coin_data['data'])) {
@@ -67,6 +57,6 @@
             }
         }
     } else {
-        echo "Error fetching data.";
+        // echo "Error fetching data.";
     }
 
