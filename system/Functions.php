@@ -87,7 +87,6 @@
 		exit;
 	}
 
-
 	function issetElse($array, $key, $default = "") {
 	    if(!isset($array[$key]) || empty($array[$key])) {
 	      return $default;
