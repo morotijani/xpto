@@ -25,10 +25,17 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="hs-has-mega-menu nav-item">
-                            <a id="landingsMegaMenu" class="nav-link active" aria-current="page" href="#" role="button" aria-expanded="false"><i class="bi-twitter me-1"></i></a>
+                            <a id="landingsMegaMenu" class="nav-link" aria-current="page" href="#" role="button" aria-expanded="false"><i class="bi-twitter me-1"></i></a>
                         </li>
                         <li class="hs-has-mega-menu nav-item">
-                            <a id="landingsMegaMenu" class="nav-link active" aria-current="page" href="#" role="button" aria-expanded="false"><i class="bi-facebook me-1"></i></a>
+                            <a id="landingsMegaMenu" class="nav-link" aria-current="page" href="#" role="button" aria-expanded="false"><i class="bi-facebook me-1"></i></a>
+                        </li>
+
+                        <li class="hs-has-mega-menu nav-item">
+                            <a id="landingsMegaMenu" class="nav-link" aria-current="page" href="#" role="button" aria-expanded="false">Hi Amin!</a>
+                        </li>
+                        <li class="hs-has-mega-menu nav-item">
+                            <a class="nav-link" href="<?= PROOT; ?>auth/logout">Logout</a>
                         </li>
                     
                         <li class="nav-divider"></li>
@@ -64,17 +71,20 @@
                                 <div class="">
                                     <div class="hstack gap-3 mb-1">
                                         <h4 class="fw-semibold">Total Balance</h4>
-                                        <a href="#">
+                                        <a href="javascript:;" onclick="toggleBalance()">
                                             <i class="bi bi-eye"></i> 
                                         </a>
-                                        <a href="#">
+                                        <a href="javascript:;">
                                             <i class="bi bi-info-circle"></i>
                                         </a>
                                     </div>
-                                    <div class="text-2xl text-heading fw-bolder ls-tight">$23.000,48</div>
+                                    <div class="text-2xl text-heading fw-bolder ls-tight blurred" id="balance">$23.000,48</div>
                                 </div>
                                 <div class="ms-auto align-self-end">
-                                    <button type="button" class="btn btn-sm btn-neutral" data-bs-toggle="modal" data-bs-target="#topUpModal">Top up</button>
+                                    <a  href="<?= PROOT; ?>app/index" class="btn btn-sm btn-light mb-2">Send crypto</a>                                    
+                                    <a href="#stepFeaturesTwo" id="stepFeaturesTwo-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesTwo" role="tab" aria-controls="stepFeaturesTwo" aria-selected="false" class="btn btn-sm btn-light mb-2 step-content-wrapper" data-bs-toggle="modal" data-bs-target="#topUpModal">Receive crypto</a>
+                                    <a href="<?= PROOT; ?>app/transactions" class="btn btn-sm btn-light mb-2">Transactions</a>
+
                                 </div>
                             </div>
 
@@ -125,55 +135,6 @@
 				<div class="mx-auto">
 					<div class="card card-lg zi-2">
 						<div class="card-body">
-                            <div class="pe-md-5">
-
-                                <!-- Step -->
-                                <ul class="step step-sm step-icon-sm step-centered step-border-last-0" id="step-TabFeatures" role="tablist">
-                                    <li class="step-item" role="presentation">
-                                        <a class="step-content-wrapper active" href="#stepFeaturesOne" id="stepFeaturesOne-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesOne" role="tab" aria-controls="stepFeaturesOne" aria-selected="true">
-                                            <span class="step-icon step-icon-soft-secondary">
-                                                <img class="img-fluid" src="<?= PROOT; ?>assets/media/send-icon.png" width="100" height="100">
-                                            </span>
-                                            <div class="step-content">
-                                                <h6 class="step-title">Send Crypto</h6>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li class="step-item" role="presentation">
-                                        <a class="step-content-wrapper" href="#stepFeaturesTwo" id="stepFeaturesTwo-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesTwo" role="tab" aria-controls="stepFeaturesTwo" aria-selected="false">
-                                            <span class="step-icon step-icon-soft-secondary">
-                                                <img class="img-fluid" src="<?= PROOT; ?>assets/media/receive-icon.png" width="100" height="100">
-                                            </span>
-                                            <div class="step-content">
-                                                <h6 class="step-title">Recieve crypto</h6>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li class="step-item" role="presentation">
-                                        <a class="step-content-wrapper" href="#stepFeaturesThree" id="stepFeaturesThree-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesThree" role="tab" aria-controls="stepFeaturesThree" aria-selected="false">
-                                            <span class="step-icon step-icon-soft-secondary">
-                                                <img class="img-fluid" src="<?= PROOT; ?>assets/media/transaction-icon.png" width="100" height="100">
-                                            </span>
-                                            <div class="step-content">
-                                                <h6 class="step-title">Transaction history</h6>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li class="step-item" role="presentation">
-                                        <a class="step-content-wrapper" href="#stepFeaturesThree" id="stepFeaturesThree-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesThree" role="tab" aria-controls="stepFeaturesThree" aria-selected="false">
-                                            <span class="step-icon step-icon-soft-secondary">
-                                                <img class="img-fluid" src="<?= PROOT; ?>assets/media/profile-icon.png" width="100" height="100">
-                                            </span>
-                                            <div class="step-content">
-                                                <h6 class="step-title">Hi Amin!</h6>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
                             
                             <!-- Features Step -->
                             <div class="overflow-hidden">
@@ -214,6 +175,10 @@
 
                                                         <div id="step-1">
                                                             <div class="vstack gap-1 mb-3">
+                                                                <!-- <h4 class="fw-semibold">Send Crypto</h4>
+                                                                <p class="text-muted">Send crypto to another wallet address.</p>
+                                                            </div> -->
+
                                                                 <div class="bg-light rounded-3 p-4">
                                                                     <div class="d-flex justify-content-between text-xs text-muted">
                                                                         <span class="fw-semibold">From</span> 
@@ -359,19 +324,25 @@
                                                         <div id="step-3" class="d-none">
                                                             <div class="inputpin mb-3">
                                                                 <div>
-                                                                        <label class="form-label">Enter pin</label>
-                                                                        <div class="d-flex justify-content-between p-4 bg-light rounded">
-                                                                            <input type="password" class="form-control form-control-flush text-xl fw-bold w-rem-40 bg-transparent" placeholder="0000" name="pin" id="pin" autocomplete="off" inputmode="numeric" data-maxlength="4" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" required>
-                                                                            <button type="button" class="btn btn-sm btn-light rounded-pill shadow-none flex-none d-flex align-items-center gap-2 p-2 border">
-                                                                                <img src="<?= PROOT; ?>assets/media/pin.jpg" class="w-rem-6 h-rem-6 rounded-circle" alt="..."> <span>PIN</span>
-                                                                            </button>
-                                                                        </div>
+                                                                    <label class="form-label">Enter pin</label>
+                                                                    <div class="d-flex justify-content-between p-4 bg-light rounded">
+                                                                        <input type="password" class="form-control form-control-flush text-xl fw-bold w-rem-40 bg-transparent" placeholder="0000" name="pin" id="pin" autocomplete="off" inputmode="numeric" data-maxlength="4" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" required>
+                                                                        <button type="button" class="btn btn-sm btn-light rounded-pill shadow-none flex-none d-flex align-items-center gap-2 p-2 border">
+                                                                            <img src="<?= PROOT; ?>assets/media/pin.jpg" class="w-rem-6 h-rem-6 rounded-circle" alt="..."> <span>PIN</span>
+                                                                        </button>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="mb-2">
                                                                 <a href="javascript:;" class="text-dark" id="prev-2"><<< Go Back</a>
                                                             </div>
-                                                            <button type="submit" class="btn btn-success w-100" id="submitSend" name="submitSend">Send</button>
+                                                            <button type="button" class="btn btn-success w-100" id="send-crypto-button" name="send-crypto-button">Send</button>
+                                                        </div>
+                                                        <div id="loader-tag" class="d-none text-center">
+                                                            <video muted autoplay width="auto" height="200" loop>
+                                                                <source src="<?= PROOT; ?>assets/media/coin-loader.mp4" type="video/mp4">
+                                                                <source src="<?= PROOT; ?>assets/media/coin-loader.ogg" type="video/ogg">
+                                                            </video>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -559,6 +530,23 @@
             }
         }
 
+        let isHidden = true; // Track balance visibility
+
+        function toggleBalance() {
+            let balance = document.getElementById("balance");
+            let button = document.querySelector("button");
+
+            if (isHidden) {
+                balance.classList.remove("blurred"); // Show balance
+                button.textContent = "Hide Balance";
+            } else {
+                balance.classList.add("blurred"); // Hide balance
+                button.textContent = "Show Balance";
+            }
+
+            isHidden = !isHidden; // Toggle state
+        }
+
 		$(document).ready(function() {
 
             var crypto_id
@@ -647,7 +635,7 @@
 				`
 					<li class="list-group-item out">
 				  		<small class="text-muted">You’re sending,</small>
-				  		<p id="send-crypto">` + crypto_name + ` (` + crypto_symbol + `)</p>
+				  		<p id="send-crypto">` + crypto_name + `: ${$('#amount-in-crypto-amount').text()}</p>
 				  	</li>
 				  	<li class="list-group-item out">
 				  		<small class="text-muted">Amount</small>
@@ -669,6 +657,43 @@
 
                 $('#step-1').addClass('d-none');
                 $('#step-2').removeClass('d-none');
+            });
+
+            $('#send-crypto-button').click(function(e) {
+                e.preventDefault()
+                var pin = $('#pin').val();
+
+                if (pin == '') {
+                    alert('Enter pin to proceed');
+                    $('#pin').focus();
+                    return false;
+                }
+
+                if (pin.length < 4) {
+                    alert('Pin must be 4 digits');
+                    $('#pin').focus();
+                    return false;
+                }
+
+                if (pin.length > 4) {
+                    alert('Pin must be 4 digits');
+                    $('#pin').focus();
+                    return false;
+                }
+
+                if (pin != '0000') {
+                    alert('Invalid pin');
+                    $('#pin').focus();
+                    return false;
+                }
+                $('#step-3').addClass('d-none');
+                $('#loader-tag').removeClass('d-none');
+                setTimeout(() => {
+                    $('#loader-tag').addClass('d-none');
+                    alert('Transaction successful');
+                    location.reload();
+                }, 5000);
+
             })
 
             $('#next-2').click(function(e) {

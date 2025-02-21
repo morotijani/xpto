@@ -77,6 +77,17 @@
 	 	return $slug;
 	}
 
+	// REDIRECT PAGE
+	function redirect($url) {
+		if(!headers_sent()) {
+			header("Location: {$url}");
+		} else {
+			echo '<script>window.location.href="' . $url . '"</script>';
+		}
+		exit;
+	}
+
+
 	function issetElse($array, $key, $default = "") {
 	    if(!isset($array[$key]) || empty($array[$key])) {
 	      return $default;

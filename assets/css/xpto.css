@@ -67,7 +67,23 @@
 .text-xl {
     font-size: calc(1.275rem + .3vw) !important;
 }
+
 .fw-bold {
     font-weight: 600 !important;
 }
 
+.blurred {
+    filter: blur(5px);
+}
+
+.ls-tight {
+    letter-spacing: -.025em !important;
+}
+
+.text-2xl {
+    font-size: calc(1.325rem + .9vw) !important;
+}
+.text-heading {
+    --x-text-opacity: 1;
+    color: var(--x-heading-color) !important;
+}
