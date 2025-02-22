@@ -229,45 +229,6 @@
                                                                     </div>
                                                                 </div>
 
-                                                                <style>
-                                                                    .my-n4 {
-                                                                        margin-top: -1rem !important;
-                                                                        margin-bottom: -1rem !important;
-                                                                    }
-                                                                    .shadow-soft-3, .shadow-soft-3-hover:hover {
-    box-shadow: 0 9px 9px -1px rgba(10, 22, 70, .04) !important;
-}
-
-.text-sm {
-    font-size: .875rem !important;
-}
-.rounded-circle {
-    border-radius: 50% !important;
-}
-[class*=shadow] {
-    transition: all .15sease-in-out;
-}
-.icon-shape {
-    text-align: center;
-    vertical-align: middle;
-    width: var(--x-size);
-    height: var(--x-size);
-    border-radius: .375rem;
-    justify-content: center;
-    align-items: center;
-    display: inline-flex;
-}
-
-.icon {
-    --x-size: 3rem;
-    font-size: calc(var(--x-size) / 1.75);
-    line-height: 1;
-}
-.icon-sm {
-    --x-size: 2rem;
-}
-                                                                </style>
-
                                                                 <div class="position-relative text-center my-n4 overlap-10">
                                                                     <div class="icon icon-sm icon-shape bg-body shadow-soft-3 rounded-circle text-sm text-body-tertiary">
                                                                         <i class="bi bi-arrow-down-up"></i>
@@ -693,7 +654,6 @@
                     alert('Transaction successful');
                     location.reload();
                 }, 5000);
-
             })
 
             $('#next-2').click(function(e) {
@@ -748,32 +708,4 @@
 			})
 		})
 
-
-
-        //get live prices
-        var btc = document.getElementById("btc");
-        var eth = document.getElementById("eth");
-        var usdt = document.getElementById("usdt");
-
-        f_btc = document.getElementById("f-btc");
-        f_eth = document.getElementById("f-eth");
-        f_usdt = document.getElementById("f-usdt");
-        liveprice = {
-            "async" : true,
-            "scroosDomain" : true,
-            "url" : "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Ctether&vs_currencies=usd",
-            "method" : "GET",
-            "headers" : {},
-        }
-        $.ajax(liveprice).done(function (response) {
-            btc.innerHTML = "$ " + response.bitcoin.usd.toLocaleString();
-            eth.innerHTML = "$ " + response.ethereum.usd.toLocaleString();
-            usdt.innerHTML = "$ " + response.tether.usd.toLocaleString();
-
-            f_btc.innerHTML = "$ " + response.bitcoin.usd.toLocaleString();
-            f_eth.innerHTML = "$ " + response.ethereum.usd.toLocaleString();
-            f_usdt.innerHTML = "$ " + response.tether.usd.toLocaleString();
-
-            console.log(response);
-        });
 	</script>

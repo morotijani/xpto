@@ -7,9 +7,43 @@
 		header("Location: ../index");
 	}
 
-	$database = new DatabaseConnector();
-	$db = $database->openConnection();
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		$email = sanitize($_POST["email"]);
+		$referral_code = sanitize($_POST["invitationcode"]);
+		$password = $_POST["password"];
+		$pin = (int)$_POST["pin"];
 	
+		// Basic validation
+		if (empty($email) || empty($password) || empty($pin) || strlen($pin) != 4 || !is_numeric($pin)) {
+			die("Invalid input. Make sure PIN is exactly 4 digits.");
+		}
+
+		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			die("Invalid email format.");
+		}
+	
+		// Hash password and PIN for security
+		$password_hash = password_hash($password, PASSWORD_BCRYPT);
+		$pin_hash = password_hash($pin, PASSWORD_BCRYPT);
+	
+		try {
+			// Check if email already exists
+			$statement = $dbConnection->prepare("SELECT id FROM xpto_users WHERE user_email = ?");
+			$statement->execute([$email]);
+			if ($statement->rowCount() > 0) {
+				die("Email already exists. Please use another email.");
+			}
+	
+			// Insert data into database
+			$statement = $dbConnection->prepare("INSERT INTO xpto_users (user_email, user_invitationcode, user_password, user_pin) VALUES (?, ?, ?, ?)");
+			$statement->execute([$email, $referral_code, $password_hash, $pin_hash]);
+	
+			echo "Signup successful! You can now login.";
+	
+		} catch (PDOException $e) {
+			die("Signup failed: " . $e->getMessage());
+		}
+	}
 
 ?>
 
@@ -25,7 +59,7 @@
 						</div>
 
 						<div class="card-body">
-							<form class="js-validate need-validate" novalidate>
+							<form class="js-validate need-validate" id="signupForm" method="POST" novalidate>
 
 								<ul class="step step-sm step-icon-sm step-centered" id="step-TabFeatures" role="tablist">
 									<li class="step-item" role="presentation">
@@ -51,7 +85,7 @@
 								<div id="step-one">
                                     <div class="mb-4">
 										<label class="form-label" for="forgotPasswordFormEmail">Your email</label>
-										<input type="email" autocomplete="off" class="form-control form-control-lg" name="email" id="email" placeholder="Enter your email address" aria-label="Enter your email address" required>
+										<input type="email" autocomplete="off" autofocus class="form-control form-control-lg" name="email" id="email" placeholder="Enter your email address" aria-label="Enter your email address" required>
 										<span class="invalid-feedback">Please enter a valid email address.</span>
 									</div>
 									<div class="mb-4">
@@ -215,6 +249,15 @@
 					alert('You must agree to the terms and conditions!');
 					return false;
 				}
+
+				$('#submit-button').attr('disabled', true);
+				$('#submit-button').text('Loading ...');
+				setTimeout(() => {
+					$('#signupForm').submit();
+
+					$('#submit-button').attr('disabled', false);
+					$('#submit-button').text('Submit');
+				}, 100);
 
             })
 		// })
