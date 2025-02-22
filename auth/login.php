@@ -77,8 +77,8 @@
 								<!-- Form -->
 								<div id="step-one">
 									<div class="mb-4">
-										<label class="form-label" for="forgotPasswordFormEmail">Your email</label>
-										<input type="email" autocomplete="off" class="form-control form-control-lg" name="forgotPasswordEmailName" id="forgotPasswordFormEmail" placeholder="Enter your email address" aria-label="Enter your email address" required>
+										<label class="form-label" for="email">Your email</label>
+										<input type="email" autocomplete="off" class="form-control form-control-lg" name="email" id="email" placeholder="Enter your email address" aria-label="Enter your email address" required>
 										<span class="invalid-feedback">Please enter a valid email address.</span>
 									</div>
 
@@ -148,6 +148,23 @@
 			})
 
 			$('#stepPassword-tab').on('click', function(e) {
+
+				if ($('#email').val() == "") {
+					$('#email').addClass('is-invalid');
+					$('#email').next().removeClass('d-none');
+
+					$('#stepEmail-tab').addClass('active');
+					$('#stepPassword-tab').removeClass('active');
+					return false;
+				}
+
+				// if ($('#step-one').hasClass('d-none')) {
+				// 	$('#stepEmail-tab').removeClass('active');
+				// 	$('#stepPassword-tab').addClass('active');
+
+				// 	$('#step-one').addClass('d-none');
+				// 	$('#step-two').removeClass('d-none');
+				// }
 
 				$('#stepEmail-tab').removeClass('active');
 				$('#stepPassword-tab').addClass('active');
