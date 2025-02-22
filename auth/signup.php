@@ -173,16 +173,15 @@
 	<script>
 		// $(document).ready(function() {
             function setup_step_two() {
+				var msg = "";
 				if (($('#email').val() == '')) {
 					$('#email').focus();
-					alert('Your email is requred!');
-					return false;
+					msg = 'Your email is requred!';
 				} 
 				
 				if (!isEmail($('#email').val())) {
 					$('#email').focus();
-					alert('Invalid email provided!');
-					return false;
+					msg = 'Please enter a valid email address.!';
 				} else {
 					$('#next-button').attr('disabled', true);
 					$('#next-button').text('Loading ...');
@@ -198,6 +197,13 @@
 						$('#next-button').text('Next >');
 					}, 100);
 				}
+
+				if (msg != '') {
+					$('.toast').addClass('alert-danger');
+					$('.toast-body').html(msg);
+					$('.toast').toast('show');
+					return false;
+				}
 			}
 
             function setup_step_one() {
@@ -210,47 +216,48 @@
 
             $('#submit-button').on('click', function(e) {
                 e.preventDefault()
+				var msg = "";
 
                 if ($('#password').val() == '') {
                     $('#password').focus();
-                    alert('Password is required!');
-                    return false;
+					msg = 'Password is required!';
                 }
 
                 if ($('#password').val().length < 6) {
                     $('#password').focus();
-                    alert('Password characters must be 6 or more!');
-                    return false;
+					msg = "Password characters must be 6 or more!";
                 }
 
                 if ($('#confirm').val() == '') {
                     $('#confirm').focus();
-                    alert('Confirm password is required!');
-                    return false;
+					msg = "Confirm password is required!"
                 }
 
                 if ($('#confirm').val() != $('#password').val()) {
                     $('#confirm').focus();
-                    alert('Password and Confirm password must match!');
-                    return false;
+					msg = "Password and Confirm password must match!";
                 }
 
                 if ($('#pin').val() == '') {
                     $('#pin').focus();
-                    alert('Pin is required!');
-                    return false;
+					msg = "Pin is required!";
                 }
 
                 if ($('#pin').val().length != 4) {
                     $('#pin').focus();
-                    alert('PIN must 4 be digits!');
-                    return false;
+					msg = "PIN must be 4 digits!";
                 }
 
 				if ($('#agree').is(':checked')) {
 				} else {
 					$('#agree').focus();
-					alert('You must agree to the terms and conditions!');
+					msg = "You must agree to the terms and conditions!";
+				}
+
+				if (msg != '') {
+					$('.toast').addClass('alert-danger');
+					$('.toast-body').html(msg);
+					$('.toast').toast('show');
 					return false;
 				}
 

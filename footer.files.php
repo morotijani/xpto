@@ -42,6 +42,13 @@
         </div>
     </div>
 
+	<!-- TOAST MESSAGES -->
+    <div class="toast-container translate-middle-x position-fixed start-50 bottom-0 end-0 p-3"> 
+        <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body"></div>
+        </div>
+    </div>
+
 	<?= $flash_user; ?>
 
 	<script src="<?= PROOT; ?>assets/js/jquery-3.7.1.min.js"></script>
