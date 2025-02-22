@@ -47,22 +47,20 @@
 
     }
 
+    require_once ("Functions.php");
+    require_once ("helpers.php");
+    require_once dirname(__DIR__) . "/config.php";
+
     // Display on Messages on Errors And Success for users
  	$flash_user = '';
  	if (isset($_SESSION['flash_success'])) {
  	 	$flash_user = '
-			<div aria-live="polite" aria-atomic="true" class="bg-body-secondary position-fixed top-0 start-50 translate-middle-x bd-example-toasts rounded-3">
-				<div class="toast-container p-3">
-					<div class="toast show bg-success" id="temporary">
-					<div class="toast-header">
-						<img src="' . PROOT . 'assets/media/logo/logo-nb-black.png" style="width: 35px; height: 35px;" class="rounded me-2" alt="...">
-						<strong class="me-auto"></strong>
-						<small>... just now</small>
-						<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-					</div>
-					<div class="toast-body">
-						' . $_SESSION['flash_success'] . '
-					</div>
+			<div aria-live="polite" aria-atomic="true" class="position-fixed top-0 start-50 translate-middle-x rounded-3 zi-1">
+				<div class="p-3">
+					<div class="toast show alert-success" id="temporary">
+                        <div class="toast-body">
+                            ' . $_SESSION['flash_success'] . '
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -72,29 +70,18 @@
 
  	if (isset($_SESSION['flash_error'])) {
  	 	$flash_user = '
-			<div aria-live="polite" aria-atomic="true" class="bg-body-secondary position-fixed top-0 start-50 translate-middle-x bd-example-toasts rounded-3">
-				<div class="toast-container p-3">
-					<div class="toast show bg-danger" id="temporary">
-					<div class="toast-header">
-						<img src="' . PROOT . 'assets/media/logo/logo-nb-black.png" style="width: 35px; height: 35px;" class="rounded me-2" alt="...">
-						<strong class="me-auto"></strong>
-						<small>... just now</small>
-						<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-					</div>
-					<div class="toast-body">
-						' . $_SESSION['flash_error'] . '
-					</div>
-					</div>
-				</div>
-			</div>
-		';
+            <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 start-50 translate-middle-x rounded-3 zi-1">
+                <div class="p-3">
+                    <div class="toast show alert-danger" id="temporary">
+                        <div class="toast-body">
+                            ' . $_SESSION['flash_error'] . '
+                        </div>
+                    </div>
+                </div>
+            </div>
+        ';
  	 	unset($_SESSION['flash_error']);
  	}
-
-
-    require_once ("Functions.php");
-    require_once ("helpers.php");
-    require_once dirname(__DIR__) . "/config.php";
 
     $curl = curl_init();
 

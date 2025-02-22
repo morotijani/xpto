@@ -8,6 +8,7 @@
 	}
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		$msg = "";
 		$email = sanitize($_POST["email"]);
 		$referral_code = sanitize($_POST["invitationcode"]);
 		$password = $_POST["password"];
@@ -19,7 +20,7 @@
 		}
 
 		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			die("Invalid email format.");
+			$msg = "Invalid email format!";
 		}
 	
 		// Hash password and PIN for security
@@ -31,17 +32,22 @@
 			$statement = $dbConnection->prepare("SELECT id FROM xpto_users WHERE user_email = ?");
 			$statement->execute([$email]);
 			if ($statement->rowCount() > 0) {
-				die("Email already exists. Please use another email.");
+				$msg = "Email already exists. Please use another email!";
+			} else {
+				// Insert data into database
+				$statement = $dbConnection->prepare("INSERT INTO xpto_users (user_email, user_invitationcode, user_password, user_pin) VALUES (?, ?, ?, ?)");
+				$statement->execute([$email, $referral_code, $password_hash, $pin_hash]);
+		
+				$_SESSION['flash_success'] = "Signup successful! You can now login!";
+				redirect(PROOT . "auth/login");
 			}
-	
-			// Insert data into database
-			$statement = $dbConnection->prepare("INSERT INTO xpto_users (user_email, user_invitationcode, user_password, user_pin) VALUES (?, ?, ?, ?)");
-			$statement->execute([$email, $referral_code, $password_hash, $pin_hash]);
-	
-			echo "Signup successful! You can now login.";
-	
 		} catch (PDOException $e) {
-			die("Signup failed: " . $e->getMessage());
+			$msg = "Signup failed: " . $e->getMessage();
+		}
+
+		if ($msg != "") {
+			$_SESSION['flash_error'] = $msg;
+			redirect(PROOT . "auth/signup");
 		}
 	}
 

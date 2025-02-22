@@ -1,10 +1,41 @@
 <?php
     require ("../system/DatabaseConnector.php");
+	if (user_is_logged_in()) {
+		redirect(PROOT . 'app/index');
+	}
 	$newFont = "default";
     include ("../head.php");
 
-	if (user_is_logged_in()) {
-		redirect(PROOT . 'app/index');
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		$msg = "";
+		$email = sanitize($_POST["email"]);
+		$password = $_POST["password"];
+
+		if (empty($email) || empty($password)) {
+			$msg = "Email and password are required.";
+		}
+
+		try {
+			// Check if the user exists
+			$statement = $conn->prepare("SELECT id, password_hash FROM users WHERE email = ?");
+			$statement->execute([$email]);
+			$user = $statement->fetch(PDO::FETCH_ASSOC);
+
+			if ($user && password_verify($password, $user['password_hash'])) {
+				// Login successful
+				$user_id = $user['user_id'];
+                userLogin($user_id);
+			} else {
+				$msg = "Invalid email or password.";
+			}
+
+		} catch (PDOException $e) {
+			$msg = "Login failed: " . $e->getMessage();
+		}
+
+		if (!empty($msg) || $msg != "") {
+			$_SESSION['flash_error'] = $msg;
+		}
 	}
 
 ?>
