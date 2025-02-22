@@ -1,7 +1,7 @@
 <?php
     require ("../system/DatabaseConnector.php");
     if (!user_is_logged_in()) {
-        redirect(PROOT . 'auth/logout');
+        user_login_redirect();
     }
     $newFont = "yes";
     include ("../head.php");

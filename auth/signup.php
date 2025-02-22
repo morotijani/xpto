@@ -35,8 +35,8 @@
 				$msg = "Email already exists. Please use another email!";
 			} else {
 				// Insert data into database
-				$statement = $dbConnection->prepare("INSERT INTO xpto_users (user_email, user_invitationcode, user_password, user_pin) VALUES (?, ?, ?, ?)");
-				$statement->execute([$email, $referral_code, $password_hash, $pin_hash]);
+				$statement = $dbConnection->prepare("INSERT INTO xpto_users (user_id, user_email, user_invitationcode, user_password, user_pin) VALUES (?, ?, ?, ?, ?)");
+				$statement->execute([guidv4(), $email, $referral_code, $password_hash, $pin_hash]);
 		
 				$_SESSION['flash_success'] = "Signup successful! You can now login!";
 				redirect(PROOT . "auth/login");
@@ -177,106 +177,111 @@
 	<?php include ("../footer.files.php"); ?>
 
 	<script>
-		// $(document).ready(function() {
-            function setup_step_two() {
-				var msg = "";
-				if (($('#email').val() == '')) {
-					$('#email').focus();
-					msg = 'Your email is requred!';
-				} 
-				
-				if (!isEmail($('#email').val())) {
-					$('#email').focus();
-					msg = 'Please enter a valid email address.!';
-				} else {
-					$('#next-button').attr('disabled', true);
-					$('#next-button').text('Loading ...');
-					setTimeout(() => {
-						$('#stepEmail-tab').removeClass('active');
-						$('#stepPassword-tab').addClass('active');
-						
-						$('#step-one').addClass('d-none');
-						$('#step-two').removeClass('d-none');
-						$('#password').focus();
-
-						$('#next-button').attr('disabled', false);
-						$('#next-button').text('Next >');
-					}, 100);
-				}
-
-				if (msg != '') {
-					$('.toast').addClass('alert-danger');
-					$('.toast-body').html(msg);
-					$('.toast').toast('show');
-					return false;
-				}
-			}
-
-            function setup_step_one() {
+		function setup_step_two() {
+			var msg = "";
+			if (($('#email').val() == '')) {
+				$('#email').focus();
+				$('#email').addClass('is-invalid');
+				msg = 'Your email is requred!';
 				$('#stepEmail-tab').addClass('active');
 				$('#stepPassword-tab').removeClass('active');
+			} 
+			
+			if (!isEmail($('#email').val())) {
+				$('#email').focus();
+				$('#email').addClass('is-invalid');
+				msg = 'Please enter a valid email address!';
+				$('#stepEmail-tab').addClass('active');
+				$('#stepPassword-tab').removeClass('active');
+			} else {
+				$('#email').removeClass('is-invalid');
+				$('#next-button').attr('disabled', true);
+				$('#next-button').text('Loading ...');
+				setTimeout(() => {
+					$('#stepEmail-tab').removeClass('active');
+					$('#stepPassword-tab').addClass('active');
+					
+					$('#step-one').addClass('d-none');
+					$('#step-two').removeClass('d-none');
+					$('#password').focus();
 
-				$('#step-one').removeClass('d-none');
-				$('#step-two').addClass('d-none');
+					$('#next-button').attr('disabled', false);
+					$('#next-button').text('Next >');
+				}, 100);
 			}
 
-            $('#submit-button').on('click', function(e) {
-                e.preventDefault()
-				var msg = "";
+			if (msg != '') {
+				$('.toast').addClass('alert-danger');
+				$('.toast-body').html(msg);
+				$('.toast').toast('show');
+				return false;
+			}
+		}
 
-                if ($('#password').val() == '') {
-                    $('#password').focus();
-					msg = 'Password is required!';
-                }
+		function setup_step_one() {
+			$('#stepEmail-tab').addClass('active');
+			$('#stepPassword-tab').removeClass('active');
 
-                if ($('#password').val().length < 6) {
-                    $('#password').focus();
-					msg = "Password characters must be 6 or more!";
-                }
+			$('#step-one').removeClass('d-none');
+			$('#step-two').addClass('d-none');
+		}
 
-                if ($('#confirm').val() == '') {
-                    $('#confirm').focus();
-					msg = "Confirm password is required!"
-                }
+		$('#submit-button').on('click', function(e) {
+			e.preventDefault()
+			var msg = "";
 
-                if ($('#confirm').val() != $('#password').val()) {
-                    $('#confirm').focus();
-					msg = "Password and Confirm password must match!";
-                }
+			if ($('#password').val() == '') {
+				$('#password').focus();
+				msg = 'Password is required!';
+			}
 
-                if ($('#pin').val() == '') {
-                    $('#pin').focus();
-					msg = "Pin is required!";
-                }
+			if ($('#password').val().length < 6) {
+				$('#password').focus();
+				msg = "Password characters must be 6 or more!";
+			}
 
-                if ($('#pin').val().length != 4) {
-                    $('#pin').focus();
-					msg = "PIN must be 4 digits!";
-                }
+			if ($('#confirm').val() == '') {
+				$('#confirm').focus();
+				msg = "Confirm password is required!"
+			}
 
-				if ($('#agree').is(':checked')) {
-				} else {
-					$('#agree').focus();
-					msg = "You must agree to the terms and conditions!";
-				}
+			if ($('#confirm').val() != $('#password').val()) {
+				$('#confirm').focus();
+				msg = "Password and Confirm password must match!";
+			}
 
-				if (msg != '') {
-					$('.toast').addClass('alert-danger');
-					$('.toast-body').html(msg);
-					$('.toast').toast('show');
-					return false;
-				}
+			if ($('#pin').val() == '') {
+				$('#pin').focus();
+				msg = "Pin is required!";
+			}
 
-				$('#submit-button').attr('disabled', true);
-				$('#submit-button').text('Loading ...');
-				setTimeout(() => {
-					$('#signupForm').submit();
+			if ($('#pin').val().length != 4) {
+				$('#pin').focus();
+				msg = "PIN must be 4 digits!";
+			}
 
-					$('#submit-button').attr('disabled', false);
-					$('#submit-button').text('Submit');
-				}, 100);
+			if ($('#agree').is(':checked')) {
+			} else {
+				$('#agree').focus();
+				msg = "You must agree to the terms and conditions!";
+			}
 
-            })
-		// })
+			if (msg != '') {
+				$('.toast').addClass('alert-danger');
+				$('.toast-body').html(msg);
+				$('.toast').toast('show');
+				return false;
+			}
+
+			$('#submit-button').attr('disabled', true);
+			$('#submit-button').text('Loading ...');
+			setTimeout(() => {
+				$('#signupForm').submit();
+
+				$('#submit-button').attr('disabled', false);
+				$('#submit-button').text('Submit');
+			}, 2000);
+
+		})
 	</script>
 

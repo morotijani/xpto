@@ -29,7 +29,7 @@
             WHERE user_id = ? 
             LIMIT 1
         ";
-        $statement = $conn->prepare($sql);
+        $statement = $dbConnection->prepare($sql);
         $statement->execute($data);
         if ($statement->rowCount() > 0) {
             foreach ($statement->fetchAll() as $user_data) {
@@ -42,7 +42,7 @@
             }
         } else {
             unset($_SESSION['XPUser']);
-            redirect(PROOT . 'store/index');
+            redirect(PROOT . 'app/');
         }
 
     }

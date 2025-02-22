@@ -1,7 +1,7 @@
 <?php
     require ("../system/DatabaseConnector.php");
 	if (user_is_logged_in()) {
-		redirect(PROOT . 'app/index');
+		redirect(PROOT . 'app');
 	}
 	$newFont = "default";
     include ("../head.php");
@@ -17,11 +17,11 @@
 
 		try {
 			// Check if the user exists
-			$statement = $conn->prepare("SELECT id, password_hash FROM users WHERE email = ?");
+			$statement = $dbConnection->prepare("SELECT user_id, user_password FROM xpto_users WHERE user_email = ?");
 			$statement->execute([$email]);
 			$user = $statement->fetch(PDO::FETCH_ASSOC);
 
-			if ($user && password_verify($password, $user['password_hash'])) {
+			if ($user && password_verify($password, $user['user_password'])) {
 				// Login successful
 				$user_id = $user['user_id'];
                 userLogin($user_id);
@@ -35,6 +35,7 @@
 
 		if (!empty($msg) || $msg != "") {
 			$_SESSION['flash_error'] = $msg;
+			redirect(PROOT . 'auth/login');
 		}
 	}
 
@@ -52,7 +53,7 @@
 						</div>
 
 						<div class="card-body">
-							<form class="js-validate need-validate" novalidate>
+							<form class="js-validate need-validate" id="loginForm" method="POST" novalidate>
 
 								<ul class="step step-sm step-icon-sm step-centered" id="step-TabFeatures" role="tablist">
 									<li class="step-item" role="presentation">
@@ -65,7 +66,7 @@
 									</li>
 
 									<li class="step-item" role="presentation">
-										<a class="step-content-wrapper" href="#stepPassword" id="stepPassword-tab" data-bs-toggle="tab" data-bs-target="#stepPassword" role="tab" aria-controls="stepPassword" aria-selected="false">
+										<a class="step-content-wrapper" href="#stepPassword" id="stepPassword-tab" onclick="stepPassword()" data-bs-toggle="tab" data-bs-target="#stepPassword" role="tab" aria-controls="stepPassword" aria-selected="false">
 											<span class="step-icon step-icon-soft-secondary">2</span>
 											<div class="step-content">
 												<h6 class="step-title">Secrete keys</h6>
@@ -83,7 +84,7 @@
 									</div>
 
 									<div class="d-grid mb-4">
-										<button type="button" id="next-button" class="btn btn-primary btn-lg">Next ></button>
+										<button type="button" id="next-button" onclick="stepPassword()" class="btn btn-primary btn-lg">Next ></button>
 									</div>
 								</div>
 
@@ -129,48 +130,56 @@
 
 	<script>
 		$(document).ready(function() {
-			$('#next-button').on('click', function(e) {
+		})
+		
+		$('#stepEmail-tab').on('click', function(e) {
 
-				$('#stepEmail-tab').removeClass('active');
-				$('#stepPassword-tab').addClass('active');
-				
-				$('#step-one').addClass('d-none');
-				$('#step-two').removeClass('d-none');
-			})
+			$('#stepEmail-tab').addClass('active');
+			$('#stepPassword-tab').removeClass('active');
 
-			$('#stepEmail-tab').on('click', function(e) {
+			$('#step-one').removeClass('d-none');
+			$('#step-two').addClass('d-none');
+		})
 
+		function stepPassword() {
+
+			if ($('#email').val() == "") {
+				$('#email').addClass('is-invalid');
+				$('#email').focus();
 				$('#stepEmail-tab').addClass('active');
 				$('#stepPassword-tab').removeClass('active');
+				return false;
+			}
 
-				$('#step-one').removeClass('d-none');
-				$('#step-two').addClass('d-none');
-			})
+			// if ($('#step-one').hasClass('d-none')) {
+			// 	$('#stepEmail-tab').removeClass('active');
+			// 	$('#stepPassword-tab').addClass('active');
 
-			$('#stepPassword-tab').on('click', function(e) {
+			// 	$('#step-one').addClass('d-none');
+			// 	$('#step-two').removeClass('d-none');
+			// }
+			
+			$('#email').removeClass('is-invalid');
+			$('#stepEmail-tab').removeClass('active');
+			$('#stepPassword-tab').addClass('active');
 
-				if ($('#email').val() == "") {
-					$('#email').addClass('is-invalid');
-					$('#email').next().removeClass('d-none');
+			$('#step-one').addClass('d-none');
+			$('#step-two').removeClass('d-none');
+		}
 
-					$('#stepEmail-tab').addClass('active');
-					$('#stepPassword-tab').removeClass('active');
-					return false;
-				}
+		$('#submit-button').on('click', function() {
 
-				// if ($('#step-one').hasClass('d-none')) {
-				// 	$('#stepEmail-tab').removeClass('active');
-				// 	$('#stepPassword-tab').addClass('active');
+			if ($('#password').val() == "") {
+				$('#password').addClass('is-invalid');
+				$('#password').focus();
+				return false;
+			}
 
-				// 	$('#step-one').addClass('d-none');
-				// 	$('#step-two').removeClass('d-none');
-				// }
-
-				$('#stepEmail-tab').removeClass('active');
-				$('#stepPassword-tab').addClass('active');
-
-				$('#step-one').addClass('d-none');
-				$('#step-two').removeClass('d-none');
-			})
-		})
+			$('#submit-button').html('Please wait...');
+			$('#submit-button').attr('disabled', 'disabled');
+			setTimeout(function () {
+				$('#loginForm').submit();
+			}, 2000)
+		});
+		
 	</script>

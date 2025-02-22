@@ -4,10 +4,10 @@
 function userLogin($user_id) {
 	$_SESSION['XPUser'] = $user_id;
     $_SESSION['flash_success'] = 'You are now logged in!';
-    redirect(PROOT . 'store/index');
+    redirect(PROOT . 'app/');
 }
 
-function user_is_logged_in(){
+function user_is_logged_in() {
 	if (isset($_SESSION['XPUser']) && $_SESSION['XPUser'] > 0) {
 		return true;
 	}
@@ -15,7 +15,7 @@ function user_is_logged_in(){
 }
 
 // Redirect admin if !logged in
-function user_login_redirect($url = 'login') {
-	$_SESSION['flash_error'] = '<div class="text-center" id="temporary" style="margin-top: 60px;">You must be logged in to access that page.</div>';
-	header('Location: '.$url);
+function user_login_redirect($url = 'auth/login') {
+	$_SESSION['flash_error'] = 'You must be logged in to access that page.';
+	redirect(PROOT . $url);
 }
