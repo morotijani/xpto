@@ -3,6 +3,10 @@
 	$newFont = "default";
     include ("../head.php");
 
+	if (user_is_logged_in()) {
+		redirect(PROOT . 'app/index');
+	}
+
 ?>
 
 	<!-- ========== MAIN CONTENT ========== -->

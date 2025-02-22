@@ -33,12 +33,12 @@
         $statement->execute($data);
         if ($statement->rowCount() > 0) {
             foreach ($statement->fetchAll() as $user_data) {
-                $fn = explode(' ', $user_data['user_fullname']);
-                $user_data['first'] = ucwords($fn[0]);
-                $user_data['last'] = '';
-                if (count($fn) > 1) {
-                    $user_data['last'] = ucwords($fn[1]);
-                }
+                // $fn = explode(' ', $user_data['user_fullname']);
+                // $user_data['first'] = ucwords($fn[0]);
+                // $user_data['last'] = '';
+                // if (count($fn) > 1) {
+                //     $user_data['last'] = ucwords($fn[1]);
+                // }
             }
         } else {
             unset($_SESSION['XPUser']);
@@ -93,6 +93,7 @@
 
 
     require_once ("Functions.php");
+    require_once ("helpers.php");
     require_once dirname(__DIR__) . "/config.php";
 
     $curl = curl_init();
