@@ -177,8 +177,13 @@
 					$('#email').focus();
 					alert('Your email is requred!');
 					return false;
+				} 
+				
+				if (!isEmail($('#email').val())) {
+					$('#email').focus();
+					alert('Invalid email provided!');
+					return false;
 				} else {
-
 					$('#next-button').attr('disabled', true);
 					$('#next-button').text('Loading ...');
 					setTimeout(() => {
@@ -192,7 +197,6 @@
 						$('#next-button').attr('disabled', false);
 						$('#next-button').text('Next >');
 					}, 100);
-					
 				}
 			}
 

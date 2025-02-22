@@ -20,6 +20,33 @@
     }
     session_start();
 
+
+    if (isset($_SESSION['XPUser'])) {
+        $user_id = $_SESSION['XPUser'];
+        $data = array($user_id);
+        $sql = "
+            SELECT * FROM xpto_users 
+            WHERE user_id = ? 
+            LIMIT 1
+        ";
+        $statement = $conn->prepare($sql);
+        $statement->execute($data);
+        if ($statement->rowCount() > 0) {
+            foreach ($statement->fetchAll() as $user_data) {
+                $fn = explode(' ', $user_data['user_fullname']);
+                $user_data['first'] = ucwords($fn[0]);
+                $user_data['last'] = '';
+                if (count($fn) > 1) {
+                    $user_data['last'] = ucwords($fn[1]);
+                }
+            }
+        } else {
+            unset($_SESSION['XPUser']);
+            redirect(PROOT . 'store/index');
+        }
+
+    }
+
     // Display on Messages on Errors And Success for users
  	$flash_user = '';
  	if (isset($_SESSION['flash_success'])) {

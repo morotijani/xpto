@@ -176,9 +176,9 @@
                             </svg>
                         </span>
                     </div>
-                    <div class="flex-grow-1 text-dark ms-sm-3 mb-3 mb-sm-0">Empowering independent business owners everywhere</div>
+                    <div class="flex-grow-1 text-dark ms-sm-3 mb-3 mb-sm-0">Trade Bitcoin, Ethereum, Tether and more on Xpto.</div>
                     <div class="flex-shrink-0 ms-sm-3">
-                        <a class="btn btn-primary" href="#">Try for free</a>
+                        <a class="btn btn-primary" href="<?= PROOT; ?>auth/login">Try for free</a>
                     </div>
                 </div>
             </div>
