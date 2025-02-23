@@ -84,10 +84,7 @@
                                     <div class="text-2xl text-heading fw-bolder ls-tight blurred" id="balance">$23.000,48</div>
                                 </div>
                                 <div class="ms-auto align-self-end">
-                                    <a  href="<?= PROOT; ?>app/index" class="btn btn-sm btn-light mb-2">Send crypto</a>                                    
-                                    <a href="#stepFeaturesTwo" id="stepFeaturesTwo-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesTwo" role="tab" aria-controls="stepFeaturesTwo" aria-selected="false" class="btn btn-sm btn-light mb-2 step-content-wrapper" data-bs-toggle="modal" data-bs-target="#topUpModal">Receive crypto</a>
-                                    <a href="<?= PROOT; ?>app/transactions" class="btn btn-sm btn-light mb-2">Transactions</a>
-
+                                    <a href="#stepFeaturesTwo" id="stepFeaturesTwo-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesTwo" role="tab" aria-controls="stepFeaturesTwo" aria-selected="false" class="btn btn-sm btn-light step-content-wrapper" data-bs-toggle="modal" data-bs-target="#topUpModal">Receive crypto</a>
                                 </div>
                             </div>
                         </div> 
@@ -95,6 +92,35 @@
                 </div>
 
 				<div class="mx-auto">
+                    <!-- Nav -->
+                    <ul class="nav nav-segment d-flex justify-content-between">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="bi-house nav-icon"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="bi-check nav-icon"></i> Send Crypto
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <i class="bi-list-task nav-icon"></i> Transactions
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="bi-person nav-icon"></i> Profile
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="bi-sliders nav-icon"></i> Settings
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- End Nav -->
 					<div class="card card-lg zi-2">
 						<div class="card-body">
                             
