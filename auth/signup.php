@@ -226,8 +226,7 @@
 			$('#step-two').addClass('d-none');
 		}
 
-		$('#submit-button').on('click', function(e) {
-			e.preventDefault()
+		$('#submit-button').on('click', function() {
 			var msg = "";
 
 			if ($('#password').val() == '') {
