@@ -1,11 +1,10 @@
 <?php
     require ("../system/DatabaseConnector.php");
+	if (user_is_logged_in()) {
+		redirect(PROOT . 'app');
+	}
 	$newFont = "default";
     include ("../head.php");
-
-	if (isset($_SESSION['user'])) {
-		header("Location: ../index");
-	}
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$msg = "";

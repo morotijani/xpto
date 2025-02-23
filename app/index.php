@@ -75,7 +75,7 @@
                                     <div class="hstack gap-3 mb-1">
                                         <h4 class="fw-semibold">Total Balance</h4>
                                         <a href="javascript:;" onclick="toggleBalance()">
-                                            <i class="bi bi-eye"></i> 
+                                            <i class="bi bi-eye view-hide-balance"></i> 
                                         </a>
                                         <a href="javascript:;">
                                             <i class="bi bi-info-circle"></i>
@@ -84,10 +84,7 @@
                                     <div class="text-2xl text-heading fw-bolder ls-tight blurred" id="balance">$23.000,48</div>
                                 </div>
                                 <div class="ms-auto align-self-end">
-                                    <a  href="<?= PROOT; ?>app/index" class="btn btn-sm btn-light mb-2">Send crypto</a>                                    
-                                    <a href="#stepFeaturesTwo" id="stepFeaturesTwo-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesTwo" role="tab" aria-controls="stepFeaturesTwo" aria-selected="false" class="btn btn-sm btn-light mb-2 step-content-wrapper" data-bs-toggle="modal" data-bs-target="#topUpModal">Receive crypto</a>
-                                    <a href="<?= PROOT; ?>app/transactions" class="btn btn-sm btn-light mb-2">Transactions</a>
-
+                                    <a href="javascript:;" class="btn btn-sm btn-light mb-2 step-content-wrapper" data-bs-toggle="modal" data-bs-target="#receiveModal" href="javascript:;">Receive crypto</a>
                                 </div>
                             </div>
 
@@ -136,6 +133,33 @@
                 </div>
 
 				<div class="mx-auto">
+                <ul class="nav nav-segment d-flex justify-content-between">
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= PROOT; ?>app">
+                                <i class="bi-house nav-icon"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="<?= PROOT; ?>app/">
+                                <i class="bi-send-check-fill nav-icon"></i> Send Crypto
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= PROOT; ?>app/transactions">
+                                <i class="bi-list nav-icon"></i> Transactions
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= PROOT; ?>app/profile">
+                                <i class="bi-person nav-icon"></i> Profile
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= PROOT; ?>app/settings">
+                                <i class="bi-sliders nav-icon"></i> Settings
+                            </a>
+                        </li>
+                    </ul>
 					<div class="card card-lg zi-2">
 						<div class="card-body">
                             
@@ -245,9 +269,6 @@
                                                                         <span><span id="amount-in-crypto-crypto"></span>: <span id="amount-in-crypto-amount"></span></span>
                                                                     </div>
                                                                 </div>
-
-
-
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label class="form-label">To wallet address</label>
@@ -343,85 +364,7 @@
                                                     </a>
                                                 </div>
 
-                                                <div class="tab-pane fade" id="stepFeaturesThree" role="tabpanel" aria-labelledby="stepFeaturesThree-tab">
-
-                                                    <!-- Transactions -->
-                                                    <div class="card">
-                                                        <div class="card-body pb-0">
-                                                            <div class="d-flex justify-content-between align-items-center">
-                                                                <div>
-                                                                    <h5>Transaction History</h5>
-                                                                </div>
-                                                                <div class="hstack align-items-center">
-                                                                    <a href="#" class="text-muted">
-                                                                        <i class="bi bi-arrow-repeat"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="list-group list-group-flush">
-                                                                <div class="list-group-item d-flex align-items-center justify-content-between gap-6">
-                                                                    <div class="d-flex align-items-center gap-3">
-                                                                        <div class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
-                                                                            <i class="bi bi-send-fill"></i>
-                                                                        </div>
-                                                                        <div class="">
-                                                                            <span class="d-block text-heading text-sm fw-semibold">Bitcoin </span>
-                                                                            <span class="d-none d-sm-block text-muted text-xs">2 days ago</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
-                                                                    <div class="d-none d-md-block">
-                                                                        <span class="badge bg-light text-warning">Pending</span>
-                                                                    </div>
-                                                                    <div class="text-end">
-                                                                        <span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span>
-                                                                        <span class="d-block text-muted text-xs">+$10,930.90</span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="list-group-item d-flex align-items-center justify-content-between gap-6">
-                                                                    <div class="d-flex align-items-center gap-3">
-                                                                        <div class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
-                                                                            <i class="bi bi-send-fill"></i>
-                                                                        </div>
-                                                                        <div class="">
-                                                                            <span class="d-block text-heading text-sm fw-semibold">Cardano </span>
-                                                                            <span class="d-none d-sm-block text-muted text-xs">2 days ago</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
-                                                                    <div class="d-none d-md-block">
-                                                                        <span class="badge bg-light text-danger">Canceled</span>
-                                                                    </div>
-                                                                    <div class="text-end">
-                                                                        <span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span>
-                                                                        <span class="d-block text-muted text-xs">+$10,930.90</span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="list-group-item d-flex align-items-center justify-content-between gap-6">
-                                                                    <div class="d-flex align-items-center gap-3">
-                                                                        <div class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
-                                                                            <i class="bi bi-send-fill"></i>
-                                                                        </div>
-                                                                        <div class="">
-                                                                            <span class="d-block text-heading text-sm fw-semibold">Binance </span>
-                                                                            <span class="d-none d-sm-block text-muted text-xs">2 days ago</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
-                                                                    <div class="d-none d-md-block">
-                                                                        <span class="badge bg-light text-success">Successful</span>
-                                                                    </div>
-                                                                    <div class="text-end">
-                                                                        <span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span>
-                                                                        <span class="d-block text-muted text-xs">+$10,930.90</span>
-                                                                    </div>
-                                                                </div>
-                                                                
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -444,6 +387,63 @@
 		</div>
 
    	</main>
+
+    <!-- ReceiveModal -->
+	<div class="modal fade" id="receiveModal" tabindex="-1" aria-labelledby="receiveModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  		<div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content" style="border-top: 5px solid orange">
+		      	<div class="modal-header">
+		        	<h1 class="modal-title fs-5" id="receiveModalLabel">Receive Funds</h1>
+		        	<button type="button" class="btn-close receive-close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
+		      	</div>
+		      	<div class="modal-body">
+					<form action="" id="receivefundForm">
+						<p class="lead fw-bolder text-center small" id="receive-fund-info"></p>
+						<div class="row" data-kt-buttons="true" id="receive-step-1">
+				        	<?php
+				        		$i = 1; 
+				        		foreach ($addresses as $address) {
+				        			$response = $bitnobSdk->addresses()->getAddressDetails($address['wallet_address']);
+						    		$valid = (isset($response['status']) ? $response['status'] : $response['statusCode']);
+									if ($valid == 1) {
+							?>
+						                <input type="radio" class="btn-check" name="receive_fund" value="<?= $address['wallet_address']; ?>" id="receive_fund<?= $i; ?>" data-chain="<?= $address['wallet_address_type']; ?> ">
+						                <input type="hidden" id="share<?= $i; ?>" value="<?= (($address['wallet_address_type'] != 'BTC') ? 'Please make sure to only receive ' . $address["wallet_address_type"] . ' supported by the TRX Network.' : ''); ?>">
+						                <label class="col btn btn-lg btn-outline btn-bg-light btn-color-gray-600 btn-active-light-warning border-dashed border-active py-5 px-4 m-2 min-w-125px" for="receive_fund<?= $i; ?>">
+											<span class="svg-icon svg-icon-2x me-1">
+												<img src="<?= PROOT; ?>assets/media/svg/<?= strtolower($address['wallet_address_type']); ?>.svg" alt="" width="24" height="24">
+											</span>
+											<span class="text-gray-800 fw-bold"><?= $address['wallet_address_type'] . (($address['wallet_address_chain'] != '') ? ' - ' . $address['wallet_address_chain'] : ''); ?></span>
+											<br><small><?= (($address['wallet_address_type'] != 'BTC') ? 'Receive '.$address["wallet_address_type"].' through the provided Networks.' : ' Receveive BTC for almost no fee.') ?></small>
+		                				</label>
+		                				<div class="d-flex mb-6">
+								        </div>
+										<?php
+									$i++;}
+				        		}
+				        	?>
+				        	<button class="btn btn-warning px-11 py-4 fw-bolder fs-3" id="receive-btn">View</button>
+			      		</div>
+				     </form>
+			      	<div id="receive-step-2" class="d-none text-center">
+			      		<div class="input-group">
+		                    <span id="copy-receive-address" type="text" class="form-control" placeholder="wallet address"></span>
+		                    <button class="btn btn-light-warning" data-clipboard-target="#copy-receive-address">
+		                        Copy
+		                    </button>
+		                </div>
+		                <div class="text-center my-4">
+		                	or
+		                </div>
+			      		 <img src="" class="qr-code img-thumbnail img-fluid" />
+			      		 <br>
+			      		 <small>Receive by scanning this QR code.</small>
+			      		 <p id="share-moreinfo"></p>
+			      	</div>
+		      	</div>
+		    </div>
+		</div>
+    </div>
 
 	<?php include ("../footer.files.php"); ?>
     <script src="<?= PROOT; ?>assets/js/wallet-address-validator.min.js"></script>
@@ -498,14 +498,16 @@
 
         function toggleBalance() {
             let balance = document.getElementById("balance");
-            let button = document.querySelector("button");
+            let button = $(".view-hide-balance");
 
             if (isHidden) {
                 balance.classList.remove("blurred"); // Show balance
-                button.textContent = "Hide Balance";
+                button.removeClass("bi-eye");
+                button.addClass("bi-eye-slash");
             } else {
                 balance.classList.add("blurred"); // Hide balance
-                button.textContent = "Show Balance";
+                button.removeClass("bi-eye-slash");
+                button.addClass("bi-eye");
             }
 
             isHidden = !isHidden; // Toggle state

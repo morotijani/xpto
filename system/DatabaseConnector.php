@@ -32,14 +32,8 @@
         $statement = $dbConnection->prepare($sql);
         $statement->execute($data);
         if ($statement->rowCount() > 0) {
-            foreach ($statement->fetchAll() as $user_data) {
-                // $fn = explode(' ', $user_data['user_fullname']);
-                // $user_data['first'] = ucwords($fn[0]);
-                // $user_data['last'] = '';
-                // if (count($fn) > 1) {
-                //     $user_data['last'] = ucwords($fn[1]);
-                // }
-            }
+            $user_data = $statement->fetchAll();
+            $user_data = $user_data[0];
         } else {
             unset($_SESSION['XPUser']);
             redirect(PROOT . 'app/');
