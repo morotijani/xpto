@@ -331,40 +331,6 @@
                                                         </div>
                                                     </form>
                                                 </div>
-
-                                                <div class="tab-pane fade" id="stepFeaturesTwo" role="tabpanel" aria-labelledby="stepFeaturesTwo-tab">
-                                                
-                                                    <!-- Receive -->
-                                                    <a class="card card-lg card-transition bg-soft-warning shadow-none h-100" href="./snippets/index.html">
-                                                        <div class="card-header">
-                                                            <h5 class="card-title text-inherit">Snippets</h5>
-                                                            <p class="card-text text-body">Start browsing our snippets pages to match Bootstrap's level of quality.</p>
-                                                        </div>
-                                                        <div class="card-body text-center">
-                                                            
-                                                            <div id="receive-step-2" class="d-none text-center">
-                                                                <div class="input-group">
-                                                                    <span id="copy-receive-address" type="text" class="form-control" placeholder="wallet address"></span>
-                                                                    <button class="btn btn-light-warning" data-clipboard-target="#copy-receive-address">
-                                                                        Copy
-                                                                    </button>
-                                                                </div>
-                                                                <div class="text-center my-4">
-                                                                    or
-                                                                </div>
-                                                                <img src="" class="qr-code img-thumbnail img-fluid" />
-                                                                <br>
-                                                                <small>Receive by scanning this QR code.</small>
-                                                                <p id="share-moreinfo"></p>
-                                                            </div>
-
-                                                            <img class="card-img" style="width: auto; height: 250px" src="https://qrcode.tec-it.com/API/QRCode?data=https%3a%2f%2fqrcode.tec-it.com&color=%2312642a&backcolor=%23ffffff&istransparent=True" alt="Image Description">
-
-                                                        </div>
-                                                    </a>
-                                                </div>
-
-                                                
                                             </div>
                                         </div>
                                     </div>
@@ -393,53 +359,50 @@
   		<div class="modal-dialog modal-dialog-centered">
 		    <div class="modal-content" style="border-top: 5px solid orange">
 		      	<div class="modal-header">
-		        	<h1 class="modal-title fs-5" id="receiveModalLabel">Receive Funds</h1>
+		        	<h5 class="modal-title text-inherit" id="receiveModalLabel">Receive Funds</h5>
 		        	<button type="button" class="btn-close receive-close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
 		      	</div>
 		      	<div class="modal-body">
-					<form action="" id="receivefundForm">
-						<p class="lead fw-bolder text-center small" id="receive-fund-info"></p>
-						<div class="row" data-kt-buttons="true" id="receive-step-1">
-				        	<?php
-				        		$i = 1; 
-				        		foreach ($addresses as $address) {
-				        			$response = $bitnobSdk->addresses()->getAddressDetails($address['wallet_address']);
-						    		$valid = (isset($response['status']) ? $response['status'] : $response['statusCode']);
-									if ($valid == 1) {
-							?>
-						                <input type="radio" class="btn-check" name="receive_fund" value="<?= $address['wallet_address']; ?>" id="receive_fund<?= $i; ?>" data-chain="<?= $address['wallet_address_type']; ?> ">
-						                <input type="hidden" id="share<?= $i; ?>" value="<?= (($address['wallet_address_type'] != 'BTC') ? 'Please make sure to only receive ' . $address["wallet_address_type"] . ' supported by the TRX Network.' : ''); ?>">
-						                <label class="col btn btn-lg btn-outline btn-bg-light btn-color-gray-600 btn-active-light-warning border-dashed border-active py-5 px-4 m-2 min-w-125px" for="receive_fund<?= $i; ?>">
-											<span class="svg-icon svg-icon-2x me-1">
-												<img src="<?= PROOT; ?>assets/media/svg/<?= strtolower($address['wallet_address_type']); ?>.svg" alt="" width="24" height="24">
-											</span>
-											<span class="text-gray-800 fw-bold"><?= $address['wallet_address_type'] . (($address['wallet_address_chain'] != '') ? ' - ' . $address['wallet_address_chain'] : ''); ?></span>
-											<br><small><?= (($address['wallet_address_type'] != 'BTC') ? 'Receive '.$address["wallet_address_type"].' through the provided Networks.' : ' Receveive BTC for almost no fee.') ?></small>
-		                				</label>
-		                				<div class="d-flex mb-6">
-								        </div>
-										<?php
-									$i++;}
-				        		}
-				        	?>
-				        	<button class="btn btn-warning px-11 py-4 fw-bolder fs-3" id="receive-btn">View</button>
-			      		</div>
-				     </form>
-			      	<div id="receive-step-2" class="d-none text-center">
-			      		<div class="input-group">
-		                    <span id="copy-receive-address" type="text" class="form-control" placeholder="wallet address"></span>
-		                    <button class="btn btn-light-warning" data-clipboard-target="#copy-receive-address">
-		                        Copy
-		                    </button>
-		                </div>
-		                <div class="text-center my-4">
-		                	or
-		                </div>
-			      		 <img src="" class="qr-code img-thumbnail img-fluid" />
-			      		 <br>
-			      		 <small>Receive by scanning this QR code.</small>
-			      		 <p id="share-moreinfo"></p>
-			      	</div>
+                    <p class="card-text text-body" id="receive-fund-info"></p>
+                    <form id="receivefundForm">
+                        <div class="row" data-kt-buttons="true" id="receive-step-1">
+                            <?php 
+                                if (is_array($coin_data)) {
+                                    if (isset($coin_data['data'])) {
+                                        $i = 1;
+                                        foreach (array_slice($coin_data['data'], 0, 5) as $crypto) {
+                                            $icon = "https://s2.coinmarketcap.com/static/img/coins/64x64/{$crypto['id']}.png";
+
+                            ?>
+                                            <input type="radio" class="btn-check" name="receive_crypto_type" id="receive_crypto_type<?= $i; ?>" autocomplete="off" value="<?= $crypto['name']; ?>">
+                                            <label class="btn" for="receive_crypto_type<?= $i; ?>">                                                                                        
+                                                <img src="<?= $icon; ?>" class="w-rem-6 h-rem-6 rounded-circle img-fluid" alt="..."> <?= $crypto['name'] . ' (' .$crypto['symbol'] . ')'; ?> 
+                                            </label>
+                            
+                            <?php 
+                                            $i++;
+                                        }
+                                    }
+                                }
+                            ?>
+                            <button type="button" class="btn btn-warning mt-2" id="receive-view-btn">View</button>
+                        </div>
+                        <div id="receive-step-2" class="d-none text-center">
+                            <div class="w-sm-56 input-group input-group-sm input-group-inline">
+                                <input type="search" class="form-control fw-bolder" name="recieve_wallet_address" id="recieve_wallet_address" value="" placeholder="Receive wallet address" readonly> 
+                                <span class="input-group-text" style="cursor: pointer;" onclick="copyToClipboard(document.getElementById('recieve_wallet_address').value)"><i class="bi bi-clipboard2"></i>&nbsp; Copy</span>
+                            </div>
+                            <div class="text-center my-4">
+                                or
+                            </div>
+                            <img src="" style="width: auto; height: 250px" class="qr-code img-thumbnail img-fluid" />
+                            <br>
+                            <small>Receive by scanning this QR code.</small>
+                            <p id="share-moreinfo"></p>
+                            <br>
+                            <a href="javascript:;" id="back-to-receive-step-1"><< Back</a>
+                        </div>
+                    </form>
 		      	</div>
 		    </div>
 		</div>
@@ -448,7 +411,20 @@
 	<?php include ("../footer.files.php"); ?>
     <script src="<?= PROOT; ?>assets/js/wallet-address-validator.min.js"></script>
 
-	<script>        
+	<script>     
+        
+        // Copy to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                $('.toast').addClass('alert-info');
+				$('.toast-body').html("Copied to clipboard:" + text);
+				$('.toast').toast('show');
+                console.log("Copied to clipboard:", text);
+            }).catch(err => {
+                console.error("Failed to copy:", err);
+            });
+        }
+
         // Paste from clipboard
         async function pasteFromClipboard() {
             try {
@@ -712,5 +688,75 @@
 				$('#step-two').removeClass('d-none');
 			})
 		})
+
+        
+	$(document).ready(function() {
+
+        // display qr code for receive fund
+        $('#receive-view-btn').click(function(e) {
+            e.preventDefault();
+            var walletAddress = '';
+            var walletName = '';
+            var qrcodeUrl = '';
+
+            if ($("input[name=receive_crypto_type").is(':checked') != true) {
+                $('.toast').addClass('alert-danger');
+                $('.toast-body').html("Select a crypto to receive funds!");
+                $('.toast').toast('show');
+                return false;
+            }
+
+            for (var i = 1; i <= 5; i++) {
+				if ($('#receive_crypto_type' + i).is(':checked') == true) {
+                    walletName = $('#receive_crypto_type' + i).val();
+                    if (walletName == 'Bitcoin') {
+                        walletAddress = '1Lbcfr7sAHTD9CgdQo3HTMTkV8LK4ZnX71';
+                    } else if (walletName == 'Ethereum') {
+                        walletAddress = '0x1D1479C185d32EB90533a08b36B3CFa5F84A0E6B';
+                    } else if (walletName == 'Tether USDt') {
+                        walletAddress = '0x9702230a8ea53601f5cd2dc00fdbc13d4df4a8c7';
+                    } else if (walletName == 'BNB') {
+                        walletAddress = '0x10d543e2e0355e36c5cab769df8d2d60abb77a73';
+                    } else if (walletName == 'XRP') {
+                        walletAddress = 'rf1BiGeXwwQoi8Z2ueFYTEXSwuJYfV2Jpn';
+                    }
+                    
+                    $('#recieve_wallet_address').val(walletAddress);
+                    qrcodeUrl = 'https://qrcode.tec-it.com/API/QRCode?data=' + walletAddress + '&color=%2312642a&backcolor=%23ffffff&istransparent=True';
+                    $('#receive-fund-info').html('Send ' + walletName + ' to the address below');
+                    $('.qr-code').attr('src', qrcodeUrl);
+                    $('#receiveModalLabel').html('Receive ' + walletName);
+                    $('#share-moreinfo').html('Share your ' + walletName + ' address to receive funds.');
+
+                    $('#receive-step-1').addClass('d-none');
+                    $('#receive-step-2').removeClass('d-none');
+                    break;
+				} else {
+					continue;
+				}
+            }
+            
+            
+        })
+
+        $('#back-to-receive-step-1').click(function(e) {
+            e.preventDefault();
+            
+            $('#receive-step-1').removeClass('d-none');
+            $('#receive-step-2').addClass('d-none');
+        })
+
+    
+		$('.receive-close-btn').click(function(e) {
+			$('.qr-code').attr('src', '');
+			$('#receiveModalLabel').html('Receive Funds');
+			$('#receive-fund-info').html('');
+			$('#receivefundForm')[0].reset();
+			$('#receive-step-2').addClass('d-none');
+			$('#receive-step-1').removeClass('d-none');	
+		})
+
+    })
+
 
 	</script>
