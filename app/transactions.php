@@ -84,7 +84,7 @@
                                     <div class="text-2xl text-heading fw-bolder ls-tight blurred" id="balance">$23.000,48</div>
                                 </div>
                                 <div class="ms-auto align-self-end">
-                                    <a href="#stepFeaturesTwo" id="stepFeaturesTwo-tab" data-bs-toggle="tab" data-bs-target="#stepFeaturesTwo" role="tab" aria-controls="stepFeaturesTwo" aria-selected="false" class="btn btn-sm btn-light step-content-wrapper" data-bs-toggle="modal" data-bs-target="#topUpModal">Receive crypto</a>
+                                    <a href="javascript:;" class="btn btn-sm btn-light mb-2" data-bs-toggle="modal" data-bs-target="#receiveModal" href="javascript:;">Receive crypto</a>
                                 </div>
                             </div>
                         </div> 
@@ -228,24 +228,7 @@
 
 	<script>        
         
-        let isHidden = true; // Track balance visibility
-
-        function toggleBalance() {
-            let balance = document.getElementById("balance");
-            let button = $(".view-hide-balance");
-
-            if (isHidden) {
-                balance.classList.remove("blurred"); // Show balance
-                button.removeClass("bi-eye");
-                button.addClass("bi-eye-slash");
-            } else {
-                balance.classList.add("blurred"); // Hide balance
-                button.removeClass("bi-eye-slash");
-                button.addClass("bi-eye");
-            }
-
-            isHidden = !isHidden; // Toggle state
-        }
+        
 
 		
 	</script>

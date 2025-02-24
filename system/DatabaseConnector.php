@@ -99,18 +99,19 @@
     curl_close($curl);
 
     $coin_data = json_decode($response, true);
+    // dnd($coin_data);
     // Generate scrolling content with icons
-    if (is_array($coin_data)) {
-        if (isset($coin_data['data'])) {
-            foreach (array_slice($coin_data['data'], 0, 10) as $crypto) {
-                // $icon = "https://s2.coinmarketcap.com/static/img/coins/64x64/{$crypto['id']}.png";
-                // echo "<div class='crypto-item'>";
-                // echo "<img src='$icon' alt='{$crypto['name']}'>";
-                // echo "{$crypto['name']} ({$crypto['symbol']}): $" . number_format($crypto['quote']['USD']['price'], 2);
-                // echo "</div>";
-            }
-        }
-    } else {
-        // echo "Error fetching data.";
-    }
+    // if (is_array($coin_data)) {
+    //     if (isset($coin_data['data'])) {
+    //         foreach (array_slice($coin_data['data'], 0, 10) as $crypto) {
+    //             $icon = "https://s2.coinmarketcap.com/static/img/coins/64x64/{$crypto['id']}.png";
+    //             echo "<div class='crypto-item'>";
+    //             echo "<img src='$icon' alt='{$crypto['name']}'>";
+    //             echo "{$crypto['name']} ({$crypto['symbol']}): $" . number_format($crypto['quote']['USD']['price'], 2);
+    //             echo "</div>";
+    //         }
+    //     }
+    // } else {
+    //     // echo "Error fetching data.";
+    // }
 
