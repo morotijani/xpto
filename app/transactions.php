@@ -186,7 +186,7 @@
                                                                 </div>
                                                                 <div class="">
                                                                     <span class="d-block text-heading text-sm fw-semibold"><?= $crypto_name; ?> </span>
-                                                                    <span class="d-none d-sm-block text-muted text-xs"><?= timeAgo($createdAt); ?>2 days ago</span>
+                                                                    <span class="d-none d-sm-block text-muted text-xs"><?= timeAgo($createdAt); ?></span>
                                                                 </div>
                                                             </div>
                                                             <div class="d-none d-md-block text-sm"><?= $shortened; ?></div>
