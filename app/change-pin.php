@@ -7,55 +7,36 @@
     include ("../head.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $msg = "";
-        $old = sanitize($_POST["old"]);
-        $password = sanitize($_POST["password"]);
-        $confirm = sanitize($_POST["confirm"]);
+        $old = sanitize((int)$_POST["old"]);
+        $new = sanitize((int)$_POST["new"]);
+        $confirm = sanitize((int)$_POST["confirm"]);
 
-        if (empty($old) || empty($password) || empty($confirm)) {
-            $msg = "All fields are required.";
+        if ($new != $confirm) {
+            $_SESSION['flash_error'] = "New PIN and Confirm PIN do not match.";
+            redirect(PROOT . 'app/change-pin');
         }
 
-        if ($password != $confirm) {
-            $msg = "Passwords do not match.";
+        if (strlen($new) != 4) {
+            $_SESSION['flash_error'] = "PIN must be 4 digits.";
+            redirect(PROOT . 'app/change-pin');
         }
 
-        if (strlen($password) < 6) {
-            $msg = "Password must be at least 6 characters.";
-        }
-
-        if ($old == $password) {
-            $msg = "New password must be different from the old password.";
+        if (!password_verify($old, $user_data['user_pin'])) {
+            $_SESSION['flash_error'] = "Old PIN is incorrect.";
+            redirect(PROOT . 'app/change-pin');
         }
 
         try {
-            // Check if the user exists
-            $statement = $dbConnection->prepare("SELECT user_password FROM xpto_users WHERE user_id = ?");
-            $statement->execute([$user_id]);
-            $user = $statement->fetch(PDO::FETCH_ASSOC);
-
-            if ($user && password_verify($old, $user['user_password'])) {
-                if (empty($msg) || $msg == "") {
-                    // Update password
-                    $statement = $dbConnection->prepare("UPDATE xpto_users SET user_password = ? WHERE user_id = ?");
-                    $statement->execute([password_hash($password, PASSWORD_BCRYPT), $user_id]);
-                    $_SESSION['flash_success'] = "Password updated successfully.";
-                    redirect(PROOT . 'app/settings');
-                }
-            } else {
-                $msg = "Invalid old password.";
-            }
-
+            $pin_hash = password_hash($new, PASSWORD_BCRYPT);
+            $statement = $dbConnection->prepare("UPDATE xpto_users SET user_pin = ? WHERE user_id = ?");
+            $statement->execute([$pin_hash, $user_id]);
+            $_SESSION['flash_success'] = "PIN updated successfully.";
+            redirect(PROOT . 'app/profile');
         } catch (PDOException $e) {
-            $msg = "Password update failed: " . $e->getMessage();
-        }
-
-        if (!empty($msg) || $msg != "") {
-            $_SESSION['flash_error'] = $msg;
-            redirect(PROOT . 'app/change-password');
+            $_SESSION['flash_error'] = "PIN update failed: " . $e->getMessage();
+            redirect(PROOT . 'app/change-pin');
         }
     }
-
 
 ?>
 
@@ -190,27 +171,27 @@
                                                     <div class="col">
                                                         <h2 class="fs-5 mb-0"> <?= (($user_data['user_firstname'] == null) ? 'Update your name to display here' : $user_name); ?> </h2>
                                                         <div class="text-dark"> Trader account </div>
-                                                        <a href="<?= PROOT; ?>app/change-pin">Change PIN</a>
+                                                        <a href="<?= PROOT; ?>app/change-password">Change Password</a>
                                                     </div>
                                                 </div>
                                                 <hr>
-                                                <form id="updatePassword" method="POST">
+                                                <form id="updatePIN" method="POST">
                                                     <div class="mb-4">
-                                                        <div class="form-label">Change your password</div>
+                                                        <div class="form-label">Change PIN</div>
                                                         <div class="mb-4">
-                                                            <div class="form-label">Old password</div>
-                                                            <input type="password" name="old" id="old" class="form-control" required>
+                                                            <div class="form-label">Old PIN</div>
+                                                            <input type="number" min="0" max="4" name="old" id="old" class="form-control" autocomplete="off" inputmode="numeric" data-maxlength="4" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" required>
                                                         </div>
                                                         <div class="mb-4">
-                                                            <div class="form-label">New password</div>
-                                                            <input type="password" name="password" id="password" class="form-control" required>
+                                                            <div class="form-label">New PIN</div>
+                                                            <input type="number" min="0" max="4" name="new" id="new" class="form-control" autocomplete="off" inputmode="numeric" data-maxlength="4" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" required>
                                                         </div>
                                                     </div>
                                                     <div class="mb-4">
-                                                        <div class="form-label">Confirm new password</div>
-                                                        <input type="password" name="confirm" id="confirm" class="form-control" required>
+                                                        <div class="form-label">Confirm PIN</div>
+                                                        <input type="number" min="0" max="4" name="confirm" id="confirm" class="form-control" autocomplete="off" inputmode="numeric" data-maxlength="4" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" required>
                                                     </div>
-                                                    <button type="button" id="submitForm" class="btn btn-danger">Change</button>
+                                                    <button type="button" id="submitForm" class="btn btn-warning">Change</button>
                                                 </form>
                                             </div>
                                         </section>
@@ -241,9 +222,9 @@
             $('#submitForm').click(function() { 
 
                 $('#submitForm').attr('disabled', true);
-                $('#submitForm').html('Changing...');
+                $('#submitForm').html('Updating...');
                 setTimeout(() => {
-                    $('#updatePassword').submit();
+                    $('#updatePIN').submit();
                 }, 3000);
             })
         })
