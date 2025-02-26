@@ -6,11 +6,33 @@
     $newFont = "yes";
     include ("../head.php");
 
-    // get all transactions
-    $statement = $dbConnection->prepare("SELECT * FROM xpto_transactions WHERE transaction_by = ? ORDER BY createdAt DESC");
-    $statement->execute([$user_id]);
-    $transactions = $statement->fetchAll();
-    $count_transactions = $statement->rowCount();
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $msg = "";
+        $fname = sanitize($_POST["fname"]);
+        $lname = sanitize($_POST["lname"]);
+        $email = sanitize($_POST["email"]);
+        $phone = sanitize($_POST["phone"]);
+
+        if (empty($fname) || empty($lname) || empty($email)) {
+            $msg = "All fields are required.";
+        }
+        
+        try {
+            if (empty($msg) || $msg == "") {
+                $statement = $dbConnection->prepare("UPDATE xpto_users SET user_firstname = ?, user_lastname = ?, user_email = ?, user_phone = ? WHERE user_id = ?");
+                $statement->execute([$fname, $lname, $email, $phone, $user_id]);
+                $_SESSION['flash_success'] = "Profile updated successfully.";
+                redirect(PROOT . 'app/settings');
+            }
+        } catch (PDOException $e) {
+            $msg = "Profile update failed: " . $e->getMessage();
+        }
+
+        if (!empty($msg) || $msg != "") {
+            $_SESSION['flash_error'] = $msg;
+            redirect(PROOT . 'app/settings');
+        }
+    }
 
 ?>
 
@@ -115,12 +137,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="<?= PROOT; ?>app/profile">
+                            <a class="nav-link" href="<?= PROOT; ?>app/profile">
                                 <i class="bi-person nav-icon"></i> Profile
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= PROOT; ?>app/settings">
+                            <a class="nav-link active" href="<?= PROOT; ?>app/settings">
                                 <i class="bi-sliders nav-icon"></i> Settings
                             </a>
                         </li>
@@ -134,65 +156,45 @@
                                     <div class="col-md-12 order-md-2 mb-7 mb-md-0">
                                         <!-- Transactions -->
 
-                                        <section class="card bg-body-tertiary border-transparent mb-5" id="general">
-                                                <div class="card-body">
-                                                    
-                                                    <div class="row align-items-center">
-                                                        <div class="col-auto">
-                                                            <div class="avatar avatar-xl">
-                                                                <img class="avatar-img" src="<?= PROOT; ?>assets/media/avatar.jpg" alt="...">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col">
-                                                            <h2 class="fs-5 mb-0"> <?= (($user_data['user_firstname'] == null) ? 'Update your name to display here' : $user_name); ?> </h2>
-                                                            <div class="text-body-secondary"> Trader account </div>
-                                                            <a href="<?= PROOT; ?>app/settings">Update profile details</a>
+                                        <section class="card bg-light border-transparent mb-5" id="general">
+                                            <div class="card-body">
+                                                <div class="row align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="avatar avatar-xl">
+                                                            <img class="avatar-img" src="<?= PROOT; ?>assets/media/avatar.jpg" alt="...">
                                                         </div>
                                                     </div>
-                                                    <hr>
+                                                    <div class="col">
+                                                        <h2 class="fs-5 mb-0"> <?= (($user_data['user_firstname'] == null) ? 'Update your name to display here' : $user_name); ?> </h2>
+                                                        <div class="text-dark"> Trader account </div>
+                                                        <a href="<?= PROOT; ?>app/change-password">Change password</a>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <form id="updateProfile" method="POST">
                                                     <div class="mb-4">
-                                                        <div class="form-label">Bio</div>
-                                                        <div>
-                                                            Hi! I'm ...
+                                                        <div class="form-label">Update Profile details</div>
+                                                        <div class="mb-4">
+                                                            <div class="form-label">First name</div>
+                                                            <input type="text" name="fname" id="fname" class="form-control" value="<?= ((isset($_POST['fname']) && !empty($_POST['fname'])) ? $_POST['fname'] : $user_data['user_firstname']); ?>" required>
+                                                        </div>
+                                                        <div class="mb-4">
+                                                            <div class="form-label">Last name</div>
+                                                            <input type="text" name="lname" id="lname" class="form-control" value="<?= ((isset($_POST['lname']) && !empty($_POST['lname'])) ? $_POST['lname'] : $user_data['user_lastname']); ?>" required>
                                                         </div>
                                                     </div>
                                                     <div class="mb-4">
                                                         <div class="form-label">Email</div>
-                                                        <a href="mailto:<?= $user_data['user_email']; ?>" class="text-dark"> <?= $user_data['user_email']; ?> </a>
+                                                        <input type="email" name="email" id="email" class="form-control" value="<?= ((isset($_POST['email']) && !empty($_POST['email'])) ? $_POST['email'] : $user_data['user_email']); ?>" required>
                                                     </div>
                                                     <div class="mb-4">
                                                         <div class="form-label">Phone</div>
-                                                        <a href="tel:+1234567890" class="text-dark"> <?= $user_data['user_phone']; ?> </a>
+                                                        <input type="phone" name="phone" id="phone" class="form-control" value="<?= ((isset($_POST['phone']) && !empty($_POST['phone'])) ? $_POST['phone'] : $user_data['user_phone']); ?>">
                                                     </div>
-
-                                                    <div class="card border-transparent">
-                                                        <div class="card-body py-0">
-                                                            <ul class="list-group list-group-flush">
-                                                                <li class="list-group-item px-0">
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col-auto">
-                                                                            <i class="bi bi-calendar2-range text-dark"></i>
-                                                                        </div>
-                                                                        <div class="col">Joined at <small class="text-secondary ms-1">(<?= pretty_date($user_data['createdAt']); ?>)</small></div>
-                                                                    </div>
-                                                                </li>
-                                                                <li class="list-group-item px-0">
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col-auto">
-                                                                            <i class="bi bi-calendar-fill text-dark"></i>
-                                                                        </div>
-                                                                        <div class="col">Last login <small class="text-secondary ms-1">(<?= pretty_date($user_data['updatedAt']); ?>)</small></div>
-                                                                        <div class="col-auto">
-                                                                            <span class="badge bg-success-subtle text-success"><?= date("F j, Y, g:i a"); ?></span>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                    <button type="button" id="submitForm" class="btn btn-dark">Update</button>
+                                                </form>
+                                            </div>
                                         </section>
-
                                     </div>
                                 </div>
                             </div>
@@ -216,5 +218,34 @@
 	<?php include ("../footer.php"); ?>
 	<?php include ("../footer.files.php"); ?>
 	<script>
-		
+		$(document).ready(function() {
+            $('#submitForm').click(function() { 
+
+                $('#submitForm').attr('disabled', true);
+                $('#submitForm').html('Updating...');
+                setTimeout(() => {
+                    $('#updateProfile').submit();
+                    // $('#submitForm').attr('disabled', false);
+                    // $('#submitForm').html('Update');
+                }, 3000);
+                // var fname = $('#fname').val();
+                // var lname = $('#lname').val();
+                // var email = $('#email').val();
+                // var phone = $('#phone').val();
+                // var data = {
+                //     fname: fname,
+                //     lname: lname,
+                //     email: email,
+                //     phone: phone
+                // }
+                // $.ajax({
+                //     url: '<?= PROOT; ?>app/update-profile',
+                //     type: 'POST',
+                //     data: data,
+                //     success: function(response) {
+                //         console.log(response);
+                //     }
+                // })
+            })
+        })
 	</script>

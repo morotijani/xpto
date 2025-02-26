@@ -5,13 +5,6 @@
     }
     $newFont = "yes";
     include ("../head.php");
-
-    // get all transactions
-    $statement = $dbConnection->prepare("SELECT * FROM xpto_transactions WHERE transaction_by = ? ORDER BY createdAt DESC");
-    $statement->execute([$user_id]);
-    $transactions = $statement->fetchAll();
-    $count_transactions = $statement->rowCount();
-
 ?>
 
     <header id="header" class="navbar navbar-expand-lg navbar-light navbar-end bg-white">
@@ -134,65 +127,64 @@
                                     <div class="col-md-12 order-md-2 mb-7 mb-md-0">
                                         <!-- Transactions -->
 
-                                        <section class="card bg-body-tertiary border-transparent mb-5" id="general">
-                                                <div class="card-body">
-                                                    
-                                                    <div class="row align-items-center">
-                                                        <div class="col-auto">
-                                                            <div class="avatar avatar-xl">
-                                                                <img class="avatar-img" src="<?= PROOT; ?>assets/media/avatar.jpg" alt="...">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col">
-                                                            <h2 class="fs-5 mb-0"> <?= (($user_data['user_firstname'] == null) ? 'Update your name to display here' : $user_name); ?> </h2>
-                                                            <div class="text-body-secondary"> Trader account </div>
-                                                            <a href="<?= PROOT; ?>app/settings">Update profile details</a>
+                                        <section class="card bg-light border-transparent mb-5" id="general">
+                                            <div class="card-body">
+                                                
+                                                <div class="row align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="avatar avatar-xl">
+                                                            <img class="avatar-img" src="<?= PROOT; ?>assets/media/avatar.jpg" alt="...">
                                                         </div>
                                                     </div>
-                                                    <hr>
-                                                    <div class="mb-4">
-                                                        <div class="form-label">Bio</div>
-                                                        <div>
-                                                            Hi! I'm ...
-                                                        </div>
-                                                    </div>
-                                                    <div class="mb-4">
-                                                        <div class="form-label">Email</div>
-                                                        <a href="mailto:<?= $user_data['user_email']; ?>" class="text-dark"> <?= $user_data['user_email']; ?> </a>
-                                                    </div>
-                                                    <div class="mb-4">
-                                                        <div class="form-label">Phone</div>
-                                                        <a href="tel:+1234567890" class="text-dark"> <?= $user_data['user_phone']; ?> </a>
-                                                    </div>
-
-                                                    <div class="card border-transparent">
-                                                        <div class="card-body py-0">
-                                                            <ul class="list-group list-group-flush">
-                                                                <li class="list-group-item px-0">
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col-auto">
-                                                                            <i class="bi bi-calendar2-range text-dark"></i>
-                                                                        </div>
-                                                                        <div class="col">Joined at <small class="text-secondary ms-1">(<?= pretty_date($user_data['createdAt']); ?>)</small></div>
-                                                                    </div>
-                                                                </li>
-                                                                <li class="list-group-item px-0">
-                                                                    <div class="row align-items-center">
-                                                                        <div class="col-auto">
-                                                                            <i class="bi bi-calendar-fill text-dark"></i>
-                                                                        </div>
-                                                                        <div class="col">Last login <small class="text-secondary ms-1">(<?= pretty_date($user_data['updatedAt']); ?>)</small></div>
-                                                                        <div class="col-auto">
-                                                                            <span class="badge bg-success-subtle text-success"><?= date("F j, Y, g:i a"); ?></span>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
+                                                    <div class="col">
+                                                        <h2 class="fs-5 mb-0"> <?= (($user_data['user_firstname'] == null) ? 'Update your name to display here' : $user_name); ?> </h2>
+                                                        <div class="text-dark"> Trader account </div>
+                                                        <a href="<?= PROOT; ?>app/settings">Update profile details</a>
                                                     </div>
                                                 </div>
-                                        </section>
+                                                <hr>
+                                                <div class="mb-4">
+                                                    <div class="form-label">Bio</div>
+                                                    <div>
+                                                        Hi! I'm ...
+                                                    </div>
+                                                </div>
+                                                <div class="mb-4">
+                                                    <div class="form-label">Email</div>
+                                                    <a href="mailto:<?= $user_data['user_email']; ?>" class="text-dark"> <?= $user_data['user_email']; ?> </a>
+                                                </div>
+                                                <div class="mb-4">
+                                                    <div class="form-label">Phone</div>
+                                                    <a href="tel:+1234567890" class="text-dark"> <?= $user_data['user_phone']; ?> </a>
+                                                </div>
 
+                                                <div class="card border-transparent">
+                                                    <div class="card-body py-0">
+                                                        <ul class="list-group list-group-flush">
+                                                            <li class="list-group-item px-0">
+                                                                <div class="row align-items-center">
+                                                                    <div class="col-auto">
+                                                                        <i class="bi bi-calendar2-range text-dark"></i>
+                                                                    </div>
+                                                                    <div class="col">Joined at <small class="text-secondary ms-1">(<?= pretty_date($user_data['createdAt']); ?>)</small></div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item px-0">
+                                                                <div class="row align-items-center">
+                                                                    <div class="col-auto">
+                                                                        <i class="bi bi-calendar-fill text-dark"></i>
+                                                                    </div>
+                                                                    <div class="col">Last login <small class="text-secondary ms-1">(<?= pretty_date($user_data['updatedAt']); ?>)</small></div>
+                                                                    <div class="col-auto">
+                                                                        <span class="badge bg-success-subtle text-success"><?= date("F j, Y, g:i a"); ?></span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
                                     </div>
                                 </div>
                             </div>
