@@ -102,7 +102,7 @@
 
 
 								<div class="text-center">
-									<a class="btn btn-link" href="<?= PROOT; ?>auth/signup">
+									<a class="btn btn-link" href="<?= PROOT; ?>auth/register">
 										<i class="bi-chevron-left small me-1"></i> Don't have an account ?
 									</a>
 									<br>

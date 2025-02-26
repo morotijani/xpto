@@ -29,13 +29,13 @@
 
                         <li class="nav-item">
                             <a class="js-animation-link btn btn-ghost-secondary btn-no-focus me-2 me-lg-0" href="<?= PROOT; ?>auth/login">Log in</a>
-                            <a class="js-animation-link d-lg-none btn btn-primary" href="<?= PROOT; ?>auth/signup">
+                            <a class="js-animation-link d-lg-none btn btn-primary" href="<?= PROOT; ?>auth/register">
                                 <i class="bi-person-circle me-1"></i> Sign up
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="js-animation-link d-none d-lg-inline-block btn btn-primary" href="<?= PROOT; ?>auth/signup">
+                            <a class="js-animation-link d-none d-lg-inline-block btn btn-primary" href="<?= PROOT; ?>auth/register">
                                 <i class="bi-person-circle me-1"></i> Sign up
                             </a>
                         </li>

@@ -45,13 +45,13 @@
 
                         <li class="nav-item">
                             <a class="js-animation-link btn btn-ghost-secondary btn-no-focus me-2 me-lg-0" href="<?= PROOT; ?>auth/login">Deposite</a>
-                            <a class="js-animation-link d-lg-none btn btn-primary" href="<?= PROOT; ?>auth/signup">
+                            <a class="js-animation-link d-lg-none btn btn-primary" href="<?= PROOT; ?>auth/register">
                                 <i class="bi-sign-turn-slight-right me-1"></i> Withdraw
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="js-animation-link d-none d-lg-inline-block btn btn-primary" href="<?= PROOT; ?>auth/signup">
+                            <a class="js-animation-link d-none d-lg-inline-block btn btn-primary" href="<?= PROOT; ?>auth/register">
                                 <i class="bi-sign-turn-slight-right me-1"></i> Withdraw
                             </a>
                         </li>

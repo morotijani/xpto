@@ -46,7 +46,7 @@
 
 		if ($msg != "") {
 			$_SESSION['flash_error'] = $msg;
-			redirect(PROOT . "auth/signup");
+			redirect(PROOT . "auth/register");
 		}
 	}
 
