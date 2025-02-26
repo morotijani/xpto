@@ -557,6 +557,7 @@
                 e.preventDefault()
                 var pin = $('#pin').val();
                 var balance = '<?= $user_data['user_balance']; ?>'
+                var user_pin = '<?= $user_data['user_pin']; ?>'
 
                 if (pin == '') {
                     alert('Enter pin to proceed');
@@ -603,7 +604,7 @@
                     $('#sendCryptoForm').attr('method', 'POST');
                     $('#sendCryptoForm').attr('action', '<?= PROOT; ?>app/parsers/send-crypto');
                     $('#sendCryptoForm').submit();
-                    location.reload();
+                    // location.reload();
                 }, 5000);
             })
 
