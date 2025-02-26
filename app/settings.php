@@ -110,12 +110,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="<?= PROOT; ?>app/transactions">
+                            <a class="nav-link" href="<?= PROOT; ?>app/transactions">
                                 <i class="bi-list nav-icon"></i> Transactions
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= PROOT; ?>app/profile">
+                            <a class="nav-link active" href="<?= PROOT; ?>app/profile">
                                 <i class="bi-person nav-icon"></i> Profile
                             </a>
                         </li>
@@ -133,77 +133,65 @@
                                 <div class="row">
                                     <div class="col-md-12 order-md-2 mb-7 mb-md-0">
                                         <!-- Transactions -->
-                                        <div class="card">
-                                            <div class="card-body pb-0">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div>
-                                                        <h5>Transaction History</h5>
-                                                    </div>
-                                                    <div class="hstack align-items-center">
-                                                        <a href="<?= PROOT; ?>app/transactions" class="text-muted">
-                                                            <i class="bi bi-arrow-repeat"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="list-group list-group-flush">
 
-                                                <?php 
-                                                    if (is_array($transactions) && $count_transactions > 0): 
-                                                        foreach ($transactions as $transaction): 
-                                                            $crypto_id = $transaction['transaction_crypto_id'];
-                                                            $crypto_name = $transaction['transaction_crypto_name'];
-                                                            $crypto_symbol = $transaction['transaction_crypto_symbol'];
-                                                            $crypto_price = $transaction['transaction_crypto_price'];
-                                                            $createdAt = $transaction['createdAt'];
-                                                            $transaction_amount = $transaction['transaction_amount'];
-                                                            $transaction_status = $transaction['transaction_status'];
-
-                                                            $transaction_to_address = $transaction['transaction_to_address'];
-                                                            $shortened = shortenStringMiddle($transaction_to_address, 28);
-
-                                                            $icon = "https://s2.coinmarketcap.com/static/img/coins/64x64/{$crypto_id}.png";
-
-                                                            $status = '';
-                                                            $status_text = '';
-                                                            if ($transaction_status == 0) {
-                                                                $status = 'Pending';
-                                                                $status_text = 'warning';
-                                                            } elseif ($transaction_status == 1) {
-                                                                $status = 'Successful';
-                                                                $status_text = 'success';
-                                                            } else {
-                                                                $status = 'Canceled';
-                                                                $status_text = 'danger';
-                                                            }
-
-                                                ?>
-
-
-                                                        <div class="list-group-item d-flex align-items-center justify-content-between gap-6">
-                                                            <div class="d-flex align-items-center gap-3">
-                                                                <div class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
-                                                                    <img src="<?= $icon; ?>" class="w-rem-6 h-rem-6 rounded-circle img-fluid" alt="..."> 
-                                                                </div>
-                                                                <div class="">
-                                                                    <span class="d-block text-heading text-sm fw-semibold"><?= $crypto_name; ?> </span>
-                                                                    <span class="d-none d-sm-block text-muted text-xs"><?= timeAgo($createdAt); ?></span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="d-none d-md-block text-sm"><?= $shortened; ?></div>
-                                                            <div class="d-none d-md-block">
-                                                                <span class="badge bg-light text-<?= $status_text; ?>"><?= $status; ?></span>
-                                                            </div>
-                                                            <div class="text-end">
-                                                                <span class="d-block text-heading text-sm fw-bold"><?= money($transaction_amount) . ' ' . $crypto_symbol; ?> </span>
-                                                                <span class="d-block text-muted text-xs"><?= '$' . $crypto_price; ?></span>
+                                        <section class="card bg-body-tertiary border-transparent mb-5" id="general">
+                                                <div class="card-body">
+                                                    
+                                                    <div class="row align-items-center">
+                                                        <div class="col-auto">
+                                                            <div class="avatar avatar-xl">
+                                                                <img class="avatar-img" src="<?= PROOT; ?>assets/media/avatar.jpg" alt="...">
                                                             </div>
                                                         </div>
+                                                        <div class="col">
+                                                            <h2 class="fs-5 mb-0"> <?= (($user_data['user_firstname'] == null) ? 'Update your name to display here' : $user_name); ?> </h2>
+                                                            <div class="text-body-secondary"> Trader account </div>
+                                                            <a href="<?= PROOT; ?>app/settings">Update profile details</a>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="mb-4">
+                                                        <div class="form-label">Bio</div>
+                                                        <div>
+                                                            Hi! I'm ...
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <div class="form-label">Email</div>
+                                                        <a href="mailto:<?= $user_data['user_email']; ?>" class="text-dark"> <?= $user_data['user_email']; ?> </a>
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <div class="form-label">Phone</div>
+                                                        <a href="tel:+1234567890" class="text-dark"> <?= $user_data['user_phone']; ?> </a>
+                                                    </div>
 
-                                                        <?php endforeach; ?>
-                                                    <?php endif; ?>
+                                                    <div class="card border-transparent">
+                                                        <div class="card-body py-0">
+                                                            <ul class="list-group list-group-flush">
+                                                                <li class="list-group-item px-0">
+                                                                    <div class="row align-items-center">
+                                                                        <div class="col-auto">
+                                                                            <i class="bi bi-calendar2-range text-dark"></i>
+                                                                        </div>
+                                                                        <div class="col">Joined at <small class="text-secondary ms-1">(<?= pretty_date($user_data['createdAt']); ?>)</small></div>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="list-group-item px-0">
+                                                                    <div class="row align-items-center">
+                                                                        <div class="col-auto">
+                                                                            <i class="bi bi-calendar-fill text-dark"></i>
+                                                                        </div>
+                                                                        <div class="col">Last login <small class="text-secondary ms-1">(<?= pretty_date($user_data['updatedAt']); ?>)</small></div>
+                                                                        <div class="col-auto">
+                                                                            <span class="badge bg-success-subtle text-success"><?= date("F j, Y, g:i a"); ?></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
+                                        </section>
 
                                     </div>
                                 </div>
@@ -224,8 +212,8 @@
 		</div>
 
    	</main>
-    
-    <?php include ("../footer.php"); ?>
+
+	<?php include ("../footer.php"); ?>
 	<?php include ("../footer.files.php"); ?>
 	<script>
 		

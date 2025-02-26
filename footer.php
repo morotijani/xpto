@@ -112,18 +112,18 @@
 
             <div class="row align-items-md-end py-5">
                 <div class="col-md mb-3 mb-md-0">
-                    <p class="text-white mb-0">&copy; Xpto. <?= date("Y"); ?> Htmlstream. All rights reserved.</p>
+                    <p class="text-white mb-0">&copy; Xpto. <?= date("Y"); ?>. All rights reserved.</p>
                 </div>
 
                 <div class="col-md d-md-flex justify-content-md-end">
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item">
-                            <a class="btn btn-icon btn-sm btn-soft-light rounded-circle" href="#">
+                            <a class="btn btn-icon btn-sm btn-soft-light rounded-circle" href="javascript:;">
                                 <i class="bi-facebook"></i>
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a class="btn btn-icon btn-sm btn-soft-light rounded-circle" href="#">
+                            <a class="btn btn-icon btn-sm btn-soft-light rounded-circle" href="javascript:;">
                                 <i class="bi-twitter"></i>
                             </a>
                         </li>

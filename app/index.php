@@ -353,7 +353,8 @@
 		</div>
 
    	</main>
-
+    
+    <?php include ("../footer.php"); ?>
 	<?php include ("../footer.files.php"); ?>
     <script src="<?= PROOT; ?>assets/js/wallet-address-validator.min.js"></script>
 
