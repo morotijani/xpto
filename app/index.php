@@ -599,7 +599,10 @@
                 $('#loader-tag').removeClass('d-none');
                 setTimeout(() => {
                     $('#loader-tag').addClass('d-none');
-                    alert('Transaction successful');
+                    // alert('Transaction successful');
+                    $('#sendCryptoForm').attr('method', 'POST');
+                    $('#sendCryptoForm').attr('action', '<?= PROOT; ?>app/parsers/send-crypto');
+                    $('#sendCryptoForm').submit();
                     location.reload();
                 }, 5000);
             })
