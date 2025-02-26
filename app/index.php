@@ -81,7 +81,7 @@
                                             <i class="bi bi-info-circle"></i>
                                         </a>
                                     </div>
-                                    <div class="text-2xl text-heading fw-bolder ls-tight blurred" id="balance">$23.000,48</div>
+                                    <div class="text-2xl text-heading fw-bolder ls-tight blurred" id="balance"><?= money($user_data['user_balance']); ?></div>
                                 </div>
                                 <div class="ms-auto align-self-end">
                                     <a href="javascript:;" class="btn btn-sm btn-light mb-2" data-bs-toggle="modal" data-bs-target="#receiveModal" href="javascript:;">Receive crypto</a>
@@ -175,15 +175,15 @@
                                                     <form class="vstack gap-6 border p-4" id="sendCryptoForm">
                                                         <ul class="step step-sm step-icon-sm step-centered" id="step-TabFeatures" role="tablist">
                                                             <li class="step-item" role="presentation">
-                                                                <a class="step-content-wrapper active" href="#stepEmail" id="stepEmail-tab" data-bs-toggle="tab" data-bs-target="#stepEmail" role="tab" aria-controls="stepEmail" aria-selected="true">
+                                                                <a class="step-content-wrapper active" href="#stepSend" id="stepSend-tab">
                                                                     <span class="step-icon step-icon-soft-secondary">1</span>
                                                                     <div class="step-content">
-                                                                        <h6 class="step-title">Send Crypto</h6>
+                                                                        <h6 class="step-title">Send</h6>
                                                                     </div>
                                                                 </a>
                                                             </li>
                                                             <li class="step-item" role="presentation">
-                                                                <a class="step-content-wrapper" href="#stepPassword" id="stepPassword-tab" data-bs-toggle="tab" data-bs-target="#stepPassword" role="tab" aria-controls="stepPassword" aria-selected="false">
+                                                                <a class="step-content-wrapper" href="#stepSummary" id="stepSummary-tab">
                                                                     <span class="step-icon step-icon-soft-secondary">2</span>
                                                                     <div class="step-content">
                                                                         <h6 class="step-title">Summary</h6>
@@ -191,10 +191,10 @@
                                                                 </a>
                                                             </li>
                                                             <li class="step-item" role="presentation">
-                                                                <a class="step-content-wrapper" href="#stepPassword" id="stepPassword-tab" data-bs-toggle="tab" data-bs-target="#stepPassword" role="tab" aria-controls="stepPassword" aria-selected="false">
+                                                                <a class="step-content-wrapper" href="#stepConfirm" id="stepConfirm-tab">
                                                                     <span class="step-icon step-icon-soft-secondary">2</span>
                                                                     <div class="step-content">
-                                                                        <h6 class="step-title">Confirm trnsaction</h6>
+                                                                        <h6 class="step-title">Confirm</h6>
                                                                     </div>
                                                                 </a>
                                                             </li>
@@ -258,7 +258,7 @@
 
                                                                 <div class="position-relative text-center my-n4 overlap-10">
                                                                     <div class="icon icon-sm icon-shape bg-body shadow-soft-3 rounded-circle text-sm text-body-tertiary">
-                                                                        <i class="bi bi-arrow-down-up"></i>
+                                                                        <i class="bi bi-currency-bitcoin"></i>
                                                                     </div>
                                                                 </div>
 
@@ -296,7 +296,7 @@
                                                                 <label for="note">Comment</label>
                                                                 <textarea class="form-control form-control-xl fw-bolder" placeholder="Leave a comment here" style="overflow: hidden; resize: none;" id="note" name="note"></textarea>
                                                             </div>
-                                                            <button type="button" id="next-1" class="btn btn-dark w-100">Next >></button>
+                                                            <button type="button" id="next-1" class="btn btn-dark w-100" disabled>Next >></button>
                                                         </div>
 
                                                         <div id="step-2" class="d-none text-center">
@@ -424,7 +424,19 @@
                 crypto_symbol = coin[1];
                 crypto_name = coin[2];
                 convertToCrypto(send_amount, crypto_symbol, "USD").then(conversionValue => {
-                    $('#amount-in-crypto-amount').text(conversionValue + ' ' + crypto_symbol);
+                    if (
+                        conversionValue == NaN || 
+                        conversionValue == undefined || 
+                        conversionValue == null || 
+                        conversionValue <= 0 || 
+                        conversionValue == Infinity
+                    ) {
+                        $('#amount-in-crypto-amount').text('Failed to convert, please refresh page and try again.');
+                        $('#next-1').attr('disabled', true);
+                    } else {
+                        $('#amount-in-crypto-amount').text(conversionValue + ' ' + crypto_symbol);
+                        $('#next-1').attr('disabled', false);
+                    }
                 });
                 $('#amount-in-crypto-crypto').text(crypto_name);
             })
@@ -450,7 +462,19 @@
                 $('#preview-logo').attr('src', crypto_logo);
 
                 convertToCrypto(send_amount, crypto_symbol, "USD").then(conversionValue => {
-                    $('#amount-in-crypto-amount').text(conversionValue + ' ' + crypto_symbol);
+                    if (
+                        conversionValue == NaN || 
+                        conversionValue == undefined || 
+                        conversionValue == null || 
+                        conversionValue <= 0 || 
+                        conversionValue == Infinity
+                    ) {
+                        $('#amount-in-crypto-amount').text('Failed to convert, please refresh page and try again.');
+                        $('#next-1').attr('disabled', true);
+                    } else {
+                        $('#amount-in-crypto-amount').text(conversionValue + ' ' + crypto_symbol);
+                        $('#next-1').attr('disabled', false);
+                    }
                 });
                 $('#amount-in-crypto-crypto').text(crypto_name);
             }));
@@ -466,7 +490,6 @@
                     crypto_name = 'Tether';
                 }
 
-                
                 var to_wallet_address = $('#to_wallet_address').val();
 
                 if (send_amount <= 0) {
@@ -515,11 +538,25 @@
 
                 $('#step-1').addClass('d-none');
                 $('#step-2').removeClass('d-none');
+
+                $('#stepSend-tab').removeClass('active');
+                $('#stepSummary-tab').addClass('active');
             });
+
+            $('#next-2').click(function(e) {
+                e.preventDefault();
+
+                $('#step-2').addClass('d-none');
+                $('#step-3').removeClass('d-none');
+
+                $('#stepSummary-tab').removeClass('active');
+                $('#stepConfirm-tab').addClass('active');
+            })
 
             $('#send-crypto-button').click(function(e) {
                 e.preventDefault()
                 var pin = $('#pin').val();
+                var balance = '<?= $user_data['user_balance']; ?>'
 
                 if (pin == '') {
                     alert('Enter pin to proceed');
@@ -544,6 +581,20 @@
                     $('#pin').focus();
                     return false;
                 }
+
+                if (balance < $('#send_amount').val()) {
+                    alert('Insufficient balance');
+                    $('#send_amount').focus();
+                    $('#step-1').removeClass('d-none');
+                    $('#step-2').addClass('d-none');
+                    $('#step-3').addClass('d-none');
+
+                    $('#stepConfirm-tab').removeClass('active');
+                    $('#stepSend-tab').addClass('active');
+
+                    return false;
+                }
+
                 $('#step-3').addClass('d-none');
                 $('#loader-tag').removeClass('d-none');
                 setTimeout(() => {
@@ -553,18 +604,14 @@
                 }, 5000);
             })
 
-            $('#next-2').click(function(e) {
-                e.preventDefault();
-
-                $('#step-2').addClass('d-none');
-                $('#step-3').removeClass('d-none');
-            })
-
             $('#prev-1').click(function(e) {
                 e.preventDefault();
 
                 $('#step-1').removeClass('d-none');
                 $('#step-2').addClass('d-none');
+
+                $('#stepSend-tab').addClass('active');
+                $('#stepSummary-tab').removeClass('active');
             })
 
             $('#prev-2').click(function(e) {
@@ -572,37 +619,10 @@
 
                 $('#step-2').removeClass('d-none');
                 $('#step-3').addClass('d-none');
+
+                $('#stepConfirm-tab').removeClass('active');
+                $('#stepSummary-tab').addClass('active');
             })
-
-            // 2nd step
-
-
-			$('#next-button').on('click', function(e) {
-
-				$('#stepEmail-tab').removeClass('active');
-				$('#stepPassword-tab').addClass('active');
-				
-				$('#step-one').addClass('d-none');
-				$('#step-two').removeClass('d-none');
-			})
-
-			$('#stepEmail-tab').on('click', function(e) {
-
-				$('#stepEmail-tab').addClass('active');
-				$('#stepPassword-tab').removeClass('active');
-
-				$('#step-one').removeClass('d-none');
-				$('#step-two').addClass('d-none');
-			})
-
-			$('#stepPassword-tab').on('click', function(e) {
-
-				$('#stepEmail-tab').removeClass('active');
-				$('#stepPassword-tab').addClass('active');
-
-				$('#step-one').addClass('d-none');
-				$('#step-two').removeClass('d-none');
-			})
 		})
 
         
