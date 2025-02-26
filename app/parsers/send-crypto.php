@@ -20,6 +20,7 @@
         $to_crypto_symbol = $breakdown[1];
         $to_crypto_name = $breakdown[2];
         $to_crypto_price = $breakdown[3];
+        // dnd($to_crypto_price);
 
 
         if (empty($send_amount) || empty($to_cypto) || empty($to_wallet_address) || empty($pin)) {
@@ -68,7 +69,7 @@
 
         if (!empty($msg) || $msg != "") {
             $_SESSION['flash_error'] = $msg;
-            redirect(PROOT . 'app/send-crypto');
+            redirect(PROOT . 'app/');
         }
     }
 

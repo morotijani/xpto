@@ -274,7 +274,7 @@
                                                                 <label class="form-label">To wallet address</label>
                                                                 <div class="d-flex flex-wrap gap-1 gap-sm-2">
                                                                     <div class="w-sm-56 input-group input-group-sm input-group-inline">
-                                                                        <input type="search" class="form-control fw-bolder" name="to_wallet_address" id="to_wallet_address" placeholder="1KFzzGtDdnq5h....nKzRbvf8WVxck"> 
+                                                                        <input type="search" autocomplete="false" class="form-control fw-bolder" name="to_wallet_address" id="to_wallet_address" placeholder="1KFzzGtDdnq5h....nKzRbvf8WVxck"> 
                                                                         <span class="input-group-text" style="cursor: pointer;" onclick="pasteFromClipboard()"><i class="bi bi-clipboard2-check"></i>&nbsp; Paste</span>
                                                                     </div>
                                                                     <small class="form-text">As money transmitted to the wrong address may result in permanent loss, make sure the address is accurate.</small>
@@ -577,13 +577,7 @@
                     return false;
                 }
 
-                if (pin != '0000') {
-                    alert('Invalid pin');
-                    $('#pin').focus();
-                    return false;
-                }
-
-                if (balance < $('#send_amount').val()) {
+                if (+balance < +$('#send_amount').val()) {
                     alert('Insufficient balance');
                     $('#send_amount').focus();
                     $('#step-1').removeClass('d-none');
