@@ -175,7 +175,7 @@
                                                     <form class="vstack gap-6 border p-4" id="sendCryptoForm">
                                                         <ul class="step step-sm step-icon-sm step-centered" id="step-TabFeatures" role="tablist">
                                                             <li class="step-item" role="presentation">
-                                                                <a class="step-content-wrapper active" href="#stepSend" id="stepSend-tab">
+                                                                <a class="step-content-wrapper active" href="javascript:;" id="stepSend-tab">
                                                                     <span class="step-icon step-icon-soft-secondary">1</span>
                                                                     <div class="step-content">
                                                                         <h6 class="step-title">Send</h6>
@@ -183,7 +183,7 @@
                                                                 </a>
                                                             </li>
                                                             <li class="step-item" role="presentation">
-                                                                <a class="step-content-wrapper" href="#stepSummary" id="stepSummary-tab">
+                                                                <a class="step-content-wrapper" href="javascript:;" id="stepSummary-tab">
                                                                     <span class="step-icon step-icon-soft-secondary">2</span>
                                                                     <div class="step-content">
                                                                         <h6 class="step-title">Summary</h6>
@@ -191,7 +191,7 @@
                                                                 </a>
                                                             </li>
                                                             <li class="step-item" role="presentation">
-                                                                <a class="step-content-wrapper" href="#stepConfirm" id="stepConfirm-tab">
+                                                                <a class="step-content-wrapper" href="javascript:;" id="stepConfirm-tab">
                                                                     <span class="step-icon step-icon-soft-secondary">2</span>
                                                                     <div class="step-content">
                                                                         <h6 class="step-title">Confirm</h6>
