@@ -5,7 +5,12 @@
     }
     $newFont = "yes";
     include ("../head.php");
-    
+
+    // get all transactions
+    $statement = $dbConnection->prepare("SELECT * FROM xpto_transactions WHERE transaction_by = ? ORDER BY createdAt DESC");
+    $statement->execute([$user_id]);
+    $transactions = $statement->fetchAll();
+    $count_transactions = $statement->rowCount();
 
 ?>
 
@@ -135,70 +140,67 @@
                                                         <h5>Transaction History</h5>
                                                     </div>
                                                     <div class="hstack align-items-center">
-                                                        <a href="#" class="text-muted">
+                                                        <a href="<?= PROOT; ?>app/transactions" class="text-muted">
                                                             <i class="bi bi-arrow-repeat"></i>
                                                         </a>
                                                     </div>
                                                 </div>
                                                 <div class="list-group list-group-flush">
-                                                    <div class="list-group-item d-flex align-items-center justify-content-between gap-6">
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
-                                                                <i class="bi bi-send-fill"></i>
+
+                                                <?php 
+                                                    if (is_array($transactions) && $count_transactions > 0): 
+                                                        foreach ($transactions as $transaction): 
+                                                            $crypto_id = $transaction['transaction_crypto_id'];
+                                                            $crypto_name = $transaction['transaction_crypto_name'];
+                                                            $crypto_symbol = $transaction['transaction_crypto_symbol'];
+                                                            $crypto_price = $transaction['transaction_crypto_price'];
+                                                            $createdAt = $transaction['createdAt'];
+                                                            $transaction_amount = $transaction['transaction_amount'];
+                                                            $transaction_status = $transaction['transaction_status'];
+
+                                                            $transaction_to_address = $transaction['transaction_to_address'];
+                                                            $shortened = shortenStringMiddle($transaction_to_address, 28);
+
+                                                            $icon = "https://s2.coinmarketcap.com/static/img/coins/64x64/{$crypto_id}.png";
+
+                                                            $status = '';
+                                                            $status_text = '';
+                                                            if ($transaction_status == 0) {
+                                                                $status = 'Pending';
+                                                                $status_text = 'warning';
+                                                            } elseif ($transaction_status == 1) {
+                                                                $status = 'Successful';
+                                                                $status_text = 'success';
+                                                            } else {
+                                                                $status = 'Canceled';
+                                                                $status_text = 'danger';
+                                                            }
+
+                                                ?>
+
+
+                                                        <div class="list-group-item d-flex align-items-center justify-content-between gap-6">
+                                                            <div class="d-flex align-items-center gap-3">
+                                                                <div class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
+                                                                    <img src="<?= $icon; ?>" class="w-rem-6 h-rem-6 rounded-circle img-fluid" alt="..."> 
+                                                                </div>
+                                                                <div class="">
+                                                                    <span class="d-block text-heading text-sm fw-semibold"><?= $crypto_name; ?> </span>
+                                                                    <span class="d-none d-sm-block text-muted text-xs"><?= timeAgo($createdAt); ?>2 days ago</span>
+                                                                </div>
                                                             </div>
-                                                            <div class="">
-                                                                <span class="d-block text-heading text-sm fw-semibold">Bitcoin </span>
-                                                                <span class="d-none d-sm-block text-muted text-xs">2 days ago</span>
+                                                            <div class="d-none d-md-block text-sm"><?= $shortened; ?></div>
+                                                            <div class="d-none d-md-block">
+                                                                <span class="badge bg-light text-<?= $status_text; ?>"><?= $status; ?></span>
+                                                            </div>
+                                                            <div class="text-end">
+                                                                <span class="d-block text-heading text-sm fw-bold"><?= money($transaction_amount) . ' ' . $crypto_symbol; ?> </span>
+                                                                <span class="d-block text-muted text-xs"><?= '$' . $crypto_price; ?></span>
                                                             </div>
                                                         </div>
-                                                        <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
-                                                        <div class="d-none d-md-block">
-                                                            <span class="badge bg-light text-warning">Pending</span>
-                                                        </div>
-                                                        <div class="text-end">
-                                                            <span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span>
-                                                            <span class="d-block text-muted text-xs">+$10,930.90</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="list-group-item d-flex align-items-center justify-content-between gap-6">
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
-                                                                <i class="bi bi-send-fill"></i>
-                                                            </div>
-                                                            <div class="">
-                                                                <span class="d-block text-heading text-sm fw-semibold">Cardano </span>
-                                                                <span class="d-none d-sm-block text-muted text-xs">2 days ago</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
-                                                        <div class="d-none d-md-block">
-                                                            <span class="badge bg-light text-danger">Canceled</span>
-                                                        </div>
-                                                        <div class="text-end">
-                                                            <span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span>
-                                                            <span class="d-block text-muted text-xs">+$10,930.90</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="list-group-item d-flex align-items-center justify-content-between gap-6">
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="icon icon-shape rounded-circle icon-sm flex-none w-rem-10 h-rem-10 text-sm bg-primary bg-opacity-25 text-primary">
-                                                                <i class="bi bi-send-fill"></i>
-                                                            </div>
-                                                            <div class="">
-                                                                <span class="d-block text-heading text-sm fw-semibold">Binance </span>
-                                                                <span class="d-none d-sm-block text-muted text-xs">2 days ago</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="d-none d-md-block text-sm">0xd029384sd343fd...eq23</div>
-                                                        <div class="d-none d-md-block">
-                                                            <span class="badge bg-light text-success">Successful</span>
-                                                        </div>
-                                                        <div class="text-end">
-                                                            <span class="d-block text-heading text-sm fw-bold">+0.2948 BTC </span>
-                                                            <span class="d-block text-muted text-xs">+$10,930.90</span>
-                                                        </div>
-                                                    </div>
-                                                    
+
+                                                        <?php endforeach; ?>
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -224,11 +226,6 @@
    	</main>
 
 	<?php include ("../footer.files.php"); ?>
-    <script src="<?= PROOT; ?>assets/js/wallet-address-validator.min.js"></script>
-
-	<script>        
-        
-        
-
+	<script>
 		
 	</script>

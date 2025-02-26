@@ -49,7 +49,7 @@
  	$flash_user = '';
  	if (isset($_SESSION['flash_success'])) {
  	 	$flash_user = '
-			<div aria-live="polite" aria-atomic="true" class="position-fixed top-0 start-50 translate-middle-x rounded-3 zi-1">
+			<div aria-live="polite" aria-atomic="true" class="position-fixed top-0 start-50 translate-middle-x rounded-3 zi-2">
 				<div class="p-3">
 					<div class="toast show alert-success" id="temporary">
                         <div class="toast-body">
@@ -64,7 +64,7 @@
 
  	if (isset($_SESSION['flash_error'])) {
  	 	$flash_user = '
-            <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 start-50 translate-middle-x rounded-3 zi-1">
+            <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 start-50 translate-middle-x rounded-3 zi-2">
                 <div class="p-3">
                     <div class="toast show alert-danger" id="temporary">
                         <div class="toast-body">

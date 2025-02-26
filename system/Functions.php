@@ -126,7 +126,6 @@
 		return '<script>alert("' . $msg . '");</script>';
 	}
 
-
 	// 
 	function sms_otp($msg, $phone) {
 		$sender = urlencode("Inqoins VER");
@@ -486,3 +485,48 @@
 	    	echo "<option value=" . $i . ">" . $i . "</option>n";     
 	    }
 	}
+
+
+
+	////////////////////////////////////////////////////////////////////////////
+	function timeAgo($timestamp) {
+		$time_ago = strtotime($timestamp);
+		$current_time = time();
+		$time_difference = $current_time - $time_ago;
+		$seconds = $time_difference;
+	
+		if ($seconds < 60) {
+			return $seconds . " seconds ago";
+		} elseif ($seconds < 3600) {
+			return floor($seconds / 60) . " minutes ago";
+		} elseif ($seconds < 86400) {
+			return floor($seconds / 3600) . " hours ago";
+		} elseif ($seconds < 604800) {
+			return floor($seconds / 86400) . " days ago";
+		} elseif ($seconds < 2419200) {
+			return floor($seconds / 604800) . " weeks ago";
+		} elseif ($seconds < 29030400) {
+			return floor($seconds / 2419200) . " months ago";
+		} else {
+			return floor($seconds / 29030400) . " years ago";
+		}
+	}
+
+	// Shorten a string from the middle
+	function shortenStringMiddle($string, $maxLength = 10) {
+		// Check if the string length is greater than the maximum length
+		if (strlen($string) > $maxLength) {
+			// Calculate the lengths of the start and end parts
+			$startLength = ($maxLength - 3) / 2;
+			$endLength = $maxLength - $startLength - 3;
+
+			// Shorten the string and insert an ellipsis in the middle
+			$shortenedString = substr($string, 0, $startLength) . '...' . substr($string, -$endLength);
+		} else {
+			// If the string is within the maximum length, keep it as is
+			$shortenedString = $string;
+		}
+
+		return $shortenedString;
+	}
+
