@@ -50,3 +50,9 @@ function get_id_details($dbConnection, $id) {
 	$statement = $dbConnection->query("SELECT * FROM xpto_users WHERE user_id = '" . $id . "'")->fetch(PDO::FETCH_ASSOC);
 	return $statement;
 }
+
+ // count transactions by a user
+ function count_user_transactions($dbConnection, $id) {
+	$statement = $dbConnection->query("SELECT * FROM xpto_transactions WHERE transaction_by = '" . $id . "'")->rowCount();
+	return $statement;
+ }

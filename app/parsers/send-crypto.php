@@ -60,7 +60,7 @@
                 ]);
 
                 $_SESSION['flash_success'] = "Transaction successful.";
-                redirect(PROOT . 'app/');
+                redirect(PROOT . 'app/transactions');
             }
 
         } catch (PDOException $e) {

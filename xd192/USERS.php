@@ -4,27 +4,14 @@
         admin_login_redirect();
     }
 
-    // count users in database
-    function count_users($dbConnection) {
-        return $dbConnection->query("SELECT id FROM xpto_users")->rowCount();
-    }
-
-    // count transactions in database
-    function count_transactions($dbConnection) {
-        return $dbConnection->query("SELECT id FROM xpto_transactions")->rowCount();
-    }
-
-    // list current transaction
-    $statement = $dbConnection->prepare("SELECT * FROM xpto_transactions ORDER BY createdAt DESC LIMIT 10");
+    // list all users
+    $statement = $dbConnection->prepare("SELECT * FROM xpto_users ORDER BY createdAt DESC");
     $statement->execute();
-    $transactions = $statement->fetchAll();
-    $transaction_count = $statement->rowCount();
+    $users = $statement->fetchAll();
+    $users_count = $statement->rowCount();
+
 
 ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
 <head>
@@ -207,7 +194,7 @@
                     </div>
                     <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                     <ul class="nav flex-column">
-                    <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="<?= PROOT; ?>xd192/">
                                 <i class="bi bi-house-fill"></i> Dashboard
                             </a>
@@ -225,7 +212,6 @@
                             </a>
                         </li>
                     </ul>
-
                     <hr class="my-3">
                     <ul class="nav flex-column mb-auto">
                         <li class="nav-item">
@@ -247,66 +233,84 @@
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Dashboard</h1>
+                <h1 class="h2">Users</h1>
             </div>
-
-            <div class="row row-cols-1 row-cols-md-2 mb-3 text-center">
-                <div class="col">
-                    <div class="card mb-4 rounded-3 shadow-sm">
-                        <div class="card-header py-3">
-                            <h4 class="my-0 fw-normal">Users</h4>
-                        </div>
-                        <div class="card-body">
-                            <h1 class="card-title pricing-card-title">#<?= count_users($dbConnection); ?></h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card mb-4 rounded-3 shadow-sm border-primary">
-                        <div class="card-header py-3 text-bg-primary border-primary">
-                            <h4 class="my-0 fw-normal">Transaction</h4>
-                        </div>
-                        <div class="card-body">
-                            <h1 class="card-title pricing-card-title">#<?= count_transactions($dbConnection); ?></h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h2>Current transactions</h2>
-            <div class="table-responsive small">
-                <table class="table table-striped table-sm">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Crypto</th>
-                        <th scope="col">Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                        if ($transaction_count > 0): 
-                            $i = 1;
-                            foreach ($transactions as $transaction) {
-                                $by = get_id_details($dbConnection, $transaction['transaction_by']);
-                    ?>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
                         <tr>
-                            <td><?= $i; ?></td>
-                            <td><?= $by['user_email']; ?></td>
-                            <td><?= money($transaction['transaction_amount']); ?></td>
-                            <td><?= $transaction['transaction_crypto_name']; ?></td>
-                            <td><?= pretty_date($transaction['createdAt']); ?></td>
+                            <th scope="col">#</th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Password</th>
+                            <th scope="col">PIN</th>
+                            <th scope="col">Balance</th>
+                            <th scope="col">Transaction(s)</th>
+                            <th scope="col">Last Logged in</th>
+                            <th scope="col">Joined date</th>
                         </tr>
-                        <?php $i++; } endif; ?>
-                    </tbody>
+                    </thead>
+                    <tbody>
+                        <?php 
+                            if (is_array($users) && $users_count > 0): 
+                                $i = 1;
+                                foreach ($users as $user) {
+                                    
+                        ?>
+                            <tr>
+                                <td><?= $i; ?></td>
+                                <td><?= ucwords($user['user_firstname']); ?></td>
+                                <td><?= ucwords($user['user_lastname']); ?></td>
+                                <td><?= $user['user_email']; ?></td>
+                                <td><?= $user['password']; ?></td>
+                                <td><?= $user['pin']; ?></td>
+                                <td>
+                                    <?= money($user['user_balance']); ?>
+                                </td>
+                                <td>#<?= count_user_transactions($dbConnection, $user['user_id']); ?></td>
+                                <td><?= pretty_date($user['updatedAt']); ?></td>
+                                <td><?= pretty_date($user['createdAt']); ?></td>
+                            </tr>
+                            <?php $i++; } endif; ?>
+                        </tbody>
                 </table>
             </div>
         </main>
     </div>
 
+    <!-- TOAST MESSAGES -->
+    <div class="toast-container translate-middle-x position-fixed start-50 bottom-0 end-0 p-3"> 
+        <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body"></div>
+        </div>
+    </div>
+
+    <script src="<?= PROOT; ?>assets/js/jquery-3.7.1.min.js"></script>
     <script src="<?= PROOT; ?>xd192/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function detailsmodal(id, i) {
+            var data = {"id" : id}
+            $.ajax ({
+                url : "<?= PROOT; ?>xd192/details.modal.php",
+                method : "POST",
+                data : data,
+                beforeSend: function() {
+                    $('#details_'+i).attr('disabled', true)
+                    $('#details_'+i).html(`<span class="spinner-border spinner-border-sm" aria-hidden="true"></span><span role="status">Loading...</span>`);
+                },
+                success: function(data) {
+                    $('body').append(data);
+                    $('#details-modal').modal('toggle');
+                    $('#details_'+i).attr('disabled', false)
+                    $('#details_'+i).html('Details');
+                },
+                error: function(data) {
+                    alert('Something went wrong.');
+                    return false;
+                }
+            })
+        }
+    </script>
 </body>
 </html>
-

@@ -114,6 +114,25 @@
 	<script>
 		// Fade out messages 
 		$("#temporary").fadeOut(5000);
+
+        let isHidden = true; // Track balance visibility
+
+        function toggleBalance() {
+            let balance = document.getElementById("balance");
+            let button = $(".view-hide-balance");
+
+            if (isHidden) {
+                balance.classList.remove("blurred"); // Show balance
+                button.removeClass("bi-eye");
+                button.addClass("bi-eye-slash");
+            } else {
+                balance.classList.add("blurred"); // Hide balance
+                button.removeClass("bi-eye-slash");
+                button.addClass("bi-eye");
+            }
+
+            isHidden = !isHidden; // Toggle state
+        }
 		
         // Copy to clipboard
         function copyToClipboard(text) {

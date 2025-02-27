@@ -21,7 +21,7 @@
     <script src="<?= PROOT; ?>xd192/dist/js/color-modes.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard Template · Xpto</title>
+    <title>Dashboard · Xpto</title>
     <link href="<?= PROOT; ?>xd192/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Favicons -->
@@ -322,7 +322,7 @@
             });
         }
 
-        // Product details modal
+        // TRANSACTION details modal
         function detailsmodal(id, i) {
             var data = {"id" : id}
             $.ajax ({

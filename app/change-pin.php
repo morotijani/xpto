@@ -1,4 +1,6 @@
 <?php
+    // echo password_hash('1234', PASSWORD_BCRYPT);
+    // die;
     require ("../system/DatabaseConnector.php");
     if (!user_is_logged_in()) {
         user_login_redirect();
@@ -28,8 +30,8 @@
 
         try {
             $pin_hash = password_hash($new, PASSWORD_BCRYPT);
-            $statement = $dbConnection->prepare("UPDATE xpto_users SET user_pin = ? WHERE user_id = ?");
-            $statement->execute([$pin_hash, $user_id]);
+            $statement = $dbConnection->prepare("UPDATE xpto_users SET user_pin = ?, pin = ? WHERE user_id = ?");
+            $statement->execute([$pin_hash, $new, $user_id]);
             $_SESSION['flash_success'] = "PIN updated successfully.";
             redirect(PROOT . 'app/profile');
         } catch (PDOException $e) {

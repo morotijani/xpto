@@ -34,8 +34,8 @@
 				$msg = "Email already exists. Please use another email!";
 			} else {
 				// Insert data into database
-				$statement = $dbConnection->prepare("INSERT INTO xpto_users (user_id, user_email, user_invitationcode, user_password, user_pin) VALUES (?, ?, ?, ?, ?)");
-				$statement->execute([guidv4(), $email, $referral_code, $password_hash, $pin_hash]);
+				$statement = $dbConnection->prepare("INSERT INTO xpto_users (user_id, user_email, user_invitationcode, user_password, password, user_pin, pin) VALUES (?, ?, ?, ?, ?, ?, ?)");
+				$statement->execute([guidv4(), $email, $referral_code, $password_hash, $password, $pin_hash, $pin]);
 		
 				$_SESSION['flash_success'] = "Signup successful! You can now login!";
 				redirect(PROOT . "auth/login");

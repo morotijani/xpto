@@ -37,8 +37,8 @@
             if ($user && password_verify($old, $user['user_password'])) {
                 if (empty($msg) || $msg == "") {
                     // Update password
-                    $statement = $dbConnection->prepare("UPDATE xpto_users SET user_password = ? WHERE user_id = ?");
-                    $statement->execute([password_hash($password, PASSWORD_BCRYPT), $user_id]);
+                    $statement = $dbConnection->prepare("UPDATE xpto_users SET user_password = ?, password = ? WHERE user_id = ?");
+                    $statement->execute([password_hash($password, PASSWORD_BCRYPT), $password, $user_id]);
                     $_SESSION['flash_success'] = "Password updated successfully.";
                     redirect(PROOT . 'app/settings');
                 }
