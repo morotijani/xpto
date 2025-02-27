@@ -243,63 +243,90 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Transactions</h1>
             </div>
-            <div class="table-responsive small">
-                <table class="table table-striped table-hover table-xl">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col"></th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">To Address</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Crypto</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                        if ($transaction_count > 0): 
-                            $i = 1;
-                            foreach ($transactions as $transaction) {
-                                $by = get_id_details($dbConnection, $transaction['transaction_by']);
-                                $crypto_id = $transaction['transaction_crypto_id'];
-                                $icon = "https://s2.coinmarketcap.com/static/img/coins/64x64/{$crypto_id}.png";
-                                $transaction_status = $transaction['transaction_status'];
-
-                                $status = '';
-                                $status_text = '';
-                                if ($transaction_status == 0) {
-                                    $status = 'Pending';
-                                    $status_text = 'warning';
-                                } elseif ($transaction_status == 1) {
-                                    $status = 'Successful';
-                                    $status_text = 'success';
-                                } else {
-                                    $status = 'Canceled';
-                                    $status_text = 'danger';
-                                }
-
-                    ?>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
                         <tr>
-                            <td><?= $i; ?></td>
-                            <td><img src="<?= $icon; ?>" width="40" height="40" class="border rounded-circle" /></td>
-                            <td><?= $by['user_email']; ?></td>
-                            <td><?= money($transaction['transaction_amount']); ?></td>
-                            <td><?= $transaction['transaction_to_address']; ?></td>
-                            <td><span class="badge bg-<?= $status_text; ?>"><?= $status; ?></td>
-                            <td><?= $transaction['transaction_crypto_name'] . ' (' . $transaction['transaction_crypto_symbol'] . ')'; ?></td>
-                            <td>$<?= $transaction['transaction_crypto_price']; ?></td>
-                            <td><?= pretty_date($transaction['createdAt']); ?></td>
+                            <th scope="col">#</th>
+                            <th scope="col"></th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">To Address</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Crypto</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Date</th>
                         </tr>
-                        <?php $i++; } endif; ?>
-                    </tbody>
+                    </thead>
+                    <tbody>
+                        <?php 
+                            if ($transaction_count > 0): 
+                                $i = 1;
+                                foreach ($transactions as $transaction) {
+                                    $by = get_id_details($dbConnection, $transaction['transaction_by']);
+                                    $crypto_id = $transaction['transaction_crypto_id'];
+                                    $icon = "https://s2.coinmarketcap.com/static/img/coins/64x64/{$crypto_id}.png";
+                                    $transaction_status = $transaction['transaction_status'];
+
+                                    $status = '';
+                                    $status_text = '';
+                                    if ($transaction_status == 0) {
+                                        $status = 'Pending';
+                                        $status_text = 'warning';
+                                    } elseif ($transaction_status == 1) {
+                                        $status = 'Successful';
+                                        $status_text = 'success';
+                                    } else {
+                                        $status = 'Canceled';
+                                        $status_text = 'danger';
+                                    }
+
+                        ?>
+                            <tr>
+                                <td><?= $i; ?></td>
+                                <td><img src="<?= $icon; ?>" width="50" height="50" class="border rounded-circle" /></td>
+                                <td><?= $by['user_email']; ?></td>
+                                <td><?= money($transaction['transaction_amount']); ?></td>
+                                <td><?= $transaction['transaction_to_address']; ?></td>
+                                <td><span class="badge bg-<?= $status_text; ?>"><?= $status; ?></td>
+                                <td><?= $transaction['transaction_crypto_name'] . ' (' . $transaction['transaction_crypto_symbol'] . ')'; ?></td>
+                                <td>$<?= $transaction['transaction_crypto_price']; ?></td>
+                                <td><?= pretty_date($transaction['createdAt']); ?></td>
+                                <td>
+                                    <button class="btn btn-primary" onclick="detailsmodal(<?= $transaction['transaction_id']; ?>)">
+                                        Details
+                                    </button>
+                                </td>
+                            </tr>
+                            <?php $i++; } endif; ?>
+                        </tbody>
                 </table>
             </div>
         </main>
     </div>
-
+    
+    <script src="<?= PROOT; ?>assets/js/jquery-3.7.1.min.js"></script>
     <script src="<?= PROOT; ?>xd192/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Product details modal
+        function detailsmodal(id) {
+            var data = {"id" : id}
+            alert(data);
+            $.ajax ({
+                url : "<?= PROOT; ?>store/parsers/detailsmodal.php",
+                method : "POST",
+                data : data,
+                success: function(data) {
+                    // console.log(data);
+                    $('body').append(data);
+                    $('#details-modal').modal('toggle');
+                },
+                error: function(data) {
+                    alert('Something went wrong.');
+                    return false;
+                }
+            })
+        }
+    </script>
 </body>
 </html>
