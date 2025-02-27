@@ -1,10 +1,8 @@
 <?php
     require ("../system/DatabaseConnector.php");
-    // if (!admin_is_logged_in()) {
-    //     admin_login_redirect();
-    // }
-    // $newFont = "yes";
-    // include ("../head.php");
+    if (admin_is_logged_in()) {
+        redirect(PROOT . 'xd192/');
+    }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$msg = "";
@@ -23,7 +21,7 @@
 
 			if ($user && password_verify($password, $user['admin_password'])) {
 				// Login successful
-                if (!empty($msg) || $msg != "") {
+                if (empty($msg) || $msg == "") {
                     $admin_id = $user['admin_id'];
                     adminLogin($admin_id);
                 }
@@ -37,7 +35,7 @@
 
 		if (!empty($msg) || $msg != "") {
 			$_SESSION['flash_error'] = $msg;
-			redirect(PROOT . 'auth/login');
+			redirect(PROOT . 'xd192/login');
 		}
 	}
     
@@ -53,7 +51,6 @@
     <link href="<?= PROOT; ?>xd192/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
     <meta name="theme-color" content="#712cf9">
-
 
     <style>
       .bd-placeholder-img {
@@ -151,9 +148,9 @@
         <symbol id="sun-fill" viewBox="0 0 16 16">
             <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
         </symbol>
-        </svg>
+    </svg>
 
-        <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
         <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
                 id="bd-theme"
                 type="button"
@@ -187,13 +184,12 @@
             </li>
         </ul>
     </div>
-
     
     <main>
         <div class="container py-4">
-            <header class="pb-3 mb-4 border-bottom">
-                <a href="/" class="d-flex align-items-center text-body-emphasis text-decoration-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" class="me-2" viewBox="0 0 118 94" role="img"><title>Bootstrap</title><path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z" fill="currentColor"></path></svg>
+            <header class="pb-3 mb-4">
+                <a href="<?= PROOT; ?>xd192/login" class="d-flex align-items-center text-body-emphasis text-decoration-none">
+                    <img src="<?= PROOT; ?>assets/media/logo.svg" class="me-2">
                     <span class="fs-4">Xpto</span>
                 </a>
             </header>
@@ -220,8 +216,13 @@
             </footer>
         </div>
     </main>
-
+    
+    <?= $flash_user; ?>
     <script src="<?= PROOT; ?>xd192/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+		// Fade out messages 
+		$("#temporary").fadeOut(5000);
+    </script>
 
 </body>
 </html>

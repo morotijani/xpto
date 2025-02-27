@@ -9,7 +9,6 @@
     $username = $_ENV['DB_USERNAME'];
     $password = $_ENV['DB_PASSWORD'];
 
-
     try {
         $string = $driver . ":host=" . $hostname . ";charset=utf8mb4;dbname=" . $database;
         $dbConnection = new \PDO(
