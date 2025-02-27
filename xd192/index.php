@@ -212,19 +212,19 @@
                     </div>
                     <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                     <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="#">
+                    <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="<?= PROOT; ?>xd192/">
                                 <i class="bi bi-house-fill"></i> Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="#">
+                            <a class="nav-link d-flex align-items-center gap-2" href="<?= PROOT; ?>xd192/TRANSACTIONS">
                                 <i class="bi bi-list-task"></i>
                                 Transactions
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="#">
+                            <a class="nav-link d-flex align-items-center gap-2" href="<?= PROOT; ?>xd192/USERS">
                                 <i class="bi bi-people-fill"></i>
                                 Users
                             </a>
@@ -232,16 +232,15 @@
                     </ul>
 
                     <hr class="my-3">
-
                     <ul class="nav flex-column mb-auto">
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="#">
+                            <a class="nav-link d-flex align-items-center gap-2" href="<?= PROOT; ?>xd192/settings">
                                 <i class="bi bi-gear-wide-connected"></i>
                                 Settings
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="#">
+                            <a class="nav-link d-flex align-items-center gap-2" href="<?= PROOT; ?>xd192/logout">
                                 <i class="bi bi-door-closed"></i>
                                 Sign out
                             </a>
