@@ -275,9 +275,6 @@
 			$('#submit-button').text('Loading ...');
 			setTimeout(() => {
 				$('#signupForm').submit();
-
-				$('#submit-button').attr('disabled', false);
-				$('#submit-button').text('Submit');
 			}, 2000);
 
 		})
