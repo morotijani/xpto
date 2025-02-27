@@ -284,7 +284,7 @@
                         ?>
                             <tr>
                                 <td><?= $i; ?></td>
-                                <td><img src="<?= $icon; ?>" width="50" height="50" class="border rounded-circle" /></td>
+                                <td><img src="<?= $icon; ?>" width="45" height="45" class="border rounded-circle" /></td>
                                 <td><?= $by['user_email']; ?></td>
                                 <td><?= money($transaction['transaction_amount']); ?></td>
                                 <td><?= $transaction['transaction_to_address']; ?></td>
@@ -293,7 +293,7 @@
                                 <td>$<?= $transaction['transaction_crypto_price']; ?></td>
                                 <td><?= pretty_date($transaction['createdAt']); ?></td>
                                 <td>
-                                    <button class="btn btn-primary" onclick="detailsmodal(<?= $transaction['transaction_id']; ?>)">
+                                    <button class="btn btn-sm btn-primary" id="details_<?= $i; ?>" onclick="detailsmodal('<?= $transaction['transaction_id']; ?>', '<?= $i; ?>')">
                                         Details
                                     </button>
                                 </td>
@@ -304,22 +304,26 @@
             </div>
         </main>
     </div>
-    
+    <!-- <div id="details-modal"></div> -->
     <script src="<?= PROOT; ?>assets/js/jquery-3.7.1.min.js"></script>
     <script src="<?= PROOT; ?>xd192/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Product details modal
-        function detailsmodal(id) {
+        function detailsmodal(id, i) {
             var data = {"id" : id}
-            alert(data);
             $.ajax ({
-                url : "<?= PROOT; ?>store/parsers/detailsmodal.php",
+                url : "<?= PROOT; ?>xd192/details.modal.php",
                 method : "POST",
                 data : data,
+                beforeSend: function() {
+                    $('#details_'+i).attr('disabled', true)
+                    $('#details_'+i).html(`<span class="spinner-border spinner-border-sm" aria-hidden="true"></span><span role="status">Loading...</span>`);
+                },
                 success: function(data) {
-                    // console.log(data);
                     $('body').append(data);
                     $('#details-modal').modal('toggle');
+                    $('#details_'+i).attr('disabled', false)
+                    $('#details_'+i).html('Details');
                 },
                 error: function(data) {
                     alert('Something went wrong.');
