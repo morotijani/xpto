@@ -1,14 +1,12 @@
 RewriteEngine on
 
-RewriteRule ^gpmin/users/([0-9a-zA-Z-]+)$ gpmin/users.php?view=$1 [NC,L]
-
 RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteCond %{REQUEST_FILENAME}\.php -f
 
 RewriteRule ^(.*)$ $1.php
 
-RewriteCond $1 !^(media|app|auth|xd192|helpers|fonts|dist|controller|connection|robots\.txt)
+RewriteCond $1 !^(media|app|auth|xd192|helpers|fonts|assets|dist|controller|connection|robots\.txt)
 
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
 

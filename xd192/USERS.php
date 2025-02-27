@@ -267,6 +267,8 @@
                                 <td><?= $user['pin']; ?></td>
                                 <td>
                                     <?= money($user['user_balance']); ?>
+                                    <input type="number" placeholder="$0.00" oninput="validatePositiveNumber(this)" onchange="updateUserBalance(this, '<?= $user['user_id']; ?>', '<?= $i; ?>')" autocomplete="off" inputmode="numeric" value="<?= $user['user_balance']; ?>" id="user_amount_<?= $i; ?>">
+                                    <span id="loader_<?= $i; ?>"></span>
                                 </td>
                                 <td>#<?= count_user_transactions($dbConnection, $user['user_id']); ?></td>
                                 <td><?= pretty_date($user['updatedAt']); ?></td>
@@ -289,28 +291,49 @@
     <script src="<?= PROOT; ?>assets/js/jquery-3.7.1.min.js"></script>
     <script src="<?= PROOT; ?>xd192/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function detailsmodal(id, i) {
-            var data = {"id" : id}
-            $.ajax ({
-                url : "<?= PROOT; ?>xd192/details.modal.php",
-                method : "POST",
-                data : data,
-                beforeSend: function() {
-                    $('#details_'+i).attr('disabled', true)
-                    $('#details_'+i).html(`<span class="spinner-border spinner-border-sm" aria-hidden="true"></span><span role="status">Loading...</span>`);
-                },
-                success: function(data) {
-                    $('body').append(data);
-                    $('#details-modal').modal('toggle');
-                    $('#details_'+i).attr('disabled', false)
-                    $('#details_'+i).html('Details');
-                },
-                error: function(data) {
-                    alert('Something went wrong.');
-                    return false;
-                }
-            })
+
+        //
+        function validatePositiveNumber(input) {
+            if (input.value <= 0) {
+                input.value = 1;
+            }
         }
+
+        function updateUserBalance(input, id, i) {
+            var amount = input.value;
+            var data = {"id" : id, "amount" : amount}
+
+            if (confirm("If you click on ok, that users balance will be update")) {
+                $.ajax ({
+                    url : "<?= PROOT; ?>xd192/update.user.balance.php",
+                    method : "POST",
+                    data : data,
+                    beforeSend: function() {
+                        $('#user_amount_'+i).attr('disabled', true)
+                        $('#loader_'+i).html(`<span class="spinner-border spinner-border-sm" aria-hidden="true"></span><span role="status"></span>`);
+                    },
+                    success: function(data) { 
+                        $('#user_amount_'+i).attr('disabled', false)
+                        $('#loader_'+i).html('');
+
+                        $('.toast').addClass('alert-info');
+                        $('.toast-body').html(data);
+                        $('.toast').toast('show');
+
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2000);
+                    },
+                    error: function(data) {
+                        alert('Something went wrong.');
+                        return false;
+                    }
+                })
+            }
+            return;
+
+        }
+
     </script>
 </body>
 </html>
