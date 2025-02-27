@@ -1,10 +1,45 @@
 <?php
     require ("../system/DatabaseConnector.php");
-    // if (!user_is_logged_in()) {
-    //     user_login_redirect();
+    // if (!admin_is_logged_in()) {
+    //     admin_login_redirect();
     // }
     // $newFont = "yes";
     // include ("../head.php");
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		$msg = "";
+		$email = sanitize($_POST["email"]);
+		$password = $_POST["password"];
+
+		if (empty($email) || empty($password)) {
+			$msg = "Email and password are required.";
+		}
+
+		try {
+			// Check if the user exists
+			$statement = $dbConnection->prepare("SELECT admin_id, admin_password FROM xpto_admins WHERE admin_email = ?");
+			$statement->execute([$email]);
+			$user = $statement->fetch(PDO::FETCH_ASSOC);
+
+			if ($user && password_verify($password, $user['admin_password'])) {
+				// Login successful
+                if (!empty($msg) || $msg != "") {
+                    $admin_id = $user['admin_id'];
+                    adminLogin($admin_id);
+                }
+			} else {
+				$msg = "Invalid email or password.";
+			}
+
+		} catch (PDOException $e) {
+			$msg = "Login failed: " . $e->getMessage();
+		}
+
+		if (!empty($msg) || $msg != "") {
+			$_SESSION['flash_error'] = $msg;
+			redirect(PROOT . 'auth/login');
+		}
+	}
     
 
 ?>
