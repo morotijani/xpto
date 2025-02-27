@@ -310,6 +310,18 @@
     <script src="<?= PROOT; ?>assets/js/jquery-3.7.1.min.js"></script>
     <script src="<?= PROOT; ?>xd192/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // Copy to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                $('.toast').addClass('bg-info');
+				$('.toast-body').html("Copied to clipboard:" + text);
+				$('.toast').toast('show');
+                console.log("Copied to clipboard:", text);
+            }).catch(err => {
+                console.error("Failed to copy:", err);
+            });
+        }
+
         // Product details modal
         function detailsmodal(id, i) {
             var data = {"id" : id}

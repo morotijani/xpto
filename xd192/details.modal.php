@@ -63,6 +63,10 @@
                                 <li class="list-group-item">Symbol: <b><?= $transaction['transaction_crypto_symbol']; ?></b></li>
                                 <li class="list-group-item">Current price (Before transaction): <b>$<?= $transaction['transaction_crypto_price']; ?></b></li>
                             </ul>
+                            <br>
+                            <p>
+                                TRANSACTION STATUS: <buton class="btn btn-<?= $status_text; ?>"><?= $status; ?></button>
+                            </p>
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -74,7 +78,13 @@
                                 <li class="list-group-item">Transaction ID: <b><?= $transaction['transaction_id']; ?></b></li>
                                 <li class="list-group-item">Name: <b><?= $userName; ?></b></li>
                                 <li class="list-group-item">Email: <b><?= $by['user_email']; ?></b></li>
-                                <li class="list-group-item">Transaction to: <b><?= $transaction['transaction_to_address']; ?></b></li>
+                                <li class="list-group-item">
+                                Transaction to:
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1"  style="cursor: pointer;" onclick="copyToClipboard(document.getElementById('address').value)"><i class="bi bi-clipboard2"></i>&nbsp; Copy</span>
+                                        <input class="form-control" type="text" id="address" value="<?= $transaction['transaction_to_address']; ?>" readonly>
+                                    </div>
+                                </li>
                                 <li class="list-group-item">Transaction amount: <b><?= money($transaction['transaction_amount']); ?></b></li>
                                 <li class="list-group-item">Transaction note: <b><?= $transaction['transaction_message']; ?></b></li>
                                 <li class="list-group-item">Transaction date: <b><?= pretty_date($transaction['createdAt']); ?></b></li>
@@ -118,6 +128,10 @@
 
         var status = $('#update_status').val();
         var id = $('#transaction_id').val();
+
+        if (status == '') {
+            return false;
+        }
 
         var data = {
             id: id,
