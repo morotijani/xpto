@@ -23,8 +23,10 @@
 
 			if ($user && password_verify($password, $user['user_password'])) {
 				// Login successful
-				$user_id = $user['user_id'];
-                userLogin($user_id);
+				if (empty($msg) || $msg == "") {
+					$user_id = $user['user_id'];
+					userLogin($user_id);
+				}
 			} else {
 				$msg = "Invalid email or password.";
 			}
