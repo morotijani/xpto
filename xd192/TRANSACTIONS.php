@@ -4,16 +4,6 @@
         admin_login_redirect();
     }
 
-    // count users in database
-    function count_users($dbConnection) {
-        return $dbConnection->query("SELECT id FROM xpto_users")->rowCount();
-    }
-
-    // count transactions in database
-    function count_transactions($dbConnection) {
-        return $dbConnection->query("SELECT id FROM xpto_transactions")->rowCount();
-    }
-
     // list current transaction
     $statement = $dbConnection->prepare("SELECT * FROM xpto_transactions ORDER BY createdAt DESC LIMIT 10");
     $statement->execute();
@@ -315,4 +305,3 @@
     <script src="<?= PROOT; ?>xd192/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
