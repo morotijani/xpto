@@ -10,11 +10,6 @@
     $transactions = $statement->fetchAll();
     $transaction_count = $statement->rowCount();
 
-    // get user details by id
-    function get_id_details($dbConnection, $id) {
-        $statement = $dbConnection->query("SELECT * FROM xpto_users WHERE user_id = '" . $id . "'")->fetch(PDO::FETCH_ASSOC);
-        return $statement;
-    }
 ?>
 
 
@@ -304,7 +299,14 @@
             </div>
         </main>
     </div>
-    <!-- <div id="details-modal"></div> -->
+
+    <!-- TOAST MESSAGES -->
+    <div class="toast-container translate-middle-x position-fixed start-50 bottom-0 end-0 p-3"> 
+        <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body"></div>
+        </div>
+    </div>
+
     <script src="<?= PROOT; ?>assets/js/jquery-3.7.1.min.js"></script>
     <script src="<?= PROOT; ?>xd192/dist/js/bootstrap.bundle.min.js"></script>
     <script>

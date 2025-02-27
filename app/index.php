@@ -235,7 +235,6 @@
                                                                                         if (isset($coin_data['data'])) {
                                                                                             foreach (array_slice($coin_data['data'], 0, 5) as $crypto) {
                                                                                                 $icon = "https://s2.coinmarketcap.com/static/img/coins/64x64/{$crypto['id']}.png";
-
                                                                                 ?>
                                                                                 <li>
                                                                                     <a class="dropdown-item d-flex align-items-center gap-2" href="javascript:;">

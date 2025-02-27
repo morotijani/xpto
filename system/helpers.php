@@ -42,3 +42,11 @@ function admin_login_redirect($url = 'xd192/logout') {
 	$_SESSION['flash_error'] = 'You must be logged in to access that page.';
 	redirect(PROOT . $url);
 }
+
+
+
+// get user details by id
+function get_id_details($dbConnection, $id) {
+	$statement = $dbConnection->query("SELECT * FROM xpto_users WHERE user_id = '" . $id . "'")->fetch(PDO::FETCH_ASSOC);
+	return $statement;
+}
