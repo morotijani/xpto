@@ -293,10 +293,12 @@
             <div class="toast-body"></div>
         </div>
     </div>
+    <?= $flash_user; ?>
 
     <script src="<?= PROOT; ?>assets/js/jquery-3.7.1.min.js"></script>
     <script src="<?= PROOT; ?>xd192/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        $("#temporary").fadeOut(5000);
 
         //
         function validatePositiveNumber(input) {
