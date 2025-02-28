@@ -261,7 +261,6 @@
                                                                     </div>
                                                                 </div>
 
-
                                                                 <div class="bg-light rounded-3 p-4">
                                                                     <div class="d-flex justify-content-between text-xs text-muted">
                                                                         <span class="fw-semibold">Amount in Crypto</span> 
@@ -277,18 +276,6 @@
                                                                         <span class="input-group-text" style="cursor: pointer;" onclick="pasteFromClipboard()"><i class="bi bi-clipboard2-check"></i>&nbsp; Paste</span>
                                                                     </div>
                                                                     <small class="form-text">As money transmitted to the wrong address may result in permanent loss, make sure the address is accurate.</small>
-                                                                    <!-- <div class="flex-fill">
-                                                                        <input type="radio" class="btn-check" name="options" id="option1" checked="checked"> 
-                                                                        <label class="btn btn-sm btn-neutral w-100" for="option1">0.5%</label>
-                                                                    </div>
-                                                                    <div class="flex-fill">
-                                                                        <input type="radio" class="btn-check" name="options" id="option2" checked="checked"> 
-                                                                        <label class="btn btn-sm btn-neutral w-100" for="option2">1%</label>
-                                                                    </div>
-                                                                    <div class="flex-fill">
-                                                                        <input type="radio" class="btn-check" name="options" id="option3" checked="checked"> 
-                                                                        <label class="btn btn-sm btn-neutral w-100" for="option3">3%</label>
-                                                                    </div> -->
                                                                 </div>
                                                             </div>
                                                             <div class="form-group mb-3">

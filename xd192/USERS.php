@@ -200,8 +200,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2" href="<?= PROOT; ?>xd192/new.transaction">
+                                <i class="bi bi-plus-circle"></i>
+                                New Transaction
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link d-flex align-items-center gap-2" href="<?= PROOT; ?>xd192/TRANSACTIONS">
-                                <i class="bi bi-list-task"></i>
+                                <i class="bi bi-arrow-left-right"></i>
                                 Transactions
                             </a>
                         </li>

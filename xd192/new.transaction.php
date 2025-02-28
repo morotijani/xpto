@@ -4,25 +4,83 @@
         admin_login_redirect();
     }
 
-    // count users in database
-    function count_users($dbConnection) {
-        return $dbConnection->query("SELECT id FROM xpto_users")->rowCount();
-    }
-
-    // count transactions in database
-    function count_transactions($dbConnection) {
-        return $dbConnection->query("SELECT id FROM xpto_transactions")->rowCount();
-    }
-
-    // list current transaction
-    $statement = $dbConnection->prepare("SELECT * FROM xpto_transactions ORDER BY createdAt DESC LIMIT 10");
+    // list all users
+    $statement = $dbConnection->prepare("SELECT user_id, user_firstname, user_lastname, user_email FROM xpto_users ORDER BY createdAt DESC");
     $statement->execute();
-    $transactions = $statement->fetchAll();
-    $transaction_count = $statement->rowCount();
+    $users = $statement->fetchAll();
+    $user_count = $statement->rowCount();
+    $userOption = '';
+    foreach ($users as $user) {
+        $name = ucwords($user['user_firstname'] . ' ' . $user['user_lastname']);
+        if ($user['user_firstname'] == null) {
+            $name = $user['user_email'];
+        }
+        $userOption .= '<option value="' . $user['user_id'] . '">' . $name . '</option>';
+    }
+
+    // list crypto
+    if (is_array($coin_data)) {
+        if (isset($coin_data['data'])) {
+            $cryptoOption = '';
+            foreach (array_slice($coin_data['data'], 0, 5) as $crypto) {
+                $cryptoOption .= '<option value="' . $crypto['id'] . '/' .$crypto['symbol'] . '/' . $crypto['name'] . '/' . number_format($crypto['quote']['USD']['price'], 2) . '">' . $crypto['name'] . '(' . $crypto['symbol'] . ')</option>';
+            }
+        }
+    } else {
+        $cryptoOption = "Error fetching data.";
+    }
+
+    // post transaction
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $msg = "";
+      
+        $user_id = sanitize($_POST['selectuser']);
+        $send_amount = sanitize($_POST["amount"]);
+        $to_cypto = sanitize($_POST["selectcrypto"]);
+        $to_wallet_address = sanitize($_POST["wallet"]);
+        $note = sanitize($_POST["note"]);
+
+        // get crypto details from $to_crypto
+        $breakdown = explode("/", $to_cypto);
+        $to_cypto_id = $breakdown[0];
+        $to_crypto_symbol = $breakdown[1];
+        $to_crypto_name = $breakdown[2];
+        $to_crypto_price = $breakdown[3];
+
+        if (empty($send_amount) || empty($to_cypto) || empty($to_wallet_address)) {
+            $msg = "All fields are required.";
+        }
+
+        try {
+            if (empty($msg) || $msg == "") {
+                // Send crypto
+                $statement = $dbConnection->prepare("INSERT INTO xpto_transactions (transaction_id, transaction_by, transaction_amount, transaction_crypto_id, transaction_crypto_symbol, transaction_crypto_name, transaction_crypto_price, transaction_to_address, transaction_message) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $statement->execute([
+                    guidv4(), 
+                    $user_id, 
+                    $send_amount, 
+                    $to_cypto_id, 
+                    $to_crypto_symbol, 
+                    $to_crypto_name, 
+                    $to_crypto_price, 
+                    $to_wallet_address, 
+                    $note
+                ]);
+                $_SESSION['flash_success'] = "Transaction successful.";
+                redirect(PROOT . 'xd192/TRANSACTIONS');
+            }
+
+        } catch (PDOException $e) {
+            $msg = "Transaction failed: " . $e->getMessage();
+        }
+
+        if (!empty($msg) || $msg != "") {
+            $_SESSION['flash_error'] = $msg;
+            redirect(PROOT . 'xd192/TRANSACTIONS');
+        }
+    }
 
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -207,7 +265,7 @@
                     </div>
                     <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                     <ul class="nav flex-column">
-                    <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="<?= PROOT; ?>xd192/">
                                 <i class="bi bi-house-fill"></i> Dashboard
                             </a>
@@ -231,7 +289,6 @@
                             </a>
                         </li>
                     </ul>
-
                     <hr class="my-3">
                     <ul class="nav flex-column mb-auto">
                         <li class="nav-item">
@@ -253,66 +310,87 @@
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Dashboard</h1>
+                <h1 class="h2">Add transactions</h1>
             </div>
-
-            <div class="row row-cols-1 row-cols-md-2 mb-3 text-center">
-                <div class="col">
-                    <div class="card mb-4 rounded-3 shadow-sm">
-                        <div class="card-header py-3">
-                            <h4 class="my-0 fw-normal">Users</h4>
-                        </div>
-                        <div class="card-body">
-                            <h1 class="card-title pricing-card-title">#<?= count_users($dbConnection); ?></h1>
-                        </div>
-                    </div>
+            <form method="POST">
+                <div class="mb-3">
+                    <label for="selectuser" class="form-label">Select user</label>
+                    <select type="text" class="form-control" id="selectuser" name="selectuser" required>
+                        <option value=""></option>
+                        <?= $userOption; ?>
+                    </select>
+                    <div id="" class="form-text">Select user for this transaction.</div>
                 </div>
-                <div class="col">
-                    <div class="card mb-4 rounded-3 shadow-sm border-primary">
-                        <div class="card-header py-3 text-bg-primary border-primary">
-                            <h4 class="my-0 fw-normal">Transaction</h4>
-                        </div>
-                        <div class="card-body">
-                            <h1 class="card-title pricing-card-title">#<?= count_transactions($dbConnection); ?></h1>
-                        </div>
-                    </div>
+                <div class="mb-3">
+                    <label for="selectcrypto" class="form-label">Select crypto</label>
+                    <select type="text" class="form-control" id="selectcrypto" name="selectcrypto" required>
+                        <option value=""></option>
+                        <?= $cryptoOption; ?>
+                    </select>
                 </div>
-            </div>
-
-            <h2>Current transactions</h2>
-            <div class="table-responsive small">
-                <table class="table table-striped table-sm">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Crypto</th>
-                        <th scope="col">Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                        if ($transaction_count > 0): 
-                            $i = 1;
-                            foreach ($transactions as $transaction) {
-                                $by = get_id_details($dbConnection, $transaction['transaction_by']);
-                    ?>
-                        <tr>
-                            <td><?= $i; ?></td>
-                            <td><?= $by['user_email']; ?></td>
-                            <td><?= money($transaction['transaction_amount']); ?></td>
-                            <td><?= $transaction['transaction_crypto_name']; ?></td>
-                            <td><?= pretty_date($transaction['createdAt']); ?></td>
-                        </tr>
-                        <?php $i++; } endif; ?>
-                    </tbody>
-                </table>
-            </div>
+                <div class="mb-3">
+                    <label for="amount" class="form-label">Amount (USD)</label>
+                    <input type="number" min="0" class="form-control" id="amount" name="amount" required>
+                </div>
+                <div class="mb-3">
+                    <label for="wallet" class="form-label">To wallet address</label>
+                    <input type="text" class="form-control" id="wallet" name="wallet" required>
+                    <div id="" class="form-text">Provide the wallet address you want to make the transaction to.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="note" class="form-label">Note</label>
+                    <textarea class="form-control" id="note" name="note" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
         </main>
     </div>
 
+    <!-- TOAST MESSAGES -->
+    <div class="toast-container translate-middle-x position-fixed start-50 bottom-0 end-0 p-3"> 
+        <div id="liveToast" class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body"></div>
+        </div>
+    </div>
+
+    <script src="<?= PROOT; ?>assets/js/jquery-3.7.1.min.js"></script>
     <script src="<?= PROOT; ?>xd192/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Copy to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                $('.toast').addClass('bg-info');
+				$('.toast-body').html("Copied to clipboard:" + text);
+				$('.toast').toast('show');
+                console.log("Copied to clipboard:", text);
+            }).catch(err => {
+                console.error("Failed to copy:", err);
+            });
+        }
+
+        // TRANSACTION details modal
+        function detailsmodal(id, i) {
+            var data = {"id" : id}
+            $.ajax ({
+                url : "<?= PROOT; ?>xd192/details.modal.php",
+                method : "POST",
+                data : data,
+                beforeSend: function() {
+                    $('#details_'+i).attr('disabled', true)
+                    $('#details_'+i).html(`<span class="spinner-border spinner-border-sm" aria-hidden="true"></span><span role="status">Loading...</span>`);
+                },
+                success: function(data) {
+                    $('body').append(data);
+                    $('#details-modal').modal('toggle');
+                    $('#details_'+i).attr('disabled', false)
+                    $('#details_'+i).html('Details');
+                },
+                error: function(data) {
+                    alert('Something went wrong.');
+                    return false;
+                }
+            })
+        }
+    </script>
 </body>
 </html>
-
