@@ -5,15 +5,12 @@
     }
 
     // list current transaction
-    $statement = $dbConnection->prepare("SELECT * FROM xpto_transactions ORDER BY createdAt DESC");
+    $statement = $dbConnection->prepare("SELECT * FROM xpto_transactions ORDER BY id DESC");
     $statement->execute();
     $transactions = $statement->fetchAll();
     $transaction_count = $statement->rowCount();
 
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
@@ -324,7 +321,7 @@
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
                 $('.toast').addClass('bg-info');
-				$('.toast-body').html("Copied to clipboard:" + text);
+				$('.toast-body').html("Copied to clipboard: " + text);
 				$('.toast').toast('show');
                 console.log("Copied to clipboard:", text);
             }).catch(err => {

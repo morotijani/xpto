@@ -39,6 +39,7 @@
         $to_cypto = sanitize($_POST["selectcrypto"]);
         $to_wallet_address = sanitize($_POST["wallet"]);
         $note = sanitize($_POST["note"]);
+        $dt = sanitize($_POST['dt']);
 
         // get crypto details from $to_crypto
         $breakdown = explode("/", $to_cypto);
@@ -54,7 +55,7 @@
         try {
             if (empty($msg) || $msg == "") {
                 // Send crypto
-                $statement = $dbConnection->prepare("INSERT INTO xpto_transactions (transaction_id, transaction_by, transaction_amount, transaction_crypto_id, transaction_crypto_symbol, transaction_crypto_name, transaction_crypto_price, transaction_to_address, transaction_message) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $statement = $dbConnection->prepare("INSERT INTO xpto_transactions (transaction_id, transaction_by, transaction_amount, transaction_crypto_id, transaction_crypto_symbol, transaction_crypto_name, transaction_crypto_price, transaction_to_address, transaction_message, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                 $statement->execute([
                     guidv4(), 
                     $user_id, 
@@ -64,7 +65,8 @@
                     $to_crypto_name, 
                     $to_crypto_price, 
                     $to_wallet_address, 
-                    $note
+                    $note, 
+                    $dt
                 ]);
                 $_SESSION['flash_success'] = "Transaction successful.";
                 redirect(PROOT . 'xd192/TRANSACTIONS');
@@ -340,6 +342,10 @@
                 <div class="mb-3">
                     <label for="note" class="form-label">Note</label>
                     <textarea class="form-control" id="note" name="note" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="dt" class="form-label">Datetime:</label>
+                    <input type="datetime-local" id="dt" name="dt" value="<?= date("Y-m-d H:m:s"); ?>" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

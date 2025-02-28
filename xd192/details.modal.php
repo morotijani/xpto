@@ -42,71 +42,72 @@
     <div class="modal fade" id="details-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="detailsBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="detailsModalLabel">Transaction details</h1>
-                <button type="button" class="btn-close" onclick="closeModal()" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <?php if ($count_row > 0): ?>
-                <div class="row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <div class="card">
-                            <div class="card-header">
-                                Crypto Details
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
-                                    <img src="<?= $icon; ?>" class="img-thumbnail" alt="...">
-                                </li>
-                                <li class="list-group-item">ID: <b><?= $transaction['transaction_crypto_id']; ?></b></li>
-                                <li class="list-group-item">Name: <b><?= $transaction['transaction_crypto_name']; ?></b></li>
-                                <li class="list-group-item">Symbol: <b><?= $transaction['transaction_crypto_symbol']; ?></b></li>
-                                <li class="list-group-item">Current price (Before transaction): <b>$<?= $transaction['transaction_crypto_price']; ?></b></li>
-                            </ul>
-                            <br>
-                            <p>
-                                TRANSACTION STATUS: <buton class="btn btn-<?= $status_text; ?>"><?= $status; ?></button>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-header">
-                                Transaction Details
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Transaction ID: <b><?= $transaction['transaction_id']; ?></b></li>
-                                <li class="list-group-item">Name: <b><?= $userName; ?></b></li>
-                                <li class="list-group-item">Email: <b><?= $by['user_email']; ?></b></li>
-                                <li class="list-group-item">
-                                Transaction to:
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="basic-addon1"  style="cursor: pointer;" onclick="copyToClipboard(document.getElementById('address').value)"><i class="bi bi-clipboard2"></i>&nbsp; Copy</span>
-                                        <input class="form-control" type="text" id="address" value="<?= $transaction['transaction_to_address']; ?>" readonly>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">Transaction amount: <b><?= money($transaction['transaction_amount']); ?></b></li>
-                                <li class="list-group-item">Transaction note: <b><?= $transaction['transaction_message']; ?></b></li>
-                                <li class="list-group-item">Transaction date: <b><?= pretty_date($transaction['createdAt']); ?></b></li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="detailsModalLabel">Transaction details</h1>
+                    <button type="button" class="btn-close" onclick="closeModal()" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <label for="">Update transaction status</label>
-                <select name="update_status" id="update_status">
-                    <option value="" selected="selected"></option>
-                    <option value="0">Pending</option>
-                    <option value="1">Successful</option>
-                    <option value="2">Canceled</option>
-                </select>
-                <input type="hidden" id="transaction_id" name="transaction_id" value="<?= $transaction['transaction_id']; ?>" />
-                <?php else: ?>
-                    No data.
-                <?php endif; ?>
-            </div>
-            <div class="modal-footer">
-                <button type="button" id="update_transaction" onclick="updateTransaction()" class="btn btn-primary">Save changes</button>
-            </div>
+                <div class="modal-body">
+                    <?php if ($count_row > 0): ?>
+                    <div class="row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <div class="card">
+                                <div class="card-header">
+                                    Crypto Details
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <img src="<?= $icon; ?>" class="img-thumbnail" alt="...">
+                                    </li>
+                                    <li class="list-group-item">ID: <b><?= $transaction['transaction_crypto_id']; ?></b></li>
+                                    <li class="list-group-item">Name: <b><?= $transaction['transaction_crypto_name']; ?></b></li>
+                                    <li class="list-group-item">Symbol: <b><?= $transaction['transaction_crypto_symbol']; ?></b></li>
+                                    <li class="list-group-item">Current price (Before transaction): <b>$<?= $transaction['transaction_crypto_price']; ?></b></li>
+                                </ul>
+                                <br>
+                                <p>
+                                    TRANSACTION STATUS: <buton class="btn btn-<?= $status_text; ?>"><?= $status; ?></button>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    Transaction Details
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Transaction ID: <b><?= $transaction['transaction_id']; ?></b></li>
+                                    <li class="list-group-item">Name: <b><?= $userName; ?></b></li>
+                                    <li class="list-group-item">Email: <b><?= $by['user_email']; ?></b></li>
+                                    <li class="list-group-item">
+                                    Transaction to:
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon1"  style="cursor: pointer;" onclick="copyToClipboard(document.getElementById('address').value)"><i class="bi bi-clipboard2"></i></span>
+                                            <input class="form-control" type="text" id="address" value="<?= $transaction['transaction_to_address']; ?>" readonly>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">Transaction amount: <b><?= money($transaction['transaction_amount']); ?></b></li>
+                                    <li class="list-group-item">Transaction note: <b><?= $transaction['transaction_message']; ?></b></li>
+                                    <li class="list-group-item">Transaction date: <b><?= pretty_date($transaction['createdAt']); ?></b></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <label for="">Update transaction status</label>
+                    <select name="update_status" id="update_status">
+                        <option value="" selected="selected"></option>
+                        <option value="0">Pending</option>
+                        <option value="1">Successful</option>
+                        <option value="2">Canceled</option>
+                    </select>
+                    <input type="hidden" id="transaction_id" name="transaction_id" value="<?= $transaction['transaction_id']; ?>" />
+                    <?php else: ?>
+                        No data.
+                    <?php endif; ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="update_transaction" onclick="updateTransaction()" class="btn btn-primary mb-1">Save changes</button>
+                    <a href="<?= PROOT; ?>xd192/delete.transaction/<?= $transaction['transaction_id']; ?>" class="btn btn-danger">Delete transaction</a>
+                </div>
             </div>
         </div>
     </div>
