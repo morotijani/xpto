@@ -200,6 +200,8 @@
                                                         </div>
 
                                                         <?php endforeach; ?>
+                                                        <?php else: ?>
+                                                            <div class="alert alert-secondary">No data available.</div>
                                                     <?php endif; ?>
                                                 </div>
                                             </div>

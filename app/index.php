@@ -358,28 +358,31 @@
     <script src="<?= PROOT; ?>assets/js/wallet-address-validator.min.js"></script>
 
 	<script>
-
         // conver from fiat to crypto
         async function convertToCrypto(amountUSD, cryptoSymbol, fiatSymbol = "USD") {
-            let apiKey = "<?= COINCAP_APIKEY; ?>";
-            // let cors = 'https://corsproxy.io/?key=5fda4615&url=';
-            let cors = 'https://cors-anywhere.herokuapp.com/'
+            
             try {
                 $('#amount-in-crypto-amount').text('Converting ...');
-                let response = await fetch(`${cors}https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=${cryptoSymbol}&convert=${fiatSymbol}`, {
-                    headers: { 
-                        "X-CMC_PRO_API_KEY": apiKey, 
-                        'Content-Type': 'application/json',
-                        'Access-Control-Allow-Origin': 'sites.local',
-                    }
+                // **NEW:** Make the request to your PHP endpoint
+                let response = await fetch('parsers/convert-to-crypto.php?amount=' + amountUSD + '&symbol=' + cryptoSymbol + '&convert=' + fiatSymbol, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
                 });
                 let data = await response.json();
-                let exchangeRate = data.data[cryptoSymbol].quote[fiatSymbol].price;
-                let cryptoAmount = amountUSD / exchangeRate;
 
-                console.log(`$${amountUSD} is approximately ${cryptoAmount.toFixed(8)} ${cryptoSymbol}`);
-                cryptoAmount = cryptoAmount.toFixed(8);
-                return cryptoAmount
+                if (data.status.error_code == 0) {
+                    let cryptoAmount = data.data[cryptoSymbol].quote[fiatSymbol].price;
+                    cryptoAmount = amountUSD / cryptoAmount
+                    cryptoAmount = cryptoAmount.toFixed(8);
+                    return cryptoAmount;
+
+                } else {
+                    $('#amount-in-crypto-amount').text(data.status.error_message);
+                    console.error("Failed to fetch:", data.status.error_message);
+                }
+
             } catch (error) {
                 $('#amount-in-crypto-amount').text("Failed to convert, please refresh page and try again.");
                 console.error("Failed to fetch:", error);
