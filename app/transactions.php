@@ -40,7 +40,7 @@
                         </li>
 
                         <li class="hs-has-mega-menu nav-item">
-                            <a id="landingsMegaMenu" class="nav-link" aria-current="page" href="#" role="button" aria-expanded="false">Hi <?= $user_name; ?>!</a>
+                            <a class="nav-link" href="<?= PROOT; ?>app/profile">Hi <?= $user_name; ?>!</a>
                         </li>
                         <li class="hs-has-mega-menu nav-item">
                             <a class="nav-link" href="<?= PROOT; ?>auth/logout">Logout</a>
