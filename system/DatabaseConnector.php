@@ -33,8 +33,12 @@
         if ($statement->rowCount() > 0) {
             $user_data = $statement->fetchAll();
             $user_data = $user_data[0];
-
-            $user_name = ucwords($user_data['user_firstname'] . " " . $user_data['user_lastname']);
+            $user_name = '';
+            if ($user_data['user_firstname'] == '' && $user_data['user_lastname'] == '') {
+                $user_name = $user_data['user_email'];
+            } else {
+                $user_name = ucwords($user_data['user_firstname'] . " " . $user_data['user_lastname']);
+            }
         } else {
             unset($_SESSION['XPUser']);
             redirect(PROOT . 'app/');

@@ -35,7 +35,7 @@
                         </li>
 
                         <li class="hs-has-mega-menu nav-item">
-                            <a id="landingsMegaMenu" class="nav-link" aria-current="page" href="#" role="button" aria-expanded="false">Hi Amin!</a>
+                            <a id="landingsMegaMenu" class="nav-link" aria-current="page" href="#" role="button" aria-expanded="false">Hi <?= $user_name; ?>!</a>
                         </li>
                         <li class="hs-has-mega-menu nav-item">
                             <a class="nav-link" href="<?= PROOT; ?>auth/logout">Logout</a>
@@ -44,7 +44,7 @@
                         <li class="nav-divider"></li>
 
                         <li class="nav-item">
-                            <a class="js-animation-link btn btn-ghost-secondary btn-no-focus me-2 me-lg-0" href="<?= PROOT; ?>auth/login">Deposite</a>
+                            <a class="js-animation-link btn btn-ghost-secondary btn-no-focus me-2 me-lg-0" href="<?= PROOT; ?>auth/login">Deposit</a>
                             <a class="js-animation-link d-lg-none btn btn-primary" href="<?= PROOT; ?>auth/register">
                                 <i class="bi-sign-turn-slight-right me-1"></i> Withdraw
                             </a>
